@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'keiner-v10';
+const CACHE_VERSION = 'keiner-v11';
 const ASSET_CACHE = `assets-${CACHE_VERSION}`;
 const HTML_CACHE = `html-${CACHE_VERSION}`;
 

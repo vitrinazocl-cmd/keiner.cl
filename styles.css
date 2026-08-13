@@ -120,6 +120,7 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  perspective: 900px;
 }
 
 .brand-logo {
@@ -130,6 +131,20 @@ a {
   border-radius: 8px;
   background: #ffffff;
   padding: 4px 8px;
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform;
+  animation: logoCoinSpin 0.72s linear infinite;
+}
+
+@keyframes logoCoinSpin {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 .hero-main-logo {
