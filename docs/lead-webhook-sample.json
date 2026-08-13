@@ -1,0 +1,15 @@
+{
+  "submissionId": "3aa67d66-1d15-45e4-8df8-5e4e8a621f03",
+  "source": "keiner-web-corporativo",
+  "receivedAt": "2026-08-13T18:42:00.000Z",
+  "lead": {
+    "nombre": "Daniela Soto",
+    "empresa": "Retail Andino",
+    "correo": "daniela.soto@retailandino.cl",
+    "mensaje": "Buscamos representacion comercial y soporte operativo para una nueva categoria.",
+    "necesidad": "representacion",
+    "perfil": "cliente",
+    "horizonte": "corto",
+    "integracion": "outlook"
+  }
+}

@@ -1,0 +1,43 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A2748"/>
+      <stop offset="1" stop-color="#0E4C78"/>
+    </linearGradient>
+    <linearGradient id="dock" x1="220" y1="370" x2="1380" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D628F"/>
+      <stop offset="1" stop-color="#163C61"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="260" cy="160" r="140" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="1420" cy="210" r="190" fill="#FFFFFF" fill-opacity="0.06"/>
+
+  <rect x="180" y="320" width="1240" height="480" rx="28" fill="url(#dock)" stroke="#8AB4D8" stroke-opacity="0.45" stroke-width="2"/>
+
+  <rect x="270" y="380" width="260" height="170" rx="14" fill="#DDEAF8"/>
+  <rect x="560" y="380" width="260" height="170" rx="14" fill="#DDEAF8"/>
+  <rect x="850" y="380" width="260" height="170" rx="14" fill="#DDEAF8"/>
+  <rect x="1140" y="380" width="180" height="170" rx="14" fill="#DDEAF8"/>
+
+  <rect x="252" y="566" width="1100" height="10" rx="5" fill="#9EC3E4" fill-opacity="0.75"/>
+  <rect x="252" y="596" width="1100" height="10" rx="5" fill="#9EC3E4" fill-opacity="0.55"/>
+
+  <rect x="300" y="640" width="320" height="94" rx="16" fill="#EAF3FC"/>
+  <rect x="650" y="640" width="320" height="94" rx="16" fill="#EAF3FC"/>
+
+  <rect x="1140" y="620" width="190" height="36" rx="10" fill="#EAF3FC"/>
+  <rect x="1170" y="670" width="160" height="18" rx="9" fill="#EAF3FC" fill-opacity="0.82"/>
+
+  <rect x="1080" y="690" width="300" height="44" rx="12" fill="#143553"/>
+  <circle cx="1135" cy="744" r="24" fill="#D7E7F8"/>
+  <circle cx="1325" cy="744" r="24" fill="#D7E7F8"/>
+
+  <rect x="1120" y="650" width="82" height="42" rx="10" fill="#F47A2F"/>
+  <rect x="1212" y="650" width="82" height="42" rx="10" fill="#F47A2F"/>
+  <rect x="1304" y="650" width="62" height="42" rx="10" fill="#F47A2F"/>
+
+  <path d="M350 685H575" stroke="#2C5D8C" stroke-width="12" stroke-linecap="round"/>
+  <path d="M700 685H925" stroke="#2C5D8C" stroke-width="12" stroke-linecap="round"/>
+  <path d="M1240 458L1270 486L1320 426" stroke="#1B649D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

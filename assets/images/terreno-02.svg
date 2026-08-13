@@ -1,0 +1,23 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title2 desc2">
+  <title id="title2">Reunion comercial con proveedores</title>
+  <desc id="desc2">Ilustracion de equipo en mesa de negocio para representacion de marca.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10243f"/>
+      <stop offset="1" stop-color="#3b79ab"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <rect x="160" y="610" width="1280" height="160" rx="20" fill="#1b426f"/>
+  <rect x="280" y="540" width="1040" height="90" rx="18" fill="#24588f"/>
+  <circle cx="520" cy="430" r="48" fill="#ffd7b6"/>
+  <circle cx="800" cy="430" r="48" fill="#ffd7b6"/>
+  <circle cx="1080" cy="430" r="48" fill="#ffd7b6"/>
+  <rect x="470" y="475" width="100" height="120" rx="20" fill="#ff8b3c"/>
+  <rect x="750" y="475" width="100" height="120" rx="20" fill="#ff8b3c"/>
+  <rect x="1030" y="475" width="100" height="120" rx="20" fill="#ff8b3c"/>
+  <rect x="650" y="290" width="300" height="170" rx="16" fill="#173b64"/>
+  <polyline points="690,390 740,360 790,372 845,335 900,350" stroke="#86d5ff" stroke-width="8" fill="none"/>
+  <text x="150" y="815" fill="#f2f8ff" font-size="42" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Representacion comercial con foco en cierre y demanda</text>
+  <text x="150" y="850" fill="#bfd8ef" font-size="27" font-family="Segoe UI, Arial, sans-serif">Presentamos tu marca en canales clave y gestionamos su posicionamiento local.</text>
+</svg>

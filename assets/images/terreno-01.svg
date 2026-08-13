@@ -1,0 +1,26 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Ejecutivo en visita a terreno</title>
+  <desc id="desc">Ilustracion de trabajador en faena revisando inventario.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f2948"/>
+      <stop offset="1" stop-color="#2f6ea4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="120" y="580" width="1360" height="200" rx="22" fill="#173a63"/>
+  <rect x="210" y="360" width="300" height="220" rx="16" fill="#1d4b7f"/>
+  <rect x="540" y="330" width="300" height="250" rx="16" fill="#21558d"/>
+  <rect x="870" y="300" width="300" height="280" rx="16" fill="#276399"/>
+  <g>
+    <circle cx="1250" cy="350" r="58" fill="#ffd7b6"/>
+    <rect x="1200" y="410" width="110" height="150" rx="20" fill="#ff7f2f"/>
+    <rect x="1222" y="560" width="24" height="95" rx="10" fill="#0f2744"/>
+    <rect x="1264" y="560" width="24" height="95" rx="10" fill="#0f2744"/>
+    <rect x="1140" y="440" width="80" height="22" rx="11" fill="#ffd7b6"/>
+    <rect x="1305" y="440" width="95" height="22" rx="11" fill="#ffd7b6"/>
+    <rect x="1325" y="420" width="95" height="65" rx="10" fill="#9fd5ff"/>
+  </g>
+  <text x="150" y="815" fill="#f2f8ff" font-size="42" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Trabajadores en terreno y control de inventario</text>
+  <text x="150" y="850" fill="#bfd8ef" font-size="27" font-family="Segoe UI, Arial, sans-serif">Levantamos oportunidades reales en terreno para tus categorias objetivo.</text>
+</svg>

@@ -1,0 +1,9 @@
+{
+  "name": "KEINER.CL Corporativo",
+  "short_name": "KEINER.CL",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f6fb",
+  "theme_color": "#0f2f57",
+  "description": "Sitio corporativo premium de KEINER.CL"
+}

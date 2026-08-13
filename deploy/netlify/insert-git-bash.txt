@@ -1,0 +1,13 @@
+# Guardar y subir desde Git Bash (copiar y pegar)
+cd "/c/Users/ext_jmena/OneDrive - Falabella/Escritorio/keiner.cl 2.0"
+
+# Opcion A: usar script automatizado
+bash deploy/netlify/gitbash-push-netlify.sh
+
+# Opcion B: comandos manuales
+# git init
+# git add -A
+# git commit -m "chore: deploy netlify"
+# git branch -M main
+# git remote add origin "https://github.com/vitrinazocl-cmd/keiner.cl.git"
+# git push -u origin main

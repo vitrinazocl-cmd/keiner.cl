@@ -1,0 +1,23 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title4 desc4">
+  <title id="title4">Consultoria de mercado y categoria</title>
+  <desc id="desc4">Ilustracion de analisis de oportunidades para adaptacion de productos al mercado local.</desc>
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f2643"/>
+      <stop offset="1" stop-color="#3b7aac"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg4)"/>
+  <rect x="170" y="210" width="1260" height="520" rx="24" fill="#163d68"/>
+  <rect x="230" y="280" width="520" height="390" rx="18" fill="#205286"/>
+  <rect x="810" y="280" width="560" height="180" rx="18" fill="#2a6298"/>
+  <rect x="810" y="490" width="560" height="180" rx="18" fill="#2a6298"/>
+  <circle cx="510" cy="430" r="140" fill="#173a62"/>
+  <circle cx="510" cy="430" r="95" fill="#8fd0fb"/>
+  <rect x="902" y="335" width="250" height="18" rx="9" fill="#a8e0ff"/>
+  <rect x="902" y="370" width="210" height="18" rx="9" fill="#a8e0ff"/>
+  <rect x="902" y="545" width="300" height="18" rx="9" fill="#a8e0ff"/>
+  <rect x="902" y="580" width="200" height="18" rx="9" fill="#a8e0ff"/>
+  <text x="150" y="815" fill="#f2f8ff" font-size="42" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Consultoria para adaptar producto, marca y categoria</text>
+  <text x="150" y="850" fill="#bfd8ef" font-size="27" font-family="Segoe UI, Arial, sans-serif">Investigacion de cliente y oportunidades para una entrada comercial efectiva.</text>
+</svg>

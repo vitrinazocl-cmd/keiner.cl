@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contacto KEINER: conversemos sobre hunting de productos, representación y consultoría.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="theme-color" content="#0f2f57">
+    <meta property="og:image" content="https://www.keiner.cl/logo%20keiner.png">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+    <link rel="canonical" href="https://www.keiner.cl/contacto.html">
+    <title>Contacto | KEINER.CL</title>
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contacto KEINER",
+        "url": "https://www.keiner.cl/contacto.html",
+        "description": "Formulario de contacto para hunting de productos, representación y consultoría."
+      }
+    </script>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+    <header class="site-header" id="inicio">
+      <section class="utility-bar">
+        <div class="container utility-inner">
+          <p>Asesoría comercial B2B para desarrollo de categorías en Chile</p>
+          <div class="utility-links">
+            <a href="contacto.html">Contacto Corporativo</a>
+            <a href="casos.html">Casos de Referencia</a>
+          </div>
+        </div>
+      </section>
+      <div class="topbar container">
+        <a class="brand" href="index.html" aria-label="Inicio KEINER.CL">
+          <img class="brand-logo" src="logo%20keiner.png" alt="Logo KEINER" width="170" height="51" loading="eager" decoding="async">
+          <span class="brand-text">
+            <strong>KEINER.CL</strong>
+            <small>Contacto Corporativo</small>
+          </span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="menu-principal" class="menu" aria-label="Navegacion principal">
+          <a href="index.html">Inicio</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="casos.html">Casos</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="contacto.html">Contacto</a>
+          <a class="btn btn-primary" href="contacto.html">Agenda Reunion</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido-principal" class="legal-main">
+      <section class="container legal-card reveal">
+        <p class="eyebrow">Conversemos</p>
+        <h1>Cuéntanos tu necesidad comercial</h1>
+        <p>
+          Si buscas productos, representación o asesoría, completa el formulario y te contactaremos
+          con una propuesta concreta para tu categoría.
+        </p>
+      </section>
+
+      <section class="section contact">
+        <div class="container contact-inner">
+          <div class="contact-copy reveal">
+            <p class="eyebrow">Compromiso KEINER</p>
+            <h2>Respuesta ágil y orientación comercial clara</h2>
+            <p>Diseñamos una ruta de trabajo según tu objetivo de producto, canal y mercado.</p>
+            <ul class="contact-trust" aria-label="Compromisos de contacto">
+              <li>Respuesta en menos de 24 horas habiles</li>
+              <li>Informacion tratada bajo politica de privacidad</li>
+              <li>Sin envio de spam ni uso comercial no autorizado</li>
+            </ul>
+          </div>
+          <form class="contact-form reveal" id="contact-form" novalidate>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" minlength="2" maxlength="80" autocomplete="name" required>
+
+            <label for="empresa">Empresa</label>
+            <input id="empresa" name="empresa" type="text" minlength="2" maxlength="80" autocomplete="organization" required>
+
+            <label for="correo">Correo corporativo</label>
+            <input id="correo" name="correo" type="email" maxlength="120" autocomplete="email" required>
+
+            <div class="form-grid-2">
+              <div>
+                <label for="necesidad">Necesidad principal</label>
+                <select id="necesidad" name="necesidad">
+                  <option value="">Selecciona una opcion</option>
+                  <option value="hunting">Hunting de Productos</option>
+                  <option value="representacion">Representacion</option>
+                  <option value="consultoria">Consultoria</option>
+                </select>
+              </div>
+              <div>
+                <label for="horizonte">Plazo esperado</label>
+                <select id="horizonte" name="horizonte">
+                  <option value="">Selecciona una opcion</option>
+                  <option value="inmediato">Inmediato (0-30 dias)</option>
+                  <option value="corto">Corto plazo (1-3 meses)</option>
+                  <option value="medio">Mediano plazo (3-6 meses)</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="mensaje">Objetivo del proyecto</label>
+            <textarea id="mensaje" name="mensaje" rows="4" minlength="15" maxlength="1200" required></textarea>
+
+            <input class="field-honeypot" id="website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <label class="consent-row" for="acepto-politica">
+              <input id="acepto-politica" name="aceptoPolitica" type="checkbox" required>
+              <span>Acepto la Politica de Privacidad para el tratamiento de mis datos.</span>
+            </label>
+
+            <p class="form-feedback" role="status" aria-live="polite"></p>
+            <button class="btn btn-primary" type="submit">Enviar solicitud ></button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <p>© <span id="year"></span> KEINER.CL. Todos los derechos reservados.</p>
+          <p class="footer-tag">Movemos el producto que tienes, encontramos el producto que quieres.</p>
+        </div>
+        <nav aria-label="Enlaces corporativos" class="footer-links">
+          <a href="servicios.html">Servicios</a>
+          <a href="casos.html">Casos</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="contacto.html">Contacto</a>
+        </nav>
+        <nav aria-label="Enlaces legales" class="footer-links">
+          <a href="privacy.html">Politica de Privacidad</a>
+          <a href="terms.html">Terminos y Condiciones</a>
+        </nav>
+      </div>
+    </footer>
+
+    <a class="floating-cta" href="contacto.html" aria-label="Solicitar reunion comercial">
+      Solicitar Reunion
+    </a>
+  </body>
+</html>

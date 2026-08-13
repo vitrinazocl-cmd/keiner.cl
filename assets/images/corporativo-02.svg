@@ -1,0 +1,41 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title2 desc2">
+  <title id="title2">Centro de Control Operacional</title>
+  <desc id="desc2">Ilustracion de tableros ejecutivos y supervisión operativa.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101D33"/>
+      <stop offset="1" stop-color="#275E94"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="190" y1="450" x2="1410" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#76CEFF"/>
+      <stop offset="1" stop-color="#FFC37B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg2)"/>
+  <g opacity="0.3">
+    <path d="M0 180H1600" stroke="#5FA6DE" stroke-width="2"/>
+    <path d="M0 360H1600" stroke="#5FA6DE" stroke-width="2"/>
+    <path d="M0 540H1600" stroke="#5FA6DE" stroke-width="2"/>
+    <path d="M0 720H1600" stroke="#5FA6DE" stroke-width="2"/>
+  </g>
+  <rect x="190" y="160" width="1220" height="580" rx="26" fill="#0F2A4A"/>
+  <rect x="240" y="215" width="490" height="220" rx="18" fill="#163E69"/>
+  <rect x="760" y="215" width="600" height="220" rx="18" fill="#184571"/>
+  <rect x="240" y="460" width="360" height="230" rx="18" fill="#194C7C"/>
+  <rect x="620" y="460" width="350" height="230" rx="18" fill="#1A5386"/>
+  <rect x="990" y="460" width="370" height="230" rx="18" fill="#1D5A90"/>
+
+  <polyline points="280,360 360,320 470,338 580,280 680,300" stroke="url(#accent2)" stroke-width="6" fill="none"/>
+  <polyline points="810,370 920,310 1030,340 1120,295 1210,330 1320,250" stroke="#8DD9FF" stroke-width="6" fill="none"/>
+  <g fill="#EAF8FF">
+    <circle cx="280" cy="360" r="9"/>
+    <circle cx="360" cy="320" r="9"/>
+    <circle cx="470" cy="338" r="9"/>
+    <circle cx="580" cy="280" r="9"/>
+    <circle cx="680" cy="300" r="9"/>
+    <circle cx="1320" cy="250" r="9"/>
+  </g>
+
+  <text x="190" y="812" fill="#F3F9FF" font-size="44" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Centro de Control Operacional</text>
+  <text x="190" y="850" fill="#BAD5EF" font-size="28" font-family="Segoe UI, Arial, sans-serif">Trazabilidad de KPIs criticos en tiempo real para equipos de alto rendimiento.</text>
+</svg>

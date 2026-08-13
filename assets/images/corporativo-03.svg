@@ -1,0 +1,50 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title3 desc3">
+  <title id="title3">Ciberseguridad Empresarial 360</title>
+  <desc id="desc3">Ilustracion con escudo digital y redes protegidas.</desc>
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A1A31"/>
+      <stop offset="1" stop-color="#133C6A"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="800" y1="180" x2="800" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#86D8FF"/>
+      <stop offset="1" stop-color="#2A78B9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg3)"/>
+
+  <g opacity="0.25" stroke="#6BB9E8" stroke-width="2">
+    <circle cx="800" cy="430" r="290"/>
+    <circle cx="800" cy="430" r="220"/>
+    <circle cx="800" cy="430" r="150"/>
+  </g>
+
+  <path d="M800 180L1060 290V450C1060 575 955 670 800 720C645 670 540 575 540 450V290L800 180Z" fill="url(#shield)"/>
+  <path d="M800 240L995 325V450C995 546 920 620 800 665C680 620 605 546 605 450V325L800 240Z" fill="#103D69"/>
+
+  <g fill="#AEE7FF">
+    <rect x="762" y="380" width="76" height="140" rx="18"/>
+    <rect x="710" y="430" width="180" height="64" rx="18"/>
+  </g>
+
+  <g stroke="#7FD2FF" stroke-width="5">
+    <path d="M220 520C360 470 470 460 620 500"/>
+    <path d="M980 500C1130 450 1250 460 1380 510"/>
+    <path d="M320 280C470 290 560 320 650 380"/>
+    <path d="M950 380C1040 320 1140 290 1290 300"/>
+  </g>
+
+  <g fill="#EAF8FF">
+    <circle cx="220" cy="520" r="11"/>
+    <circle cx="620" cy="500" r="11"/>
+    <circle cx="980" cy="500" r="11"/>
+    <circle cx="1380" cy="510" r="11"/>
+    <circle cx="320" cy="280" r="11"/>
+    <circle cx="650" cy="380" r="11"/>
+    <circle cx="950" cy="380" r="11"/>
+    <circle cx="1290" cy="300" r="11"/>
+  </g>
+
+  <text x="170" y="812" fill="#F3F9FF" font-size="44" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Ciberseguridad Empresarial 360</text>
+  <text x="170" y="850" fill="#BDD7EF" font-size="28" font-family="Segoe UI, Arial, sans-serif">Proteccion de identidad, datos y operaciones con estrategia de defensa en profundidad.</text>
+</svg>
