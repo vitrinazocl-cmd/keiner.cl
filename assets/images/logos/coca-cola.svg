@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cocaRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F40009" />
+      <stop offset="100%" stop-color="#C80008" />
+    </linearGradient>
+  </defs>
+  <rect width="320" height="120" rx="20" fill="url(#cocaRed)"/>
+  <g transform="translate(160, 62)">
+    <!-- Iconic White Dynamic Ribbon Wave underneath -->
+    <path d="M -130 25 C -70 42, -10 10, 40 28 C 90 45, 120 20, 135 25 C 90 12, 40 32, -10 15 C -60 -2, -100 20, -130 25 Z" fill="#FFFFFF"/>
+    <!-- Official Coca-Cola Script Cursive Vector Representation -->
+    <text x="0" y="14" font-family="'Brush Script MT', 'Bickham Script Pro', 'Segoe Script', cursive" font-size="56" font-weight="900" font-style="italic" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1.5">Coca-Cola</text>
+  </g>
+</svg>

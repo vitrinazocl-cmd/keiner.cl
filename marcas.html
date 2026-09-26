@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="es-CL" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nuestras Marcas - KEINER.CL Enterprise: Catálogo de marcas representadas y distribuidas en Chile para abarrotes, bebidas, congelados, limpieza, cuidado personal y mascotas.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#0A2540">
+    <link rel="canonical" href="https://www.keiner.cl/marcas.html">
+    <title>Nuestras Marcas Representadas & Mayoristas | KEINER.CL Enterprise</title>
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <!-- Header Principal -->
+    <header class="site-header" id="inicio">
+      <section class="utility-bar">
+        <div class="container utility-inner">
+          <div class="utility-ticker">
+            <span class="live-badge"><span class="pulse-dot"></span> EN VIVO</span>
+            <p>KEINER.CL • Red Nacional de Marcas & Distribución Mayorista | Mesa Telefónica: <strong>+56 2 2900 8800</strong></p>
+          </div>
+          <div class="utility-links">
+            <a href="contacto.html">Contacto Comercial</a>
+            <a href="#" data-modal="modalLogin">Acceso Clientes B2B</a>
+            <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Cambiar Tema">
+              <span class="theme-toggle-icon">🌙</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Navigation -->
+      <div class="topbar container">
+        <a class="brand" href="index.html" aria-label="Inicio KEINER.CL Enterprise">
+          <img src="assets/images/keiner-logo-wordmark.svg" alt="KEINER" class="brand-logo-svg">
+          <span class="brand-divider"></span>
+          <span class="brand-text">
+            <strong>KEINER.CL</strong>
+            <small>CORPORATIVO B2B</small>
+          </span>
+        </a>
+
+        <button class="mobile-toggle" type="button" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="nav-menu" aria-label="Navegación principal">
+          <a class="nav-link" href="index.html">Inicio</a>
+          <a class="nav-link active" href="marcas.html">Nuestras Marcas</a>
+          <a class="nav-link" href="servicios.html">Servicios B2B</a>
+          <a class="nav-link" href="nosotros.html">Nosotros</a>
+          <a class="nav-link" href="casos.html">Casos de Éxito</a>
+          <a class="nav-link" href="contacto.html">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="btn btn-outline btn-sm" data-modal="modalLogin">Portal Clientes</button>
+          <button class="btn btn-primary btn-sm" data-modal="modalCuenta">Solicitar Cuenta Empresa</button>
+        </div>
+      </div>
+    </header>
+
+    <main style="padding-top: calc(var(--header-height) + 40px);">
+      <!-- 1. HERO SECTION MARCAS -->
+      <section class="section-padding hero-marcas-bg" style="background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); color: #ffffff; position: relative; overflow: hidden; padding-bottom: 60px;">
+        <div class="container reveal">
+          <div style="text-align: center; max-width: 850px; margin: 0 auto;">
+            <div class="hero-badge" style="background: rgba(0, 194, 255, 0.15); border: 1px solid rgba(0, 194, 255, 0.3); color: var(--accent); margin-bottom: 20px;">
+              <span>✦</span> REPRESENTACIÓN &amp; DISTRIBUCIÓN COMERCIAL NACIONAL
+            </div>
+            <h1 style="font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.15; margin-bottom: 20px;">
+              Nuestras Marcas Representadas
+            </h1>
+            <p style="font-size: 1.15rem; color: #cbd5e1; max-width: 750px; margin: 0 auto 30px auto; line-height: 1.6;">
+              Conectamos a las marcas líderes de consumo masivo con más de 5.000 comercios en todo Chile. Cobertura comercial en terreno, inteligencia de rotación FEFO y distribución garantizada.
+            </p>
+
+            <!-- Buscador de Marcas -->
+            <div class="brand-search-box" style="max-width: 600px; margin: 0 auto 35px auto; position: relative;">
+              <input type="text" id="brandSearchInput" class="form-input" placeholder="🔍 Buscar por nombre de marca o producto (ej. Aceite, Soda Fresh, Detergente)..." style="padding: 16px 22px; font-size: 1rem; border-radius: var(--radius-full); background: rgba(255, 255, 255, 0.95); color: #111; border: 2px solid var(--accent); box-shadow: var(--shadow-glow);">
+            </div>
+
+            <!-- KPIs de Red de Marcas -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: 30px;">
+              <div>
+                <strong style="font-size: 2rem; color: var(--accent); display: block; font-family: var(--font-heading);" data-count="50">0</strong>
+                <span style="font-size: 0.875rem; color: #94a3b8;">Marcas Directas</span>
+              </div>
+              <div>
+                <strong style="font-size: 2rem; color: var(--accent); display: block; font-family: var(--font-heading);" data-count="50000">0</strong>
+                <span style="font-size: 0.875rem; color: #94a3b8;">SKUs Activos</span>
+              </div>
+              <div>
+                <strong style="font-size: 2rem; color: var(--accent); display: block; font-family: var(--font-heading);">100%</strong>
+                <span style="font-size: 0.875rem; color: #94a3b8;">Cobertura Chile</span>
+              </div>
+              <div>
+                <strong style="font-size: 2rem; color: var(--accent); display: block; font-family: var(--font-heading);">24h</strong>
+                <span style="font-size: 0.875rem; color: #94a3b8;">Despacho Garantizado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. INFINITE LOGO SLIDER (CINTURÓN CONTINUO DE MARCAS OFICIALES) -->
+      <section class="brand-slider-section">
+        <div class="container" style="margin-bottom: 18px; text-align: center;">
+          <span style="font-size: 0.8125rem; font-weight: 800; letter-spacing: 1.5px; color: var(--secondary); text-transform: uppercase;">✦ MARCAS LÍDERES REPRESENTADAS &amp; DISTRIBUIDAS EN CHILE ✦</span>
+        </div>
+        <div class="brand-slider-track">
+          <div class="brand-slider-slide">
+            <div class="brand-logo-card"><img src="assets/images/logos/coca-cola.svg" alt="Coca-Cola"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/nescafe.svg" alt="Nescafé"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/ariel.svg" alt="Ariel"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/san-jose.svg" alt="San José Conservas"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/carozzi.svg" alt="Carozzi"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/hellmanns.svg" alt="Hellmann's"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/nestle.svg" alt="Nestlé"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/miraflores.svg" alt="Miraflores"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/minuto-verde.svg" alt="Minuto Verde"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/tucapel.svg" alt="Tucapel"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/maggi.svg" alt="Maggi"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/iansa.svg" alt="Iansa"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/sprite.svg" alt="Sprite"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/super-beef.svg" alt="Super Beef"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/canoro.svg" alt="Canoro"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/te-club.svg" alt="Té Club"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/kraft.svg" alt="Kraft"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/heinz.svg" alt="Heinz"></div>
+          </div>
+          <!-- Duplicado para Seamless Endless Loop -->
+          <div class="brand-slider-slide" aria-hidden="true">
+            <div class="brand-logo-card"><img src="assets/images/logos/coca-cola.svg" alt="Coca-Cola"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/nescafe.svg" alt="Nescafé"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/ariel.svg" alt="Ariel"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/san-jose.svg" alt="San José Conservas"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/carozzi.svg" alt="Carozzi"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/hellmanns.svg" alt="Hellmann's"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/nestle.svg" alt="Nestlé"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/miraflores.svg" alt="Miraflores"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/minuto-verde.svg" alt="Minuto Verde"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/tucapel.svg" alt="Tucapel"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/maggi.svg" alt="Maggi"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/iansa.svg" alt="Iansa"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/sprite.svg" alt="Sprite"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/super-beef.svg" alt="Super Beef"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/canoro.svg" alt="Canoro"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/te-club.svg" alt="Té Club"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/kraft.svg" alt="Kraft"></div>
+            <div class="brand-logo-card"><img src="assets/images/logos/heinz.svg" alt="Heinz"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. SECTOR DE CATEGORÍAS & MARCAS MAIN SHOWCASE -->
+      <section class="section-padding container">
+        <div style="text-align: center; max-width: 750px; margin: 0 auto 40px auto;" class="reveal">
+          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">CATÁLOGO DE REPRESENTACIÓN</span>
+          <h2 style="font-size: 2.25rem; margin-top: 8px;">Explora Nuestras Marcas por Categoría</h2>
+          <p style="color: var(--text-muted); margin-top: 10px;">
+            Selecciona una categoría comercial para filtrar la oferta de productos, marcas aliadas y disponibilidad inmediata para tu negocio.
+          </p>
+        </div>
+
+        <!-- Pestañas de Categoría (Tabs estilo Promerco) -->
+        <div class="brand-category-tabs reveal" id="brandTabs">
+          <button class="brand-tab-btn active" data-category="all">
+            <span class="tab-icon">✨</span> Todas las Marcas
+          </button>
+          <button class="brand-tab-btn" data-category="abarrotes">
+            <span class="tab-icon">🌾</span> Abarrotes &amp; Alimentos
+          </button>
+          <button class="brand-tab-btn" data-category="bebidas">
+            <span class="tab-icon">🥤</span> Bebidas &amp; Líquidos
+          </button>
+          <button class="brand-tab-btn" data-category="congelados">
+            <span class="tab-icon">🥩</span> Congelados &amp; Fríos
+          </button>
+          <button class="brand-tab-btn" data-category="limpieza">
+            <span class="tab-icon">🧼</span> Limpieza &amp; Higiene
+          </button>
+          <button class="brand-tab-btn" data-category="mascotas">
+            <span class="tab-icon">🐶</span> Mascotas
+          </button>
+          <button class="brand-tab-btn" data-category="cuidado">
+            <span class="tab-icon">🧴</span> Cuidado Personal
+          </button>
+        </div>
+
+        <!-- Contador de Resultados -->
+        <div style="margin-bottom: 25px; color: var(--text-subtle); font-size: 0.9375rem; font-weight: 500;" id="brandCountLabel">
+          Mostrando <strong>12 marcas</strong> en el catálogo
+        </div>
+
+        <!-- GRID DE MARCAS -->
+        <div class="brands-showcase-grid" id="brandsGrid">
+
+          <!-- Marca 1: Miraflores / Oro del Campo (Abarrotes) -->
+          <div class="brand-card reveal" data-category="abarrotes" data-keywords="oro del campo miraflores aceite maravilla vegetal harinas abarrotes">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(255, 184, 0, 0.15); color: #d97706;">🌾</div>
+              <div>
+                <span class="brand-category-tag">Abarrotes</span>
+                <h3 class="brand-title">Aceites Miraflores</h3>
+              </div>
+              <span class="brand-badge-pill">ALTA ROTACIÓN</span>
+            </div>
+            <img src="assets/images/products/aceite-vegetal-real.jpg" alt="Aceite Miraflores Maravilla 900ml" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Aceites vegetales de máxima pureza y harinas seleccionadas de molienda tradicional con excelente posicionamiento en el canal almacén y HORECA.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Aceite Maravilla Miraflores 900ml (Caja 12 Unid.)</li>
+                <li>• Aceite Vegetal Smart Price 900ml (Caja 12 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Minimarkets</span>
+              <span class="channel-chip">HORECA</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Aceites Miraflores">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Aceites Miraflores">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 2: Don Arroz / Canoro (Abarrotes) -->
+          <div class="brand-card reveal" data-category="abarrotes" data-keywords="canoro arroz grado 1 2 lentejas porotos legumbres abarrotes">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(0, 208, 132, 0.15); color: #059669;">🍚</div>
+              <div>
+                <span class="brand-category-tag">Abarrotes</span>
+                <h3 class="brand-title">Arroz Canoro &amp; Tucapel</h3>
+              </div>
+              <span class="brand-badge-pill">CALIDAD EXTRA</span>
+            </div>
+            <img src="assets/images/products/arroz-grado1-real.jpg" alt="Arroz Canoro Grado 1 1kg" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Arroz Grado 1 de grano largo ancho y selección de legumbres secas de primera cosecha con empaque resistente al transporte.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Arroz Canoro Grado 1 Premium 1kg (Fardo 10 Unid.)</li>
+                <li>• Arroz Tucapel Gran Selección 1kg (Fardo 10 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Mayoristas</span>
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Distribuidoras</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Arroz Canoro">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Arroz Canoro">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 3: Coca-Cola / Soda (Bebidas) -->
+          <div class="brand-card reveal" data-category="bebidas" data-keywords="coca cola sprite fanta gaseosa cola refrescos bebidas">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(0, 102, 255, 0.15); color: #0066FF;">🥤</div>
+              <div>
+                <span class="brand-category-tag">Bebidas</span>
+                <h3 class="brand-title">Coca-Cola &amp; Refrescos</h3>
+              </div>
+              <span class="brand-badge-pill">TOP VENTAS</span>
+            </div>
+            <img src="assets/images/products/bebida-gaseosa-real.jpg" alt="Pack Coca Cola 591ml" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Bebidas gaseosas carbonatadas de marcas líderes y refrescos de frutas de alto margen comercial para botillerías y minimarkets.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Pack Coca-Cola Original 591ml x 6 Unid.</li>
+                <li>• Pack Sprite / Fanta 591ml x 6 Unid.</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Botillerías</span>
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Restaurantes</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Coca-Cola Pack">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Coca-Cola Pack">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 4: Benedictino / Vital (Bebidas) -->
+          <div class="brand-card reveal" data-category="bebidas" data-keywords="vital benedictino agua mineral pura gas bebidas">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(0, 194, 255, 0.15); color: #0284c7;">💧</div>
+              <div>
+                <span class="brand-category-tag">Bebidas</span>
+                <h3 class="brand-title">Agua Vital &amp; Benedictino</h3>
+              </div>
+              <span class="brand-badge-pill">AGUA MANANTIAL</span>
+            </div>
+            <img src="assets/images/products/agua-mineral-real.jpg" alt="Agua Vital Con Gas 600ml" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Agua mineral purificada y aromatizada de vertiente natural. Filtración de microiones para un sabor puro y fresco.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Agua Vital Con Gas / Sin Gas 600ml (Pack 12 Unid.)</li>
+                <li>• Agua Benedictino Purificada 500ml (Pack 12 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Minimarkets</span>
+              <span class="channel-chip">Gimnasios</span>
+              <span class="channel-chip">Oficinas</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Agua Vital">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Agua Vital">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 5: Hamburguesas Super Beef (Congelados) -->
+          <div class="brand-card reveal" data-category="congelados" data-keywords="super beef hamburguesa vacuno cecinas congelados">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(239, 68, 68, 0.15); color: #dc2626;">🥩</div>
+              <div>
+                <span class="brand-category-tag">Congelados</span>
+                <h3 class="brand-title">Hamburguesas Super Beef</h3>
+              </div>
+              <span class="brand-badge-pill">CADENA DE FRÍO</span>
+            </div>
+            <img src="assets/images/products/hamburguesas-vacuno-real.jpg" alt="Hamburguesa Super Beef 100g" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Hamburguesas 100% carne de vacuno, cecinas artesanales y cortes porcionados ultracongelados con sellado hermético.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Hamburguesa Super Beef 100g (Caja 40 Unid.)</li>
+                <li>• Salchicha La Española x 20 Unid.</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Rotiserías</span>
+              <span class="channel-chip">Foodservice</span>
+              <span class="channel-chip">Supermercados</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Super Beef">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Super Beef">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 6: Minuto Verde (Congelados) -->
+          <div class="brand-card reveal" data-category="congelados" data-keywords="minuto verde verduras papas prefritas congelados arveja habas">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(14, 165, 233, 0.15); color: #0284c7;">🥦</div>
+              <div>
+                <span class="brand-category-tag">Congelados</span>
+                <h3 class="brand-title">Minuto Verde</h3>
+              </div>
+              <span class="brand-badge-pill">VERDURAS &amp; PAPAS</span>
+            </div>
+            <img src="assets/images/products/arveja-congelada-real.jpg" alt="Minuto Verde Arvejas Congeladas" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Verduras congeladas con sistema IQF y papas prefritas congeladas listas para freír u hornear en restaurantes y almacenes.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Arvejas Congeladas Minuto Verde 1kg (Caja 10 Unid.)</li>
+                <li>• Papas Prefritas Horneables 2.5kg (Caja 4 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">HORECA</span>
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Restaurantes</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Minuto Verde">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Minuto Verde">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 7: Detergente Ariel (Limpieza) -->
+          <div class="brand-card reveal" data-category="limpieza" data-keywords="ariel detergente liquido suavizante cloro limpieza">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(147, 51, 234, 0.15); color: #7e22ce;">🧼</div>
+              <div>
+                <span class="brand-category-tag">Limpieza</span>
+                <h3 class="brand-title">Detergente Ariel</h3>
+              </div>
+              <span class="brand-badge-pill">DESINFECTANTE</span>
+            </div>
+            <img src="assets/images/products/detergente-liquido-real.jpg" alt="Detergente Ariel 1.8L" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Detergentes líquidos ultra concentrados de alto rendimiento y remoción de manchas para el hogar e instituciones.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Detergente Líquido Ariel 1.8L (Caja 6 Unid.)</li>
+                <li>• Suavizante Textil Concentrado 2L (Caja 6 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Empresas</span>
+              <span class="channel-chip">Instituciones</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Detergente Ariel">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Detergente Ariel">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 8: San José Conservas (Abarrotes) -->
+          <div class="brand-card reveal" data-category="abarrotes" data-keywords="san jose atun jurel lomito conservas mariscos abarrotes">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(16, 185, 129, 0.15); color: #047857;">🐟</div>
+              <div>
+                <span class="brand-category-tag">Abarrotes</span>
+                <h3 class="brand-title">San José Conservas</h3>
+              </div>
+              <span class="brand-badge-pill">PESCADOS &amp; MARISCOS</span>
+            </div>
+            <img src="assets/images/products/atun-san-jose-real.jpg" alt="Atún Lomito San José 140g" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Lomitos de atún y jurel en aceite o agua, producidos con los más altos estándares de inocuidad y alta demanda en almacenes.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Atún Lomito San José en Aceite 140g (Caja 24 Unid.)</li>
+                <li>• Lomito de Jurel San José 160g (Caja 24 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Minimarkets</span>
+              <span class="channel-chip">Supermercados</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="San José Conservas">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="San José Conservas">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 9: Nescafé (Abarrotes) -->
+          <div class="brand-card reveal" data-category="abarrotes" data-keywords="nescafe cafe sticks capuchino vainilla abarrotes">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(245, 158, 11, 0.15); color: #b45309;">☕</div>
+              <div>
+                <span class="brand-category-tag">Abarrotes</span>
+                <h3 class="brand-title">Nescafé Tradición</h3>
+              </div>
+              <span class="brand-badge-pill">PREMIUM</span>
+            </div>
+            <img src="assets/images/products/nescafe-400g-real.jpg" alt="Nescafé 400g Tarro" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              El café preferido por los chilenos en tarro instantáneo, versiones de sabores y formato de sticks para el canal tradicional.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Nescafé Tradición Tarro 400g (Caja 12 Unid.)</li>
+                <li>• Nescafé Capuchino / Vainilla x 8 Sobres (Caja 12 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Minimarkets</span>
+              <span class="channel-chip">Oficinas</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Nescafé Tradición">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Nescafé Tradición">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 10: Harina Selecta (Abarrotes) -->
+          <div class="brand-card reveal" data-category="abarrotes" data-keywords="selecta harina carozzi reposteria panaderia abarrotes">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(236, 72, 153, 0.15); color: #be185d;">🌾</div>
+              <div>
+                <span class="brand-category-tag">Abarrotes</span>
+                <h3 class="brand-title">Harina Selecta</h3>
+              </div>
+              <span class="brand-badge-pill">REPOSTERÍA</span>
+            </div>
+            <img src="assets/images/products/harina-selecta-real.jpg" alt="Harina Selecta 1kg" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Harina de trigo de máxima refinación con y sin polvos de hornear, líder en hogares y amasanderías de barrio.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Harina Selecta Con Polvos 1kg (Fardo 10 Unid.)</li>
+                <li>• Harina Selecta Sin Polvos 1kg (Fardo 10 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Panaderías</span>
+              <span class="channel-chip">Supermercados</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Harina Selecta">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Harina Selecta">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 11: Nestlé Manjar (Abarrotes / Repostería) -->
+          <div class="brand-card reveal" data-category="abarrotes" data-keywords="nestle manjar dulce leche lacteos abarrotes">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(6, 182, 212, 0.15); color: #0891b2;">🍯</div>
+              <div>
+                <span class="brand-category-tag">Abarrotes</span>
+                <h3 class="brand-title">Nestlé Manjar</h3>
+              </div>
+              <span class="brand-badge-pill">LÁCTEOS &amp; DULCES</span>
+            </div>
+            <img src="assets/images/products/manjar-nestle-real.jpg" alt="Manjar Nestlé 1kg" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Manjar de leche entera de receta tradicional en formato gastronómico y de consumo masivo para reposteros y minimarkets.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Manjar Nestlé Tradicional 1kg (Caja 12 Unid.)</li>
+                <li>• Manjar Nestlé Bolsa 500g (Caja 20 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Pastelerías</span>
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Minimarkets</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Manjar Nestlé">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Manjar Nestlé">Ficha Técnica</button>
+            </div>
+          </div>
+
+          <!-- Marca 12: Hellmann's Mayonesa (Salsas & Abarrotes) -->
+          <div class="brand-card reveal" data-category="abarrotes" data-keywords="hellmanns mayonesa ketchup mostaza heinz aderezos">
+            <div class="brand-card-header">
+              <div class="brand-emblem-badge" style="background: rgba(34, 197, 94, 0.15); color: #15803d;">🧈</div>
+              <div>
+                <span class="brand-category-tag">Abarrotes</span>
+                <h3 class="brand-title">Hellmann's &amp; Salsas</h3>
+              </div>
+              <span class="brand-badge-pill">ADEREZOS</span>
+            </div>
+            <img src="assets/images/products/mayonesa-hellmanns-real.jpg" alt="Mayonesa Hellmanns 630g" style="width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:14px; border:1px solid var(--border-light);">
+            <p class="brand-description">
+              Mayonesa de textura cremosa, kétchup y mostaza de alta calidad ideal para el consumo del hogar y locales de comida rápida.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Mayonesa Hellmann's Doypack 630g (Caja 12 Unid.)</li>
+                <li>• Mostaza Heinz 1kg (Caja 6 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Foodservice</span>
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Minimarkets</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="Hellmanns Salsas">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="Hellmanns Salsas">Ficha Técnica</button>
+            </div>
+          </div>
+                <h3 class="brand-title">NaturaPura Bio</h3>
+              </div>
+              <span class="brand-badge-pill">ECO-FRIENDLY</span>
+            </div>
+            <p class="brand-description">
+              Jabones vegetales hipoalergénicos, toallitas biodegradables y productos sostenibles de higiene para toda la familia.
+            </p>
+            <div class="brand-products-box">
+              <span class="brand-products-title">SKUs &amp; Productos Destacados:</span>
+              <ul class="brand-products-list">
+                <li>• Jabón Vegetal Avena &amp; Miel 90g (Pack 3 Unid.)</li>
+                <li>• Toallitas Húmedas Biodegradables 80u (Pack 12 Unid.)</li>
+                <li>• Pasta Dental Herbal Sin Flúor 100g (Caja 12 Unid.)</li>
+              </ul>
+            </div>
+            <div class="brand-channels">
+              <span class="channel-chip">Eco-Tiendas</span>
+              <span class="channel-chip">Almacenes</span>
+              <span class="channel-chip">Minimarkets</span>
+            </div>
+            <div class="brand-card-footer">
+              <button class="btn btn-primary btn-sm" data-modal="modalCotizacion" data-brand="NaturaPura Bio">Cotizar Lote</button>
+              <button class="btn btn-outline btn-sm" data-modal="modalCotizacion" data-brand="NaturaPura Bio">Ficha Técnica</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4. BANNER DE CONVERSIÓN DE REPRESENTACIÓN DE MARCA -->
+      <section class="section-padding container">
+        <div style="background: linear-gradient(135deg, #0A2540 0%, #0066FF 100%); border-radius: var(--radius-lg); padding: 50px 40px; color: #ffffff; position: relative; overflow: hidden; box-shadow: var(--shadow-lg);" class="reveal">
+          <div style="position: relative; z-index: 2; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; align-items: center;">
+            <div>
+              <span style="background: rgba(255, 255, 255, 0.2); color: #ffffff; padding: 4px 12px; border-radius: 99px; font-size: 0.8125rem; font-weight: 700; text-transform: uppercase;">¿ERES FABRICANTE O PROVEEDOR?</span>
+              <h2 style="font-size: 2.25rem; font-weight: 800; margin-top: 12px; line-height: 1.2;">
+                ¿Quieres que KEINER represente y distribuya tu marca en Chile?
+              </h2>
+              <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.88); margin-top: 14px; max-width: 650px;">
+                Integramos tu portafolio de productos a nuestro ecosistema digital B2B. Acceso inmediato a fuerza de venta en terreno, logística con control FEFO y pagos garantizados.
+              </p>
+            </div>
+            <div style="text-align: right;">
+              <button class="btn btn-primary" data-modal="modalCuenta" style="background: #ffffff; color: var(--primary-dark); font-weight: 700; padding: 16px 28px; font-size: 1.05rem; border: none; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);">
+                Solicitar Representación
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER CORPORATIVO -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a class="brand" href="index.html" style="margin-bottom:16px;">
+              <img src="assets/images/keiner-logo-wordmark.svg" alt="KEINER" class="brand-logo-svg">
+              <span class="brand-divider"></span>
+              <span class="brand-text" style="color:#fff;">
+                <strong>KEINER.CL</strong>
+                <small style="color:var(--accent);">ENTERPRISE B2B</small>
+              </span>
+            </a>
+            <p style="font-size:0.875rem; color:var(--text-subtle); margin-top:12px;">
+              El Ecosistema Comercial B2B Más Inteligente de Chile. Hunting de productos, representación de marcas y abastecimiento inteligente.
+            </p>
+          </div>
+          <div>
+            <h4 class="footer-title">Navegación Rápida</h4>
+            <ul class="footer-links">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="marcas.html">Nuestras Marcas</a></li>
+              <li><a href="servicios.html">Servicios B2B</a></li>
+              <li><a href="nosotros.html">Sobre Nosotros</a></li>
+              <li><a href="casos.html">Casos de Éxito</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-title">Categorías de Marcas</h4>
+            <ul class="footer-links">
+              <li><a href="marcas.html?cat=abarrotes">Abarrotes &amp; Alimentos</a></li>
+              <li><a href="marcas.html?cat=bebidas">Bebidas &amp; Líquidos</a></li>
+              <li><a href="marcas.html?cat=congelados">Congelados &amp; Fríos</a></li>
+              <li><a href="marcas.html?cat=limpieza">Limpieza &amp; Higiene</a></li>
+              <li><a href="marcas.html?cat=mascotas">Alimento Mascota</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-title">Contacto Directo</h4>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:8px;">📍 Av. Providencia 2653, Of. 804, Santiago</p>
+            <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:8px;">📞 Mesa Central: +56 2 2900 8800</p>
+            <p style="font-size:0.875rem; color:var(--text-muted);">✉️ contacto@keiner.cl</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 KEINER.CL Enterprise SpA. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODAL COTIZACIÓN RÁPIDA -->
+    <div class="modal-backdrop" id="modalCotizacion" aria-hidden="true">
+      <div class="modal-dialog">
+        <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+        <div class="modal-header">
+          <h3 class="modal-title">Solicitar Cotización de Lote</h3>
+          <p class="modal-subtitle">Indique la marca o SKUs requeridos y un ejecutivo comercial le responderá en breve.</p>
+        </div>
+        <div class="modal-body">
+          <form id="formCotizacion" onsubmit="event.preventDefault(); alert('Solicitud enviada correctamente. Un ejecutivo de KEINER.CL se contactará en minutos.'); document.getElementById('modalCotizacion').classList.remove('active');">
+            <div style="margin-bottom:12px;">
+              <label class="form-label">Marca o Producto Seleccionado</label>
+              <input type="text" id="modalBrandInput" class="form-input" placeholder="Nombre de la marca o SKU..." value="Marca Representada KEINER">
+            </div>
+            <div style="margin-bottom:12px;">
+              <label class="form-label">Nombre del Negocio / Razón Social</label>
+              <input type="text" class="form-input" placeholder="Ej: Comercial Mi Almacén SpA" required>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label class="form-label">RUT Empresa</label>
+              <input type="text" class="form-input" placeholder="76.123.456-7" required>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label class="form-label">Teléfono WhatsApp de Contacto</label>
+              <input type="tel" class="form-input" placeholder="+56 9 1234 5678" required>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label class="form-label">Volumen Estimado de Compra</label>
+              <textarea class="form-textarea" rows="3" placeholder="Ej: 50 cajas mensual con despacho a Santiago..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Enviar Solicitud de Cotización</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL ACCESO PORTAL CLIENTES B2B -->
+    <div class="modal-backdrop" id="modalLogin" aria-hidden="true">
+      <div class="modal-dialog">
+        <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+        <div class="modal-header">
+          <h3 class="modal-title">Acceso Portal Clientes B2B</h3>
+          <p class="modal-subtitle">Ingrese con sus credenciales de comercio registrado</p>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="event.preventDefault(); alert('Iniciando sesión...'); document.getElementById('modalLogin').classList.remove('active');">
+            <div style="margin-bottom:12px;">
+              <label class="form-label">RUT Comercio</label>
+              <input type="text" class="form-input" placeholder="76.123.456-7" required>
+            </div>
+            <div style="margin-bottom:16px;">
+              <label class="form-label">Contraseña</label>
+              <input type="password" class="form-input" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Ingresar al Portal B2B</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL SOLICITAR CUENTA EMPRESA -->
+    <div class="modal-backdrop" id="modalCuenta" aria-hidden="true">
+      <div class="modal-dialog">
+        <button class="modal-close" aria-label="Cerrar modal">&times;</button>
+        <div class="modal-header">
+          <h3 class="modal-title">Solicitar Cuenta de Empresa</h3>
+          <p class="modal-subtitle">Acceda a precios de fábrica y crédito mayorista B2B</p>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="event.preventDefault(); alert('Solicitud de cuenta recibida. Le contactaremos para validar sus datos comerciales.'); document.getElementById('modalCuenta').classList.remove('active');">
+            <div style="margin-bottom:12px;">
+              <label class="form-label">Nombre del Negocio</label>
+              <input type="text" class="form-input" placeholder="Ej: Minimarket Providencia" required>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label class="form-label">RUT Comercial</label>
+              <input type="text" class="form-input" placeholder="76.999.888-K" required>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label class="form-label">Email Corporativo</label>
+              <input type="email" class="form-input" placeholder="compras@negocio.cl" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Registrar Negocio</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

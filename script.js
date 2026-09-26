@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initChileMap();
   initModals();
   initChatbot();
+  initBrandsPage();
 });
 
 /* ==========================================================================
@@ -384,3 +385,86 @@ function initChatbot() {
     });
   }
 }
+
+/* ==========================================================================
+   10. INTERACTIVIDAD PÁGINA DE MARCAS (TABS & BÚSQUEDA)
+   ========================================================================== */
+function initBrandsPage() {
+  const brandTabs = document.querySelectorAll('#brandTabs .brand-tab-btn');
+  const brandCards = document.querySelectorAll('.brand-card');
+  const searchInput = document.getElementById('brandSearchInput');
+  const countLabel = document.getElementById('brandCountLabel');
+
+  if (!brandCards.length) return;
+
+  // Detect URL parameter ?cat=abarrotes
+  const urlParams = new URLSearchParams(window.location.search);
+  const catParam = urlParams.get('cat');
+
+  let activeCategory = catParam || 'all';
+
+  // Activate tab from URL param
+  if (catParam) {
+    brandTabs.forEach((tab) => {
+      if (tab.getAttribute('data-category') === catParam) {
+        brandTabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+      }
+    });
+  }
+
+  function filterBrands() {
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    let visibleCount = 0;
+
+    brandCards.forEach((card) => {
+      const cardCategory = card.getAttribute('data-category');
+      const cardKeywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+      const cardTitle = card.querySelector('.brand-title')?.textContent.toLowerCase() || '';
+
+      const matchesCategory = activeCategory === 'all' || cardCategory === activeCategory;
+      const matchesSearch = !query || cardKeywords.includes(query) || cardTitle.includes(query);
+
+      if (matchesCategory && matchesSearch) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    if (countLabel) {
+      countLabel.innerHTML = `Mostrando <strong>${visibleCount} marca${visibleCount !== 1 ? 's' : ''}</strong> en el catálogo`;
+    }
+  }
+
+  // Tab buttons click
+  brandTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      brandTabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeCategory = tab.getAttribute('data-category');
+      filterBrands();
+    });
+  });
+
+  // Search input typing
+  if (searchInput) {
+    searchInput.addEventListener('input', filterBrands);
+  }
+
+  // Pass brand name to quote modal
+  document.querySelectorAll('[data-modal="modalCotizacion"]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const brandName = btn.getAttribute('data-brand');
+      const modalBrandInput = document.getElementById('modalBrandInput');
+      if (brandName && modalBrandInput) {
+        modalBrandInput.value = brandName;
+      }
+    });
+  });
+
+  // Initial run
+  filterBrands();
+}
+

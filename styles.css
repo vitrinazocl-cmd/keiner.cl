@@ -1521,3 +1521,259 @@ canvas#fintechChart {
     flex-direction: column;
   }
 }
+
+/* ==========================================================================
+   MARCAS PAGE & BRAND SHOWCASE STYLES (ESTILO PROMERCO)
+   ========================================================================== */
+
+/* Carrusel Infinito de Marcas (Cinturón Marquee Premium) */
+.brand-slider-section {
+  background: var(--bg-card);
+  padding: 35px 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  overflow: hidden;
+  position: relative;
+}
+.brand-slider-section::before,
+.brand-slider-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+.brand-slider-section::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-card), transparent);
+}
+.brand-slider-section::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-card), transparent);
+}
+
+.brand-slider-track {
+  display: flex;
+  width: max-content;
+  animation: brandSlide 40s linear infinite;
+}
+.brand-slider-track:hover {
+  animation-play-state: paused;
+}
+.brand-slider-slide {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.brand-logo-card {
+  height: 64px;
+  padding: 8px 20px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  flex-shrink: 0;
+}
+.brand-logo-card:hover {
+  transform: translateY(-4px) scale(1.05);
+  border-color: var(--secondary);
+  box-shadow: var(--shadow-md);
+}
+.brand-logo-card img {
+  height: 42px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  display: block;
+}
+
+@keyframes brandSlide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Selector de Categorías (Pestañas/Tabs) */
+.brand-category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.brand-tab-btn {
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+.brand-tab-btn:hover {
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  border-color: var(--secondary);
+}
+.brand-tab-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(10, 37, 64, 0.25);
+}
+[data-theme="dark"] .brand-tab-btn.active {
+  background: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* Grid de Tarjetas de Marcas */
+.brands-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 40px;
+}
+.brand-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+.brand-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-active);
+}
+.brand-card.hidden {
+  display: none !important;
+}
+
+.brand-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.brand-emblem-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.brand-category-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--secondary);
+  letter-spacing: 0.5px;
+}
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+.brand-badge-pill {
+  margin-left: auto;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.brand-description {
+  font-size: 0.90rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.brand-products-box {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-light);
+}
+.brand-products-title {
+  font-size: 0.78125rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: block;
+  margin-bottom: 6px;
+}
+.brand-products-list {
+  list-style: none;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.brand-products-list li {
+  margin-bottom: 3px;
+}
+
+.brand-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+  margin-top: auto;
+}
+.channel-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--bg-subtle);
+  color: var(--text-subtle);
+}
+
+.brand-card-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+}
+
+@media (max-width: 1024px) {
+  .brands-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .brands-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+  .brand-card-footer {
+    grid-template-columns: 1fr;
+  }
+}
+

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" width="100%" height="100%">
+  <rect width="320" height="120" rx="20" fill="#121212" stroke="#CC0000" stroke-width="2"/>
+  <g transform="translate(160, 64)">
+    <!-- Red Top Horizontal Bar extension over NES -->
+    <path d="M -115 -25 L 75 -25 L 75 -18 L -115 -18 Z" fill="#CC0000"/>
+    <!-- NESCAFÉ Official Typography -->
+    <text x="-5" y="12" font-family="'Georgia', 'Times New Roman', serif" font-size="42" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="2.5">NESCAFÉ</text>
+    <!-- Curved É Accent -->
+    <path d="M 75 -22 C 82 -32, 92 -38, 98 -32 C 90 -24, 82 -20, 75 -22 Z" fill="#FFFFFF"/>
+    <!-- Bottom Red Underline Accent -->
+    <rect x="-115" y="22" width="230" height="4" rx="2" fill="#CC0000"/>
+  </g>
+</svg>

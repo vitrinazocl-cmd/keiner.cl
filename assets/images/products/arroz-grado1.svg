@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgRice" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141E12" />
+      <stop offset="50%" stop-color="#2D3B26" />
+      <stop offset="100%" stop-color="#475C3B" />
+    </linearGradient>
+    <linearGradient id="ricePackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="70%" stop-color="#F3F4F6" />
+      <stop offset="100%" stop-color="#E5E7EB" />
+    </linearGradient>
+    <filter id="glowRice" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgRice)" />
+  <circle cx="300" cy="200" r="140" fill="#84CC16" opacity="0.15" filter="url(#glowRice)" />
+
+  <!-- Rice Pack 1kg -->
+  <g transform="translate(235, 90)">
+    <!-- Main Pack -->
+    <rect x="0" y="0" width="130" height="230" rx="14" fill="url(#ricePackGrad)" stroke="#166534" stroke-width="2.5" />
+    <rect x="10" y="10" width="110" height="210" rx="10" fill="#F9FAFB" />
+
+    <!-- Top & Bottom Green Stripes -->
+    <rect x="10" y="25" width="110" height="35" fill="#15803D" />
+    <text x="65" y="47" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="900" fill="#FFFFFF" text-anchor="middle">DON ARROZ</text>
+
+    <text x="65" y="90" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" fill="#15803D" text-anchor="middle">GRADO 1</text>
+    <text x="65" y="108" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">LARGO ANCHO</text>
+
+    <!-- Rice Grain Graphic -->
+    <text x="65" y="145" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">🌾</text>
+
+    <rect x="25" y="170" width="80" height="22" rx="11" fill="#166534" />
+    <text x="65" y="185" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF" text-anchor="middle">PESO NETO 1 KG</text>
+  </g>
+
+  <!-- Side Floating Elements -->
+  <g transform="translate(130, 220)">
+    <circle cx="0" cy="0" r="28" fill="#84CC16" opacity="0.2" />
+    <text x="0" y="8" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🍚</text>
+  </g>
+  <g transform="translate(470, 230)">
+    <circle cx="0" cy="0" r="28" fill="#84CC16" opacity="0.2" />
+    <text x="0" y="8" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🌾</text>
+  </g>
+
+  <!-- Product Badge Banner -->
+  <rect x="20" y="20" width="160" height="32" rx="16" fill="rgba(0,0,0,0.5)" stroke="#84CC16" stroke-width="1.5" />
+  <text x="100" y="41" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#BEF264" text-anchor="middle">🌾 ABARROTES B2B</text>
+</svg>

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgPet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C1004" />
+      <stop offset="50%" stop-color="#451A03" />
+      <stop offset="100%" stop-color="#78350F" />
+    </linearGradient>
+    <linearGradient id="bagGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="50%" stop-color="#D97706" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+    <filter id="glowPet" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgPet)" />
+  <circle cx="300" cy="200" r="140" fill="#F59E0B" opacity="0.15" filter="url(#glowPet)" />
+
+  <!-- Pet Bag 15kg -->
+  <g transform="translate(230, 90)">
+    <!-- Main Bag Polygon -->
+    <path d="M 30 20 L 110 20 L 130 60 L 135 240 Q 135 250, 115 250 L 25 250 Q 5 250, 5 240 L 10 60 Z" fill="url(#bagGrad)" stroke="#FDE68A" stroke-width="2" />
+    <!-- Bag Top Seal Fold -->
+    <path d="M 25 20 L 115 20 L 120 40 L 20 40 Z" fill="#B45309" stroke="#FDE68A" stroke-width="1.5" />
+
+    <!-- Label -->
+    <rect x="22" y="70" width="96" height="150" rx="8" fill="#FFFFFF" opacity="0.95" />
+    <text x="70" y="94" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="900" fill="#B45309" text-anchor="middle">NUTRICAN</text>
+    <text x="70" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="13" font-weight="900" fill="#111827" text-anchor="middle">PREMIUM</text>
+
+    <!-- Dog Icon -->
+    <text x="70" y="150" font-family="Arial, sans-serif" font-size="32" text-anchor="middle">🐶</text>
+
+    <text x="70" y="175" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#D97706" text-anchor="middle">RAZAS MEDIANAS</text>
+    <rect x="30" y="185" width="80" height="20" rx="10" fill="#111827" />
+    <text x="70" y="199" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FDE68A" text-anchor="middle">SACO 15 KG</text>
+  </g>
+
+  <!-- Side Floating Badges -->
+  <g transform="translate(130, 220)">
+    <circle cx="0" cy="0" r="28" fill="#F59E0B" opacity="0.2" />
+    <text x="0" y="8" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🍖</text>
+  </g>
+  <g transform="translate(470, 240)">
+    <circle cx="0" cy="0" r="28" fill="#F59E0B" opacity="0.2" />
+    <text x="0" y="8" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">🐾</text>
+  </g>
+
+  <!-- Product Badge Banner -->
+  <rect x="20" y="20" width="160" height="32" rx="16" fill="rgba(0,0,0,0.5)" stroke="#F59E0B" stroke-width="1.5" />
+  <text x="100" y="41" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="bold" fill="#FDE68A" text-anchor="middle">🐶 MASCOTAS PREMIUM</text>
+</svg>

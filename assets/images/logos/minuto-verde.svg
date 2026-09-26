@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" width="100%" height="100%">
+  <rect width="320" height="120" rx="20" fill="#14532D"/>
+  <g transform="translate(160, 60)">
+    <ellipse cx="0" cy="0" rx="135" ry="48" fill="#166534" stroke="#84CC16" stroke-width="3.5"/>
+    <path d="M -98 -10 C -75 -38, -52 -10, -75 18 C -88 6, -92 -6, -98 -10 Z" fill="#84CC16"/>
+    <text x="12" y="-4" font-family="'Segoe UI', sans-serif" font-size="24" font-weight="900" fill="#FFFFFF" text-anchor="middle">minuto</text>
+    <text x="12" y="24" font-family="'Segoe UI', sans-serif" font-size="26" font-weight="900" fill="#84CC16" text-anchor="middle">verde</text>
+  </g>
+</svg>
