@@ -1,5 +1,5 @@
 /**
- * AHORRA ALMACÉN ENTERPRISE - MOTOR INTERACTIVO 2026
+ * KEINER.CL ENTERPRISE - MOTOR INTERACTIVO 2026
  * Ecosistema Mayorista Digital de Alta Gama
  */
 
@@ -254,7 +254,7 @@ function initVisualAISimulator() {
 > Retorno sobre inversión proyectado: +28% margen directo.
 > Frecuencia de despacho optimizada: Martes y Jueves.`,
     supermercado: `> [AI-PREDICT] Analizando Red de Supermercados Regionales (3 Sucursales)...
-> Integración directa ERP con API Ahorra Almacén Enterprise.
+> Integración directa ERP con API KEINER.CL Enterprise.
 > Precios por volumen industrial: Descuento directo de fábrica 14.5%.
 > Logística de palletizado completo con sello térmico.
 > Ahorro proyectado mensual: $4.200.000 CLP.`

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AHORRA ALMACÉN ENTERPRISE - DESIGN SYSTEM 2026
+   KEINER.CL ENTERPRISE - DESIGN SYSTEM 2026
    Estética: Fintech de Alta Gama, Banco Internacional & Corporación Global
    Inspiración: JP Morgan, Stripe, Mercado Pago Empresas, AWS, Microsoft Fabric
    ========================================================================== */
@@ -265,27 +265,27 @@ a:hover {
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-decoration: none;
 }
-.brand-logo {
-  height: 42px;
+.brand-logo-svg {
+  height: 36px;
   width: auto;
-  max-width: 140px;
-  object-fit: contain;
-  transition: filter var(--transition-fast), transform var(--transition-fast);
+  color: var(--primary);
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
-.brand-logo:hover {
+[data-theme="dark"] .brand-logo-svg {
+  color: #FFFFFF;
+}
+.brand-logo-svg:hover {
   transform: scale(1.03);
-}
-[data-theme="dark"] .brand-logo {
-  filter: brightness(0) invert(1);
+  color: var(--secondary);
 }
 .brand-divider {
   width: 1px;
-  height: 28px;
+  height: 26px;
   background: var(--border-light);
-  margin: 0 4px;
+  margin: 0 2px;
 }
 .brand-logo-icon {
   width: 42px;
