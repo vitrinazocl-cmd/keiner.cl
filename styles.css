@@ -347,16 +347,32 @@ button, input, textarea, select {
   opacity: 0.6;
 }
 
-.hero-placeholder-box {
+.hero-logo-box {
   position: relative;
   z-index: 2;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  padding: 40px 60px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  font-family: monospace;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 36px 52px;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  max-width: 85%;
+  transition: var(--transition);
+}
+
+.hero-logo-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 60px rgba(227, 27, 35, 0.15);
+  border-color: rgba(227, 27, 35, 0.3);
+}
+
+.hero-logo-img {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* SECTION: LÍNEAS DE NEGOCIO */
