@@ -1422,6 +1422,8 @@ button, input, textarea, select {
   .brands-showcase-grid {
     grid-template-columns: 1fr;
   }
+}
+
 /* ==========================================================================
    FLOATING WIDGETS: WHATSAPP DIRECT & MEETING BOT
    ========================================================================== */
