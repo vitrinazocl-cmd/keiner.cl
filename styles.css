@@ -1651,3 +1651,128 @@ button, input, textarea, select {
   color: #DDD;
 }
 
+/* ==========================================================================
+   BRAND CARDS CORPORATE PALETTES
+   ========================================================================== */
+
+.brand-card-light.brand-tottus {
+  border-left: 4px solid #76BC21;
+  color: #559414;
+  font-weight: 800;
+  background-color: #F6FCF0;
+}
+.brand-card-light.brand-tottus:hover {
+  background-color: #76BC21;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-aldea {
+  border-left: 4px solid #6A7B38;
+  color: #4D5B25;
+  font-weight: 800;
+  background-color: #F6F8F0;
+}
+.brand-card-light.brand-aldea:hover {
+  background-color: #6A7B38;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-kios {
+  border-left: 4px solid #E31B23;
+  color: #E31B23;
+  font-weight: 800;
+  background-color: #FCF4F4;
+}
+.brand-card-light.brand-kios:hover {
+  background-color: #E31B23;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-delicatto {
+  border-left: 4px solid #4A231B;
+  color: #4A231B;
+  font-weight: 800;
+  background-color: #FAF5F4;
+}
+.brand-card-light.brand-delicatto:hover {
+  background-color: #4A231B;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-trebol {
+  border-left: 4px solid #00A859;
+  color: #00A859;
+  font-weight: 800;
+  background-color: #F0FCF6;
+}
+.brand-card-light.brand-trebol:hover {
+  background-color: #00A859;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-superofertas {
+  border-left: 4px solid #E31B23;
+  color: #D11219;
+  font-weight: 800;
+  background-color: #FCF4F4;
+}
+.brand-card-light.brand-superofertas:hover {
+  background-color: #E31B23;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-ahorraya {
+  border-left: 4px solid #0055B8;
+  color: #0055B8;
+  font-weight: 800;
+  background-color: #F2F7FD;
+}
+.brand-card-light.brand-ahorraya:hover {
+  background-color: #0055B8;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-pitachips {
+  border-left: 4px solid #D35400;
+  color: #D35400;
+  font-weight: 800;
+  background-color: #FDF6F2;
+}
+.brand-card-light.brand-pitachips:hover {
+  background-color: #D35400;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-michemix {
+  border-left: 4px solid #E67E22;
+  color: #D35400;
+  font-weight: 800;
+  background-color: #FDF7F2;
+}
+.brand-card-light.brand-michemix:hover {
+  background-color: #E67E22;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-sourmix {
+  border-left: 4px solid #8BC34A;
+  color: #689F38;
+  font-weight: 800;
+  background-color: #F7FCF2;
+}
+.brand-card-light.brand-sourmix:hover {
+  background-color: #8BC34A;
+  color: #FFFFFF;
+}
+
+.brand-card-light.brand-tetrac {
+  border-left: 4px solid #0A2540;
+  color: #0A2540;
+  font-weight: 800;
+  background-color: #F2F5F8;
+}
+.brand-card-light.brand-tetrac:hover {
+  background-color: #0A2540;
+  color: #FFFFFF;
+}
+
