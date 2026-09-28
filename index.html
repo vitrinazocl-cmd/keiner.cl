@@ -1,954 +1,225 @@
 <!doctype html>
-<html lang="es-CL" data-theme="light">
+<html lang="es-CL">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="KEINER.CL Enterprise - El Ecosistema Comercial B2B y Mayorista Más Inteligente de Chile. Hunting de productos, representación comercial y abastecimiento eficiente.">
-    <meta name="keywords" content="keiner chile, hunting de productos, representación comercial, abastecimiento mayorista, almacenes chile, distribuidora mayorista, compras B2B">
-    <meta name="author" content="KEINER.CL Enterprise">
-    <meta name="robots" content="index,follow,max-image-preview:large">
-    <meta name="theme-color" content="#0A2540">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_CL">
-    <meta property="og:site_name" content="KEINER.CL Enterprise">
-    <meta property="og:title" content="KEINER.CL Enterprise | Ecosistema Comercial & Mayorista B2B">
-    <meta property="og:description" content="El Ecosistema Comercial B2B Más Inteligente de Chile. Hunting de productos, representación de marcas y abastecimiento inteligente.">
-    <meta property="og:url" content="https://www.keiner.cl/">
-    <meta property="og:image" content="assets/images/keiner-logo-wordmark.svg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="KEINER.CL Enterprise | Ecosistema Comercial B2B">
-    <meta name="twitter:description" content="Hunting de productos, representación comercial y tecnología fintech para comercios en Chile.">
-    <link rel="canonical" href="https://www.keiner.cl/">
-    <title>KEINER.CL Enterprise | El Ecosistema Comercial B2B Más Inteligente de Chile</title>
+    <meta name="description" content="KEINER - Distribución de productos y representación comercial de marcas de consumo masivo en Chile.">
+    <title>Keiner - Sitio Corporativo | Inicio</title>
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-
-    <!-- Structured Data Enterprise SEO -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "KEINER.CL Enterprise",
-        "url": "https://www.keiner.cl/",
-        "logo": "https://www.keiner.cl/assets/images/keiner-logo-wordmark.svg",
-        "description": "El Ecosistema Comercial & Mayorista B2B Más Inteligente de Chile.",
-        "areaServed": "CL"
-      }
-    </script>
   </head>
   <body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-
-    <!-- SITE HEADER & UTILITY BAR -->
-    <header class="site-header" id="inicio">
-      <!-- Utility Bar Bar -->
-      <section class="utility-bar">
-        <div class="container utility-inner">
-          <div class="utility-ticker">
-            <span class="live-badge"><span class="pulse-dot"></span> EN VIVO</span>
-            <p>KEINER.CL • Hunting de Productos, Representación & Ecosistema Mayorista | Mesa Telefónica: <strong>+56 2 2900 8800</strong></p>
-          </div>
-          <div class="utility-links">
-            <a href="#contacto">Contacto Corporativo</a>
-            <a href="#" data-modal="modalLogin">Acceso Clientes B2B</a>
-            <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Cambiar Tema">
-              <span class="theme-toggle-icon">🌙</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- Main Navigation -->
-      <div class="topbar container">
-        <a class="brand" href="index.html" aria-label="Inicio KEINER.CL Enterprise">
-          <img src="assets/images/keiner-logo-wordmark.svg" alt="KEINER" class="brand-logo-svg">
-          <span class="brand-divider"></span>
-          <span class="brand-text">
-            <strong>KEINER.CL</strong>
-            <small>CORPORATIVO B2B</small>
-          </span>
+    <!-- SITE HEADER -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-logo" aria-label="Keiner Inicio">
+          keiner<span class="dot">.</span>
         </a>
 
-        <button class="mobile-toggle" type="button" aria-label="Abrir menú">
+        <button class="mobile-toggle" type="button" aria-label="Abrir menú de navegación">
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <nav class="nav-menu" aria-label="Navegación principal">
-          <a class="nav-link active" href="#inicio">Inicio</a>
-          <a class="nav-link" href="marcas.html">Nuestras Marcas</a>
-          <a class="nav-link" href="#beneficios">Beneficios</a>
-          <a class="nav-link" href="#tecnologia">Tecnología Fintech</a>
-          <a class="nav-link" href="#inteligencia">Inteligencia IA</a>
-          <a class="nav-link" href="#catalogo">Catálogo</a>
-          <a class="nav-link" href="#mapa">Red Logística</a>
-          <a class="nav-link" href="#blog">Blog</a>
-        </nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link active">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="#marcas" class="nav-link">Marcas y Clientes</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+        </ul>
 
-        <div class="header-actions">
-          <button class="btn btn-outline btn-sm" data-modal="modalLogin">Portal Clientes</button>
-          <button class="btn btn-primary btn-sm" data-modal="modalCuenta">Solicitar Cuenta Empresa</button>
+        <div class="header-cta">
+          <a href="contacto.html" class="btn btn-red">Escríbenos &rarr;</a>
         </div>
       </div>
     </header>
 
-    <!-- 1. HERO SECTION PREMIUM -->
-    <section class="hero-section" id="hero">
-      <video class="hero-video-bg" autoplay loop muted playsinline poster="que-es-una-reunion-kick-off-1200x900.jpg">
-        <source src="videoplayback (9).mp4" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="hero-particles" id="heroParticles"></div>
-
-      <div class="container hero-content reveal">
-        <div class="hero-badge">
-          <span>✦</span> ECOSISTEMA MAYORISTA B2B DE ALTA GAMA
-        </div>
-
-        <h1 class="hero-title">El Ecosistema Mayorista Más Inteligente de Chile</h1>
-
-        <p class="hero-subtitle">
-          Conectamos almacenes, distribuidores y negocios con miles de productos, precios competitivos y abastecimiento eficiente en una sola plataforma inteligente.
-        </p>
-
-        <div class="hero-actions">
-          <button class="btn btn-primary btn-lg" data-modal="modalCuenta">Solicitar Cuenta Empresa</button>
-          <a class="btn btn-glass btn-lg" href="#catalogo">Ver Catálogo</a>
-          <button class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.3)" data-modal="modalAsesoria">Contactar Ejecutivo</button>
-        </div>
-
-        <!-- KPI Animated Counters -->
-        <div class="kpi-grid">
-          <div class="kpi-card">
-            <span class="kpi-value" data-count="50000" data-prefix="+">+0</span>
-            <span class="kpi-label">Productos Activos</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-value" data-count="5000" data-prefix="+">+0</span>
-            <span class="kpi-label">Comercios Afiliados</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-value" data-count="200" data-prefix="+">+0</span>
-            <span class="kpi-label">Marcas Directo de Fábrica</span>
-          </div>
-          <div class="kpi-card">
-            <span class="kpi-value" data-count="98" data-suffix="%">0%</span>
-            <span class="kpi-label">Satisfacción Garantizada</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CINTURÓN CONTINUO DE MARCAS OFICIALES (JUSTO ABAJO DEL HERO) -->
-    <section class="brand-slider-section">
-      <div class="container" style="margin-bottom: 18px; text-align: center;">
-        <span style="font-size: 0.8125rem; font-weight: 800; letter-spacing: 1.5px; color: var(--secondary); text-transform: uppercase;">✦ MARCAS LÍDERES REPRESENTADAS &amp; DISTRIBUIDAS EN CHILE ✦</span>
-      </div>
-      <div class="brand-slider-track">
-        <div class="brand-slider-slide">
-          <div class="brand-logo-card"><img src="assets/images/logos/coca-cola.svg" alt="Coca-Cola"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/nescafe.svg" alt="Nescafé"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/ariel.svg" alt="Ariel"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/san-jose.svg" alt="San José Conservas"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/carozzi.svg" alt="Carozzi"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/hellmanns.svg" alt="Hellmann's"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/nestle.svg" alt="Nestlé"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/miraflores.svg" alt="Miraflores"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/minuto-verde.svg" alt="Minuto Verde"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/tucapel.svg" alt="Tucapel"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/maggi.svg" alt="Maggi"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/iansa.svg" alt="Iansa"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/sprite.svg" alt="Sprite"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/super-beef.svg" alt="Super Beef"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/canoro.svg" alt="Canoro"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/te-club.svg" alt="Té Club"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/kraft.svg" alt="Kraft"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/heinz.svg" alt="Heinz"></div>
-        </div>
-        <!-- Duplicado para Seamless Endless Loop -->
-        <div class="brand-slider-slide" aria-hidden="true">
-          <div class="brand-logo-card"><img src="assets/images/logos/coca-cola.svg" alt="Coca-Cola"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/nescafe.svg" alt="Nescafé"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/ariel.svg" alt="Ariel"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/san-jose.svg" alt="San José Conservas"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/carozzi.svg" alt="Carozzi"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/hellmanns.svg" alt="Hellmann's"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/nestle.svg" alt="Nestlé"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/miraflores.svg" alt="Miraflores"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/minuto-verde.svg" alt="Minuto Verde"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/tucapel.svg" alt="Tucapel"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/maggi.svg" alt="Maggi"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/iansa.svg" alt="Iansa"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/sprite.svg" alt="Sprite"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/super-beef.svg" alt="Super Beef"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/canoro.svg" alt="Canoro"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/te-club.svg" alt="Té Club"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/kraft.svg" alt="Kraft"></div>
-          <div class="brand-logo-card"><img src="assets/images/logos/heinz.svg" alt="Heinz"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. VIDEO CORPORATIVO -->
-    <section class="section-padding video-section" id="video">
+    <!-- 1. HERO SECTION -->
+    <section class="hero-section">
       <div class="container">
-        <div style="text-align:center; max-width: 700px; margin: 0 auto 50px auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">SHOWCASE PLATAFORMA & LOGÍSTICA</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Conoce la Plataforma Mayorista del Futuro</h2>
-          <p>Descubre cómo integramos tecnología fintech, logística de alta eficiencia y abastecimiento directo en Chile.</p>
-        </div>
+        <div class="hero-grid">
+          <div class="hero-left">
+            <span class="tag-badge">SOLUCIONES COMERCIALES</span>
+            <h1 class="hero-title">Conectamos la oferta y la demanda</h1>
+            <p class="hero-subtitle">
+              Estudiamos la problemática y necesidades de nuestros socios comerciales, simplificando y potenciando su operación.
+            </p>
+            <div class="hero-actions">
+              <a href="contacto.html" class="btn btn-red">Escríbenos &rarr;</a>
+              <a href="contacto.html" class="btn btn-outline">Trabaja con nosotros</a>
+            </div>
+          </div>
 
-        <div class="video-container reveal">
-          <img src="que-es-una-reunion-kick-off-1200x900.jpg" alt="Video Corporativo KEINER.CL" class="video-poster">
-          <div class="video-play-overlay" data-modal="modalVideo">
-            <div class="play-btn-pulse">▶</div>
-            <h3 style="font-size: 1.5rem; font-weight: 700;">Reproducir Video Corporativo 2026</h3>
-            <p style="color: rgba(255,255,255,0.8); font-size: 0.9375rem;">Plataforma • Logística • Distribución • Beneficios (2:15 min)</p>
+          <div class="hero-right">
+            <div class="hero-pattern-bg"></div>
+            <div class="hero-placeholder-box">
+              <span>[737 x 479px | KEINER LOGÍSTICA]</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. SECCIÓN BENEFICIOS -->
-    <section class="section-padding" id="beneficios">
+    <!-- 2. LÍNEAS DE NEGOCIO -->
+    <section class="section-light" id="que-hacemos">
       <div class="container">
-        <div style="text-align:center; max-width: 700px; margin: 0 auto 40px auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">VALOR EMPRESARIAL</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Ventajas Competitivas para el Comercio Moderno</h2>
-          <p>Potenciamos el rendimiento operativo y la rentabilidad de almacenes, minimarkets y distribuidoras.</p>
+        <div class="section-header-split">
+          <div>
+            <span class="tag-badge light">QUE HACEMOS</span>
+            <h2 class="title">Dos líneas de negocio, un mismo compromiso.</h2>
+          </div>
+          <div>
+            <p class="desc">
+              Sistema equitativo entre las buenas marcas de consumo masivo, consultoría de producto y distribuidores líderes en el mercado.
+            </p>
+          </div>
         </div>
 
-        <div class="benefits-grid">
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">🏷️</div>
-            <h3 class="benefit-title">✓ Precios mayoristas</h3>
-            <p>Margen directo optimizado mediante negociaciones consolidadas volumen directo de fábrica sin intermediarios.</p>
+        <div class="negocios-grid">
+          <!-- Card 01 -->
+          <div class="card-business light">
+            <div>
+              <div class="card-business-top">
+                <div class="card-business-icon">📦</div>
+                <span class="card-business-num">01</span>
+              </div>
+              <h3 class="card-business-title">Distribución de productos</h3>
+              <p class="card-business-desc">
+                Abastecemos a supermercados, minimarkets, horeca y canal tradicional con productos de consumo y cuidado personal de alto valor con marcas representadas.
+              </p>
+            </div>
+            <div>
+              <a href="nosotros.html#servicios" class="card-business-link">Ver más &rarr;</a>
+            </div>
           </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">⚡</div>
-            <h3 class="benefit-title">✓ Entrega rápida</h3>
-            <p>Despacho garantizado en 24 a 48 horas en principales regiones de Chile con seguimiento satelital de carga.</p>
-          </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">📦</div>
-            <h3 class="benefit-title">✓ Amplio catálogo</h3>
-            <p>Más de 50.000 productos con rotación garantizada, fecha de vencimiento controlada y disponibilidad permanente.</p>
-          </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">🧠</div>
-            <h3 class="benefit-title">✓ Abastecimiento inteligente</h3>
-            <p>Algoritmos predictivos que sugieren automáticamente el mix óptimo de inventario según temporada y zona.</p>
-          </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">💼</div>
-            <h3 class="benefit-title">✓ Atención empresarial</h3>
-            <p>Ejecutivo de cuenta dedicado, líneas de crédito B2B adaptadas y facturación electrónica centralizada.</p>
-          </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">📊</div>
-            <h3 class="benefit-title">✓ Stock en tiempo real</h3>
-            <p>Visibilidad 100% transparente de inventario disponible en nuestros centros de distribución regionales.</p>
+
+          <!-- Card 02 -->
+          <div class="card-business dark">
+            <div>
+              <div class="card-business-top">
+                <div class="card-business-icon">🤝</div>
+                <span class="card-business-num">02</span>
+              </div>
+              <h3 class="card-business-title">Representación comercial</h3>
+              <p class="card-business-desc">
+                Representamos marcas nacionales e internacionales impulsando su cartera de clientes, la negociación y la presencia en góndola.
+              </p>
+            </div>
+            <div>
+              <a href="nosotros.html#servicios" class="card-business-link">Ver más &rarr;</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. SECCIÓN TECNOLOGÍA (FINTECH DASHBOARD) -->
-    <section class="section-padding tech-section" id="tecnologia">
+    <!-- 3. MARCAS -->
+    <section class="section-light" id="marcas" style="border-top: 1px solid var(--border-light);">
       <div class="container">
-        <div style="text-align:center; max-width: 800px; margin: 0 auto;" class="reveal">
-          <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">FINTECH DE ALTA GAMA</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px; color: #fff;">Nuestra tecnología conecta inventario, logística y compras en una única plataforma inteligente.</h2>
-          <p style="color: rgba(255,255,255,0.75);">Control total del flujo de caja B2B, automatización de pedidos y análisis de rendimiento en tiempo real.</p>
+        <div class="slider-header">
+          <div>
+            <span class="tag-badge light">NUESTRAS MARCAS</span>
+            <h2 class="title">Marcas que distribuimos y representamos</h2>
+          </div>
+          <div class="slider-nav">
+            <button class="slider-arrow" data-target="brandsGrid" data-dir="prev" aria-label="Anterior">&larr;</button>
+            <button class="slider-arrow" data-target="brandsGrid" data-dir="next" aria-label="Siguiente">&rarr;</button>
+          </div>
         </div>
 
-        <!-- Interactive Dashboard Container -->
-        <div class="dashboard-wrapper reveal">
-          <div class="dashboard-header">
-            <div class="dashboard-tabs">
-              <button class="dashboard-tab active" data-tab="inventario">Inventario Activo</button>
-              <button class="dashboard-tab" data-tab="flujo">Flujo de Caja B2B</button>
-              <button class="dashboard-tab" data-tab="rutas">Rutas de Despacho</button>
-              <button class="dashboard-tab" data-tab="analytics">Analytics de Margen</button>
-            </div>
-            <div class="dashboard-controls">
-              <span class="live-badge"><span class="pulse-dot"></span> TELEMETRÍA EN VIVO</span>
-            </div>
-          </div>
-
-          <div class="dash-kpis">
-            <div class="dash-kpi-item">
-              <div class="dash-kpi-label">Order Fulfillment Rate</div>
-              <div class="dash-kpi-num">99.4%</div>
-              <div class="dash-kpi-trend">▲ +1.2% este mes</div>
-            </div>
-            <div class="dash-kpi-item">
-              <div class="dash-kpi-label">Ahorro Promedio por Compra</div>
-              <div class="dash-kpi-num">14.8%</div>
-              <div class="dash-kpi-trend">▲ Directo fábrica</div>
-            </div>
-            <div class="dash-kpi-item">
-              <div class="dash-kpi-label">Flota en Ruta Activa</div>
-              <div class="dash-kpi-num">485 Vehículos</div>
-              <div class="dash-kpi-trend">● Monitoreo IoT</div>
-            </div>
-            <div class="dash-kpi-item">
-              <div class="dash-kpi-label">Margen Operativo Optimizado</div>
-              <div class="dash-kpi-num">+18.2%</div>
-              <div class="dash-kpi-trend">▲ Retorno comprobado</div>
-            </div>
-          </div>
-
-          <div class="chart-area">
-            <canvas id="fintechChart"></canvas>
-          </div>
+        <div class="brands-grid" id="brandsGrid">
+          <div class="brand-card-light">MARCA 01</div>
+          <div class="brand-card-light">MARCA 02</div>
+          <div class="brand-card-light">MARCA 03</div>
+          <div class="brand-card-light">MARCA 04</div>
+          <div class="brand-card-light">MARCA 05</div>
         </div>
       </div>
     </section>
 
-    <!-- 6. SECCIÓN INTELIGENCIA DE NEGOCIOS (VISUAL AI BLOOMBERG STYLE) -->
-    <section class="section-padding ai-section" id="inteligencia">
+    <!-- 4. CLIENTES -->
+    <section class="section-dark" id="clientes">
       <div class="container">
-        <div style="text-align:center; max-width: 800px; margin: 0 auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">VISUAL AI TERMINAL • FABRIC ARCHITECTURE</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Inteligencia de Negocios y Predicción de Demanda</h2>
-          <p>Algoritmos avanzados de IA para evitar quiebres de stock, optimizar la rotación y maximizar el margen de ganancia.</p>
-        </div>
-
-        <div class="terminal-window reveal">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <div class="terminal-dot dot-red"></div>
-              <div class="terminal-dot dot-yellow"></div>
-              <div class="terminal-dot dot-green"></div>
-            </div>
-            <div style="color: #A0AEC0; font-size: 0.8125rem;">AHORRA-AI-FABRIC // MACHINE LEARNING DEMAND FORECASTER v2.6</div>
-            <div style="color: var(--accent); font-size: 0.8125rem;">[STATUS: ONLINE]</div>
+        <div class="slider-header">
+          <div>
+            <span class="tag-badge">CLIENTES</span>
+            <h2 class="title">Confían en nosotros</h2>
           </div>
-
-          <div class="terminal-body">
-            <div class="form-group" style="max-width: 400px; margin-bottom: 16px;">
-              <label class="form-label" style="color:#00C2FF;">Seleccionar Tipo de Negocio para Simular IA:</label>
-              <select class="form-select" id="aiStoreSelect" style="background:#1A202C; color:#fff; border-color:rgba(0,194,255,0.3);">
-                <option value="minimarket">Minimarket 80m² (Región Metropolitana)</option>
-                <option value="almacen">Almacén de Barrio 50m² (Valparaíso)</option>
-                <option value="supermercado">Red Supermercados Regionales (Concepción)</option>
-              </select>
-            </div>
-            <pre class="terminal-output" id="aiTerminalOutput">> [AI-PREDICT] Analizando inventario Minimarket (80m² - RM)...
-> FEFO Optimizer: Coincidencia de alta rotación en Lácteos y Bebidas (+22%).
-> Sugerencia de compra: Reponer 15 cajas Bebidas 1.5L, 10 cajas Abarrotes Premium.
-> Ahorro estimado mensual por compra mayorista consolidada: $340.000 CLP.
-> Estado de crédito B2B activado: Hasta $5.000.000 a 30 días.</pre>
+          <div class="slider-nav">
+            <button class="slider-arrow" data-target="clientsGrid" data-dir="prev" aria-label="Anterior">&larr;</button>
+            <button class="slider-arrow" data-target="clientsGrid" data-dir="next" aria-label="Siguiente">&rarr;</button>
           </div>
         </div>
 
-        <div class="ai-cards-grid">
-          <div class="ai-card reveal">
-            <h4 style="color:var(--secondary); font-size:1.1rem; margin-bottom:8px;">01. Predicción de Demanda</h4>
-            <p style="font-size:0.875rem;">Modelado estadístico con machine learning para anticipar picos de consumo estacionales.</p>
-          </div>
-          <div class="ai-card reveal">
-            <h4 style="color:var(--secondary); font-size:1.1rem; margin-bottom:8px;">02. Recomendaciones Automáticas</h4>
-            <p style="font-size:0.875rem;">Sugerencias personalizadas del mix óptimo según tipo de almacén y ubicación.</p>
-          </div>
-          <div class="ai-card reveal">
-            <h4 style="color:var(--secondary); font-size:1.1rem; margin-bottom:8px;">03. Gestión de Inventario</h4>
-            <p style="font-size:0.875rem;">Control riguroso FEFO/FIFO que elimina perdidas por vencimiento de productos.</p>
-          </div>
-          <div class="ai-card reveal">
-            <h4 style="color:var(--secondary); font-size:1.1rem; margin-bottom:8px;">04. Análisis de Ventas</h4>
-            <p style="font-size:0.875rem;">Dashboards interactivos de rentabilidad unitaria, ticket promedio y margen por categoría.</p>
-          </div>
+        <div class="clients-grid" id="clientsGrid">
+          <div class="client-card-dark">CLIENTE 01</div>
+          <div class="client-card-dark">CLIENTE 02</div>
+          <div class="client-card-dark">CLIENTE 03</div>
+          <div class="client-card-dark">CLIENTE 04</div>
+          <div class="client-card-dark">CLIENTE 05</div>
+          <div class="client-card-dark">CLIENTE 06</div>
         </div>
       </div>
     </section>
 
-    <!-- 7. CATÁLOGO DESTACADO -->
-    <section class="section-padding catalog-section" id="catalogo">
+    <!-- 5. CTA BANNER ROJO -->
+    <section class="cta-banner-red">
       <div class="container">
-        <div style="text-align:center; max-width: 700px; margin: 0 auto 40px auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">CATÁLOGO EMPRESARIAL</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Catálogo Destacado Mayorista</h2>
-          <p>Precios de fábrica garantizados y despacho directo a tu negocio en todo Chile.</p>
-        </div>
-
-        <div class="catalog-filter-bar reveal">
-          <button class="filter-btn active" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="abarrotes">Abarrotes</button>
-          <button class="filter-btn" data-filter="bebidas">Bebidas</button>
-          <button class="filter-btn" data-filter="congelados">Congelados</button>
-          <button class="filter-btn" data-filter="limpieza">Limpieza</button>
-          <button class="filter-btn" data-filter="mascotas">Mascotas</button>
-          <button class="filter-btn" data-filter="cuidado">Cuidado Personal</button>
-        </div>
-
-        <div class="products-grid">
-          <!-- Producto 1 -->
-          <div class="product-card reveal" data-category="abarrotes">
-            <div class="product-img-wrapper">
-              <span class="product-badge">OFERTA VOLUMEN</span>
-              <img src="assets/images/products/aceite-vegetal-real.jpg" alt="Aceite Vegetal Maravilla">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Abarrotes</span>
-              <h3 class="product-title">Aceite Vegetal Maravilla 900ml (Caja 12 Unid.)</h3>
-              <p class="product-meta">SKU: AB-1092 • Stock Disponible: +1.500 Cjs</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$1.490</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
+        <div class="cta-banner-inner">
+          <div>
+            <h2 class="cta-banner-title">¿Quieres que llevemos tu marca a más puntos de venta?</h2>
+            <p class="cta-banner-subtitle">Hablemos de tus productos y tu crecimiento.</p>
           </div>
-
-          <!-- Producto 2 -->
-          <div class="product-card reveal" data-category="bebidas">
-            <div class="product-img-wrapper">
-              <span class="product-badge">ALTA ROTACIÓN</span>
-              <img src="assets/images/products/bebida-gaseosa-real.jpg" alt="Bebida Gaseosa Cola 591ml">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Bebidas</span>
-              <h3 class="product-title">Bebida Gaseosa Cola 591ml (Pack 6 Unid.)</h3>
-              <p class="product-meta">SKU: BE-4051 • Stock Disponible: +3.200 Packs</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$980</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 3 -->
-          <div class="product-card reveal" data-category="congelados">
-            <div class="product-img-wrapper">
-              <span class="product-badge">CADENA DE FRÍO</span>
-              <img src="assets/images/products/hamburguesas-vacuno-real.jpg" alt="Hamburguesas de Vacuno Super Beef">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Congelados</span>
-              <h3 class="product-title">Hamburguesas Vacuno Super Beef 100g (Caja 40 Unid.)</h3>
-              <p class="product-meta">SKU: CG-8812 • Stock Disponible: +800 Cjs</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$620</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 4 -->
-          <div class="product-card reveal" data-category="limpieza">
-            <div class="product-img-wrapper">
-              <span class="product-badge">DESINFECTANTE</span>
-              <img src="assets/images/products/detergente-liquido-real.jpg" alt="Detergente Líquido Ariel 1.8L">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Limpieza</span>
-              <h3 class="product-title">Detergente Líquido Ariel 1.8L (Caja 6 Unid.)</h3>
-              <p class="product-meta">SKU: LM-3304 • Stock Disponible: +2.100 Cjs</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$3.890</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 5 -->
-          <div class="product-card reveal" data-category="abarrotes">
-            <div class="product-img-wrapper">
-              <span class="product-badge">PREMIUM</span>
-              <img src="assets/images/products/atun-san-jose-real.jpg" alt="Atún Lomito San José 140g">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Abarrotes</span>
-              <h3 class="product-title">Atún Lomito San José en Aceite 140g (Caja 24 Unid.)</h3>
-              <p class="product-meta">SKU: AB-9011 • Stock Disponible: +1.200 Cjs</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$1.150</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 6 -->
-          <div class="product-card reveal" data-category="abarrotes">
-            <div class="product-img-wrapper">
-              <span class="product-badge">ALTA DEMANDA</span>
-              <img src="assets/images/products/nescafe-400g-real.jpg" alt="Café Nescafé Tradición 400g">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Abarrotes</span>
-              <h3 class="product-title">Café Nescafé Tradición 400g (Caja 12 Unid.)</h3>
-              <p class="product-meta">SKU: AB-1142 • Stock Disponible: +1.800 Cjs</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$4.250</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 7 -->
-          <div class="product-card reveal" data-category="abarrotes">
-            <div class="product-img-wrapper">
-              <span class="product-badge">ALTA ROTACIÓN</span>
-              <img src="assets/images/products/arroz-grado1-real.jpg" alt="Arroz Canoro Grado 1 1kg">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Abarrotes</span>
-              <h3 class="product-title">Arroz Canoro Grado 1 Premium 1kg (Fardo 10 Unid.)</h3>
-              <p class="product-meta">SKU: AB-5510 • Stock Disponible: +4.000 Fardos</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$890</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Producto 8 -->
-          <div class="product-card reveal" data-category="bebidas">
-            <div class="product-img-wrapper">
-              <span class="product-badge">MANANTIAL</span>
-              <img src="assets/images/products/agua-mineral-real.jpg" alt="Agua Mineral Vital 600ml">
-            </div>
-            <div class="product-info">
-              <span class="product-category">Bebidas</span>
-              <h3 class="product-title">Agua Mineral Vital Con Gas 600ml (Pack 12 Unid.)</h3>
-              <p class="product-meta">SKU: BE-2219 • Stock Disponible: +5.000 Packs</p>
-              <div class="product-price-row">
-                <div>
-                  <span class="product-price">$310</span>
-                  <span class="product-unit">/ c.u. + IVA</span>
-                </div>
-                <button class="btn btn-primary btn-sm" data-modal="modalCotizacion">Cotizar Lote</button>
-              </div>
-            </div>
+          <div>
+            <a href="contacto.html" class="btn btn-black">Escríbenos &rarr;</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 8. TESTIMONIOS -->
-    <section class="section-padding" id="testimonios">
-      <div class="container">
-        <div style="text-align:center; max-width: 700px; margin: 0 auto 40px auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">CASOS DE ÉXITO REYES DEL COMERCIO</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Lo que dicen nuestros clientes corporativos</h2>
-          <p>Conoce la experiencia de almacenes y minimarkets que han escalado sus márgenes.</p>
-        </div>
-
-        <div class="testimonials-grid">
-          <div class="testimonial-card reveal">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"Redujimos nuestros costos directos de compra en un 18% desde el primer mes. La entrega puntual en 24 horas y la línea de crédito B2B cambiaron nuestra operación."</p>
-            <div class="testimonial-author">
-              <img src="assets/images/avatar-01.svg" alt="Don Pedro Morales" class="author-avatar">
-              <div class="author-info">
-                <strong>Pedro Morales</strong>
-                <span>Almacén El Sol • Santiago Centro</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card reveal">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"La visibilidad de stock en tiempo real y la predicción de IA nos evitaron quiebres en bebidas durante toda la temporada alta. La plataforma fintech es impecable."</p>
-            <div class="testimonial-author">
-              <img src="assets/images/avatar-02.svg" alt="María José Valenzuela" class="author-avatar">
-              <div class="author-info">
-                <strong>María José Valenzuela</strong>
-                <span>Minimarket Central • Concepción</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card reveal">
-            <div class="testimonial-stars">★★★★★</div>
-            <p class="testimonial-text">"Poder centralizar 3 sucusales con facturación B2B directa y despacho consolidado fue la clave para aumentar nuestro margen de ganancia."</p>
-            <div class="testimonial-author">
-              <img src="assets/images/avatar-03.svg" alt="Carlos Henríquez" class="author-avatar">
-              <div class="author-info">
-                <strong>Carlos Henríquez</strong>
-                <span>Distribuidora Los Andes • Valparaíso</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. MAPA LOGÍSTICO INTERACTIVO DE CHILE -->
-    <section class="section-padding map-section" id="mapa">
-      <div class="container">
-        <div style="text-align:center; max-width: 700px; margin: 0 auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">COBERTURA DE ARICA A PUNTA ARENAS</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Red Logística y Centros de Distribución</h2>
-          <p>Infraestructura moderna de almacenamiento y transporte de carga pesada en todo el territorio nacional.</p>
-        </div>
-
-        <div class="map-layout reveal">
-          <div class="map-visual-container">
-            <svg class="chile-map-svg" viewBox="0 0 300 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Outline simplificada de Chile -->
-              <path d="M140 20 L160 50 L155 120 L150 200 L145 280 L140 380 L135 480 M140 20 L125 60 L130 140 L135 240 L130 360 L120 480" stroke="var(--secondary)" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
-              
-              <!-- Hub Nodes -->
-              <g class="hub-node" id="hub-stgo">
-                <circle cx="145" cy="220" r="12" fill="var(--secondary)" opacity="0.3"/>
-                <circle cx="145" cy="220" r="6" fill="var(--accent)"/>
-                <text x="165" y="225" fill="var(--text-main)" font-weight="700" font-size="12">Hub Central Rungue (Santiago)</text>
-              </g>
-
-              <g class="hub-node" id="hub-anf">
-                <circle cx="155" cy="80" r="10" fill="var(--secondary)" opacity="0.3"/>
-                <circle cx="155" cy="80" r="5" fill="var(--accent)"/>
-                <text x="172" y="85" fill="var(--text-main)" font-weight="700" font-size="12">CD Norte Antofagasta</text>
-              </g>
-
-              <g class="hub-node" id="hub-ccp">
-                <circle cx="140" cy="300" r="10" fill="var(--secondary)" opacity="0.3"/>
-                <circle cx="140" cy="300" r="5" fill="var(--accent)"/>
-                <text x="158" y="305" fill="var(--text-main)" font-weight="700" font-size="12">CD Sur Concepción</text>
-              </g>
-
-              <g class="hub-node" id="hub-pmt">
-                <circle cx="135" cy="400" r="10" fill="var(--secondary)" opacity="0.3"/>
-                <circle cx="135" cy="400" r="5" fill="var(--accent)"/>
-                <text x="153" y="405" fill="var(--text-main)" font-weight="700" font-size="12">CD Llanquihue (Puerto Montt)</text>
-              </g>
-            </svg>
-          </div>
-
-          <div class="hub-info-list">
-            <div class="hub-info-card active">
-              <h4 style="font-size:1.15rem; color:var(--secondary); margin-bottom:4px;"> Hub Central Rungue • Región Metropolitana</h4>
-              <p style="font-size:0.875rem;">Capacidad: 45.000 m² de bodega automatizada • Despacho Express en 24h para RM y zona central.</p>
-            </div>
-            <div class="hub-info-card">
-              <h4 style="font-size:1.15rem; color:var(--secondary); margin-bottom:4px;"> CD Macro Zona Norte • Antofagasta</h4>
-              <p style="font-size:0.875rem;">Atención especializada para comercio minero y retail en Arica, Iquique, Antofagasta y Calama.</p>
-            </div>
-            <div class="hub-info-card">
-              <h4 style="font-size:1.15rem; color:var(--secondary); margin-bottom:4px;"> CD Macro Zona Sur • Concepción</h4>
-              <p style="font-size:0.875rem;">Centro neurálgico de frío y secos para Ñuble, Bío Bío, La Araucanía y Los Ríos.</p>
-            </div>
-            <div class="hub-info-card">
-              <h4 style="font-size:1.15rem; color:var(--secondary); margin-bottom:4px;"> CD Llanquihue • Puerto Montt</h4>
-              <p style="font-size:0.875rem;">Cobertura de última milla para Los Lagos, Chiloé y conexión austral a Aysén y Magallanes.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 10. SECCIÓN ESG -->
-    <section class="section-padding esg-section" id="esg">
-      <div class="container">
-        <div style="text-align:center; max-width: 700px; margin: 0 auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">RESPONSABILIDAD ENTERPRISE</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Sustentabilidad e Impacto Local (ESG)</h2>
-          <p>Comprometidos con la eficiencia logística descarbonizada y el fortalecimiento del comercio de barrio.</p>
-        </div>
-
-        <div class="esg-grid">
-          <div class="esg-card reveal">
-            <div style="font-size:2rem; margin-bottom:12px;">🌱</div>
-            <h3 style="font-size:1.2rem; margin-bottom:8px;">Huella de Carbono Neutra</h3>
-            <p style="font-size:0.875rem;">Optimizamos las rutas de flota pesada con telemetría IoT, reduciendo en un 32% las emisiones CO2 por tonelada distribuida.</p>
-          </div>
-          <div class="esg-card reveal">
-            <div style="font-size:2rem; margin-bottom:12px;">🤝</div>
-            <h3 style="font-size:1.2rem; margin-bottom:8px;">Comercio Justo y Pymes</h3>
-            <p style="font-size:0.875rem;">Impulsamos la integración directa de productores locales en nuestro catálogo corporativo con pago justo garantizado.</p>
-          </div>
-          <div class="esg-card reveal">
-            <div style="font-size:2rem; margin-bottom:12px;">♻️</div>
-            <h3 style="font-size:1.2rem; margin-bottom:8px;">Empaque Sustentable</h3>
-            <p style="font-size:0.875rem;">Reducción del 40% en uso de plásticos de un solo uso mediante pallets retornables y empaques compostables.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 11. BLOG CORPORATIVO -->
-    <section class="section-padding blog-section" id="blog">
-      <div class="container">
-        <div style="text-align:center; max-width: 700px; margin: 0 auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight: 700; text-transform: uppercase; font-size: 0.875rem;">FINANCIAL TIMES LAYOUT • RESEARCH & INSIGHTS</span>
-          <h2 style="font-size: 2.5rem; margin-top: 8px;">Publicaciones y Tendencias Retail</h2>
-          <p>Artículos técnicos y análisis de mercado por nuestro equipo de inteligencia de negocios.</p>
-        </div>
-
-        <div class="blog-grid">
-          <div class="blog-card reveal">
-            <div class="blog-card-body">
-              <span class="blog-tag">GESTIÓN Y FINANZAS</span>
-              <h3 class="blog-card-title">Gestión de almacenes: Estrategias para maximizar el flujo de caja en 2026</h3>
-              <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:16px;">Descubre cómo el control de rotación FEFO libera capital de trabajo atascado en inventario de baja demanda.</p>
-              <a href="#" style="font-weight:700; font-size:0.875rem;" data-modal="modalBlog1">Leer Artículo Completo →</a>
-            </div>
-          </div>
-
-          <div class="blog-card reveal">
-            <div class="blog-card-body">
-              <span class="blog-tag">TECNOLOGÍA B2B</span>
-              <h3 class="blog-card-title">Tendencias Retail B2B: La transformación digital del canal tradicional en Chile</h3>
-              <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:16px;">Análisis de la adopción de plataformas fintech por almacenes de barrio y minimarkets regionales.</p>
-              <a href="#" style="font-weight:700; font-size:0.875rem;" data-modal="modalBlog2">Leer Artículo Completo →</a>
-            </div>
-          </div>
-
-          <div class="blog-card reveal">
-            <div class="blog-card-body">
-              <span class="blog-tag">INTELIGENCIA LOGÍSTICA</span>
-              <h3 class="blog-card-title">Tecnología logística de última milla: Reduciendo tiempos de entrega en zonas clave</h3>
-              <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:16px;">Cómo el ruteo dinámico con IA disminuye costos de flete y acelera la reposición diaria.</p>
-              <a href="#" style="font-weight:700; font-size:0.875rem;" data-modal="modalBlog3">Leer Artículo Completo →</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 12. CTA FINAL -->
-    <section class="cta-section" id="contacto">
-      <div class="container">
-        <div class="cta-box reveal">
-          <span style="color:var(--accent); font-weight:700; text-transform:uppercase; font-size:0.875rem;">ÚNETE AL LIDERAZGO MAYORISTA</span>
-          <h2 style="font-size: 2.8rem; margin: 16px 0; color:#fff;">Potencia tu negocio con el abastecimiento del futuro</h2>
-          <p style="font-size: 1.15rem; color: rgba(255,255,255,0.85); max-width: 650px; margin: 0 auto 36px auto;">
-            Únete a los más de 5.000 comercios en Chile que ya optimizan sus compras mayoristas con precios directos y atención dedicada.
-          </p>
-          <div style="display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-            <button class="btn btn-primary btn-lg" data-modal="modalAsesoria">Solicitar Asesoría Empresarial</button>
-            <button class="btn btn-glass btn-lg" data-modal="modalCuenta">Abrir Cuenta Empresa Gratuita</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER EMPRESARIAL -->
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a class="brand" href="index.html" style="margin-bottom:16px;">
-              <img src="assets/images/keiner-logo-wordmark.svg" alt="KEINER" class="brand-logo-svg" style="color:#fff;">
-              <span class="brand-divider"></span>
-              <span class="brand-text">
-                <strong style="color:#fff;">KEINER.CL</strong>
-                <small style="color:var(--accent);">CORPORATIVO B2B</small>
-              </span>
-            </a>
-            <p>KEINER.CL Enterprise - Hunting de productos, representación comercial y el ecosistema B2B más inteligente de Chile.</p>
-          </div>
-
-          <div>
-            <h4 class="footer-col-title">Soluciones</h4>
-            <ul class="footer-links">
-              <li><a href="#catalogo">Abastecimiento B2B</a></li>
-              <li><a href="#tecnologia">Líneas de Crédito</a></li>
-              <li><a href="#inteligencia">Predicción IA</a></li>
-              <li><a href="#mapa">Despacho Nacional</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="footer-col-title">Tecnología</h4>
-            <ul class="footer-links">
-              <li><a href="#tecnologia">Plataforma Fintech</a></li>
-              <li><a href="#inteligencia">Bloomberg Fabric AI</a></li>
-              <li><a href="#mapa">Telemetría IoT</a></li>
-              <li><a href="#">Integración API ERP</a></li>
-            </ul>
+            <a href="index.html" class="logo">keiner<span style="color: var(--brand-red);">.</span></a>
+            <p>Distribución de productos y representación comercial. Keiner 2026.</p>
           </div>
 
           <div>
             <h4 class="footer-col-title">Empresa</h4>
             <ul class="footer-links">
-              <li><a href="nosotros.html">Sobre Nosotros</a></li>
-              <li><a href="#esg">Sustentabilidad ESG</a></li>
-              <li><a href="#testimonios">Casos de Éxito</a></li>
-              <li><a href="#blog">Blog Corporativo</a></li>
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="#marcas">Marcas</a></li>
+              <li><a href="#clientes">Clientes</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 class="footer-col-title">Legal & Contacto</h4>
+            <h4 class="footer-col-title">Servicios</h4>
             <ul class="footer-links">
-              <li><a href="privacy.html">Políticas de Privacidad</a></li>
-              <li><a href="terms.html">Términos y Condiciones</a></li>
-              <li><a href="#contacto">Contacto Mesa Central</a></li>
-              <li><a href="#">Mesa Telefónica: +56 2 2900 8800</a></li>
+              <li><a href="#que-hacemos">Distribución</a></li>
+              <li><a href="#que-hacemos">Representación</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
             </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Contacto</h4>
+            <div class="footer-contact-info">
+              <p>San José de la Sierra 30, dpto 103, Las Condes, Chile.</p>
+              <p>+56 9 7688 6689</p>
+              <p>contacto@keiner.cl</p>
+            </div>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <p>© 2026 KEINER.CL Enterprise SpA. Todos los derechos reservados. Chile.</p>
-          <div class="footer-badges">
-            <span class="badge-pill">🔒 SSL 256-BIT SECURE</span>
-            <span class="badge-pill">🛡️ ISO 27001 COMPLIANT</span>
-            <span class="badge-pill">💳 PCI-DSS CERTIFIED</span>
-            <span class="badge-pill">📄 SII FACTURA ELECTRÓNICA</span>
-          </div>
+          <p>© 2026 Keiner. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
-
-    <!-- MODAL 1: SOLICITAR CUENTA EMPRESA -->
-    <div class="modal-backdrop" id="modalCuenta">
-      <div class="modal-content">
-        <button type="button" class="modal-close">×</button>
-        <h3 style="font-size:1.5rem; margin-bottom:8px;">Solicitar Cuenta Empresa B2B</h3>
-        <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:20px;">Acceda a precios de fábrica, condiciones de crédito y ejecutivo asignado.</p>
-        <form onsubmit="event.preventDefault(); alert('Solicitud recibida. Un ejecutivo empresarial se contactará en breve.'); document.getElementById('modalCuenta').classList.remove('active');">
-          <div class="form-group">
-            <label class="form-label">RUT Empresa / Negocio</label>
-            <input type="text" class="form-input" placeholder="76.123.456-7" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Nombre Comercial del Almacén / Minimarket</label>
-            <input type="text" class="form-input" placeholder="Ej. Comercial Los Robles SpA" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Ciudad / Región</label>
-            <input type="text" class="form-input" placeholder="Ej. Santiago, Región Metropolitana" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Teléfono de Contacto Directo</label>
-            <input type="tel" class="form-input" placeholder="+56 9 1234 5678" required>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">Enviar Solicitud de Cuenta</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- MODAL 2: AGENDAR ASESORÍA -->
-    <div class="modal-backdrop" id="modalAsesoria">
-      <div class="modal-content">
-        <button type="button" class="modal-close">×</button>
-        <h3 style="font-size:1.5rem; margin-bottom:8px;">Agendar Asesoría Empresarial</h3>
-        <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:20px;">Un consultor experto analizará la estructura de compras de su negocio.</p>
-        <form onsubmit="event.preventDefault(); alert('Reunión agendada exitosamente.'); document.getElementById('modalAsesoria').classList.remove('active');">
-          <div class="form-group">
-            <label class="form-label">Nombre Completo</label>
-            <input type="text" class="form-input" placeholder="Su nombre" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Correo Corporativo</label>
-            <input type="email" class="form-input" placeholder="ejemplo@empresa.cl" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Volumen Estimado de Compra Mensual</label>
-            <select class="form-select">
-              <option>$1.000.000 - $5.000.000 CLP</option>
-              <option>$5.000.000 - $20.000.000 CLP</option>
-              <option>Más de $20.000.000 CLP</option>
-            </select>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">Confirmar Asesoría</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- MODAL 3: LOGIN B2B CLIENTES -->
-    <div class="modal-backdrop" id="modalLogin">
-      <div class="modal-content">
-        <button type="button" class="modal-close">×</button>
-        <h3 style="font-size:1.5rem; margin-bottom:8px;">Acceso Portal Clientes B2B</h3>
-        <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:20px;">Inicie sesión para realizar pedidos y gestionar su línea de crédito.</p>
-        <form onsubmit="event.preventDefault(); alert('Portal en mantención programada. Por favor contacte a su ejecutivo.');">
-          <div class="form-group">
-            <label class="form-label">Usuario / RUT Corporativo</label>
-            <input type="text" class="form-input" placeholder="RUT Empresa" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Contraseña</label>
-            <input type="password" class="form-input" placeholder="••••••••" required>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">Ingresar al Portal</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- MODAL 4: COTIZACIÓN RÁPIDA DE PRODUCTO -->
-    <div class="modal-backdrop" id="modalCotizacion">
-      <div class="modal-content">
-        <button type="button" class="modal-close">×</button>
-        <h3 style="font-size:1.5rem; margin-bottom:8px;">Cotización por Volumen Mayorista</h3>
-        <p style="font-size:0.875rem; color:var(--text-muted); margin-bottom:20px;">Reciba un descuento adicional por compra en pallet cerrado.</p>
-        <form onsubmit="event.preventDefault(); alert('Cotización enviada a su correo.'); document.getElementById('modalCotizacion').classList.remove('active');">
-          <div class="form-group">
-            <label class="form-label">Cantidad de Cajas / Fardos</label>
-            <input type="number" class="form-input" value="50" min="10" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Email de Destino</label>
-            <input type="email" class="form-input" placeholder="contacto@negocio.cl" required>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">Solicitar Cotización Especial</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- FLOATING ACTION WIDGETS (WHATSAPP & CHAT IA) -->
-    <div class="floating-widgets">
-      <a href="https://api.whatsapp.com/send?phone=56951496392&text=Hola%20Ahorra%20Almac%C3%A9n%20Enterprise%2C%20deseo%20cotizar%20compras%20mayoristas." target="_blank" rel="noopener noreferrer" class="float-btn float-whatsapp" aria-label="Contacto WhatsApp">
-        💬
-      </a>
-      <button type="button" class="float-btn float-ai-chat" id="floatAiChatBtn" aria-label="Asistente Virtual IA">
-        🤖
-      </button>
-    </div>
-
-    <!-- CHATBOT IA FLOATING MODAL -->
-    <div class="modal-backdrop" id="chatAiModal">
-      <div class="modal-content" style="max-width:420px; padding:24px;">
-        <button type="button" class="modal-close">×</button>
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border-light);">
-          <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--secondary),var(--accent)); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🤖</div>
-          <div>
-            <strong style="display:block; font-size:1rem;">AhorraBot Enterprise AI</strong>
-            <small style="color:var(--success);">● Asistente Virtual 24/7 Online</small>
-          </div>
-        </div>
-        
-        <div id="chatMessages" style="height:250px; overflow-y:auto; padding:10px; background:var(--bg-main); border-radius:var(--radius-sm); margin-bottom:16px; border:1px solid var(--border-light);">
-          <div style="margin:8px 0; text-align:left;">
-            <span style="background:var(--bg-elevated); color:var(--text-main); padding:8px 14px; border-radius:12px; display:inline-block; font-size:0.875rem; border:1px solid var(--border-light);">
-              👋 Hola, soy AhorraBot. ¿En qué categoría o producto mayorista deseas cotizar hoy?
-            </span>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:8px;">
-          <input type="text" id="chatInput" class="form-input" placeholder="Escribe tu consulta aquí..." style="padding:10px;">
-          <button type="button" id="sendChatMsg" class="btn btn-primary btn-sm">Enviar</button>
-        </div>
-      </div>
-    </div>
   </body>
 </html>

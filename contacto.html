@@ -1,88 +1,185 @@
 <!doctype html>
-<html lang="es-CL" data-theme="light">
+<html lang="es-CL">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Contacto Corporativo - KEINER.CL Enterprise: Asesoría comercial y atención telefónica B2B en Chile.">
-    <meta name="robots" content="index,follow">
-    <meta name="theme-color" content="#0A2540">
-    <link rel="canonical" href="https://www.keiner.cl/contacto.html">
-    <title>Contacto Corporativo | KEINER.CL Enterprise</title>
+    <meta name="description" content="Contacto - Keiner: Ponte en contacto para distribución de productos y representación comercial en Chile.">
+    <title>Keiner - Sitio Corporativo | Contacto</title>
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
   </head>
   <body>
-    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-
-    <header class="site-header" id="inicio">
-      <section class="utility-bar">
-        <div class="container utility-inner">
-          <div class="utility-ticker">
-            <span class="live-badge"><span class="pulse-dot"></span> EN VIVO</span>
-            <p>Ecosistema Mayorista B2B Chile | Mesa Telefónica: <strong>+56 2 2900 8800</strong></p>
-          </div>
-          <div class="utility-links">
-            <a href="index.html">Volver a Inicio</a>
-            <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Cambiar Tema">
-              <span class="theme-toggle-icon">🌙</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <div class="topbar container">
-        <a class="brand" href="index.html" aria-label="Inicio KEINER.CL Enterprise">
-          <img src="assets/images/keiner-logo-wordmark.svg" alt="KEINER" class="brand-logo-svg">
-          <span class="brand-divider"></span>
-          <span class="brand-text">
-            <strong>KEINER.CL</strong>
-            <small>CORPORATIVO B2B</small>
-          </span>
+    <!-- SITE HEADER -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-logo" aria-label="Keiner Inicio">
+          keiner<span class="dot">.</span>
         </a>
 
-        <nav class="nav-menu">
-          <a class="nav-link" href="index.html">Inicio</a>
-          <a class="nav-link" href="marcas.html">Nuestras Marcas</a>
-          <a class="nav-link" href="nosotros.html">Nosotros</a>
-          <a class="nav-link active" href="contacto.html">Contacto</a>
-        </nav>
+        <button class="mobile-toggle" type="button" aria-label="Abrir menú de navegación">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="index.html#marcas" class="nav-link">Marcas y Clientes</a></li>
+          <li><a href="contacto.html" class="nav-link active">Contacto</a></li>
+        </ul>
+
+        <div class="header-cta">
+          <a href="contacto.html" class="btn btn-red">Escríbenos &rarr;</a>
+        </div>
       </div>
     </header>
 
-    <main style="padding-top: calc(var(--header-height) + 60px);" class="section-padding">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-bar">
+      <div class="container breadcrumb-inner">
+        <a href="index.html">Inicio</a>
+        <span class="sep">/</span>
+        <span class="current">Contacto</span>
+      </div>
+    </div>
+
+    <!-- MAIN CONTACT SECTION -->
+    <section class="section-dark contact-hero">
       <div class="container">
-        <div style="max-width:600px; margin:0 auto;" class="benefit-card reveal">
-          <h1 style="font-size:2.2rem; margin-bottom:12px;">Contacto Corporativo B2B</h1>
-          <p style="margin-bottom:24px;">Solicite la asignación de un ejecutivo de cuenta empresarial o consulte por líneas de crédito.</p>
-          
-          <form onsubmit="event.preventDefault(); alert('Mensaje enviado exitosamente. Un ejecutivo se contactará en breve.');">
-            <div class="form-group">
-              <label class="form-label">RUT Empresa / Negocio</label>
-              <input type="text" class="form-input" placeholder="76.123.456-7" required>
+        <h1 class="contact-hero-title">Conversemos.</h1>
+        <p class="contact-hero-subtitle">
+          ¿Tienes una marca, un comercio o una consulta? Escríbenos y te responderemos a la brevedad.
+        </p>
+
+        <div class="contact-main-grid">
+          <!-- FORM CARD (LEFT) -->
+          <div class="contact-form-card">
+            <h2 class="contact-form-title">Envíanos un mensaje</h2>
+
+            <form id="contactForm">
+              <input type="hidden" id="selectedTopic" name="topic" value="Distribución de mi marca">
+
+              <div class="form-grid-2">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="nombre">Nombre y apellido</label>
+                  <input type="text" id="nombre" class="form-input" placeholder="Tu nombre" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="empresa">Empresa</label>
+                  <input type="text" id="empresa" class="form-input" placeholder="Nombre de tu empresa">
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="email">Correo electrónico</label>
+                  <input type="email" id="email" class="form-input" placeholder="correo@empresa.cl" required>
+                </div>
+
+                <div class="form-group" style="margin-bottom:0;">
+                  <label class="form-label" for="telefono">Teléfono</label>
+                  <input type="tel" id="telefono" class="form-input" placeholder="+56 9 1234 5678">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">¿En qué podemos ayudarte?</label>
+                <div class="topic-pills-container">
+                  <button type="button" class="topic-pill active" data-value="Distribución de mi marca">Distribución de mi marca</button>
+                  <button type="button" class="topic-pill" data-value="Representación comercial">Representación comercial</button>
+                  <button type="button" class="topic-pill" data-value="Busco un cliente">Busco un cliente</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="mensaje">Mensaje</label>
+                <textarea id="mensaje" class="form-textarea" rows="4" placeholder="Cuéntanos sobre tu consulta..." required></textarea>
+              </div>
+
+              <div class="checkbox-group">
+                <input type="checkbox" id="acepto" required checked>
+                <label for="acepto">Acepto enviar mis datos para responder esta consulta</label>
+              </div>
+
+              <button type="submit" class="btn btn-red" style="width: 100%; font-size: 1rem; padding: 14px;">
+                Enviar mensaje &rarr;
+              </button>
+            </form>
+          </div>
+
+          <!-- CONTACT INFO CARD (RIGHT) -->
+          <div class="contact-info-card">
+            <h2 class="contact-info-title">Datos de contacto</h2>
+
+            <div class="info-item">
+              <div class="info-item-label">DIRECCIÓN</div>
+              <div class="info-item-value">San José de la Sierra 30, dpto 103, Las Condes, Chile</div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Nombre Completo</label>
-              <input type="text" class="form-input" placeholder="Juan Pérez" required>
+
+            <div class="info-item">
+              <div class="info-item-label">TELÉFONO</div>
+              <div class="info-item-value">+56 9 7688 6689</div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-input" placeholder="contacto@empresa.cl" required>
+
+            <div class="info-item">
+              <div class="info-item-label">CORREO</div>
+              <div class="info-item-value">contacto@keiner.cl</div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Mensaje o Requerimiento de Abastecimiento</label>
-              <textarea class="form-textarea" rows="4" placeholder="Describa los productos o volumen de compra requeridos..."></textarea>
+
+            <div class="map-box-container">
+              <div class="hero-pattern-bg" style="opacity: 0.8;"></div>
+              <div class="map-pin-overlay">📍</div>
+              <div style="position: absolute; bottom: 12px; left: 12px; font-size: 0.75rem; color: #888;">
+                Diseño cartográfico Las Condes, Santiago
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;">Enviar Mensaje Empresarial</button>
-          </form>
+          </div>
         </div>
       </div>
-    </main>
+    </section>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">keiner<span style="color: var(--brand-red);">.</span></a>
+            <p>Distribución de productos y representación comercial. Keiner 2026.</p>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Empresa</h4>
+            <ul class="footer-links">
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="index.html#marcas">Marcas</a></li>
+              <li><a href="index.html#clientes">Clientes</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Servicios</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#que-hacemos">Distribución</a></li>
+              <li><a href="index.html#que-hacemos">Representación</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Contacto</h4>
+            <div class="footer-contact-info">
+              <p>San José de la Sierra 30, dpto 103, Las Condes, Chile.</p>
+              <p>+56 9 7688 6689</p>
+              <p>contacto@keiner.cl</p>
+            </div>
+          </div>
+        </div>
+
         <div class="footer-bottom">
-          <p>© 2026 KEINER.CL Enterprise SpA. Todos los derechos reservados.</p>
+          <p>© 2026 Keiner. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

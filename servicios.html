@@ -1,90 +1,136 @@
 <!doctype html>
-<html lang="es-CL" data-theme="light">
+<html lang="es-CL">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Servicios B2B - KEINER.CL Enterprise: Hunting de productos, representación comercial, crédito fintech y logística nacional.">
-    <meta name="robots" content="index,follow">
-    <meta name="theme-color" content="#0A2540">
-    <link rel="canonical" href="https://www.keiner.cl/servicios.html">
-    <title>Servicios B2B | KEINER.CL Enterprise</title>
+    <meta name="description" content="Servicios - Keiner: Distribución de productos y representación comercial.">
+    <title>Keiner - Sitio Corporativo | Servicios</title>
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
   </head>
   <body>
-    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
-
-    <header class="site-header" id="inicio">
-      <section class="utility-bar">
-        <div class="container utility-inner">
-          <div class="utility-ticker">
-            <span class="live-badge"><span class="pulse-dot"></span> EN VIVO</span>
-            <p>Ecosistema Mayorista B2B Chile | Mesa Telefónica: <strong>+56 2 2900 8800</strong></p>
-          </div>
-          <div class="utility-links">
-            <a href="index.html">Volver a Inicio</a>
-            <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Cambiar Tema">
-              <span class="theme-toggle-icon">🌙</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <div class="topbar container">
-        <a class="brand" href="index.html" aria-label="Inicio KEINER.CL Enterprise">
-          <img src="assets/images/keiner-logo-wordmark.svg" alt="KEINER" class="brand-logo-svg">
-          <span class="brand-divider"></span>
-          <span class="brand-text">
-            <strong>KEINER.CL</strong>
-            <small>CORPORATIVO B2B</small>
-          </span>
+    <!-- SITE HEADER -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="brand-logo" aria-label="Keiner Inicio">
+          keiner<span class="dot">.</span>
         </a>
 
-        <nav class="nav-menu">
-          <a class="nav-link" href="index.html">Inicio</a>
-          <a class="nav-link" href="marcas.html">Nuestras Marcas</a>
-          <a class="nav-link active" href="servicios.html">Servicios B2B</a>
-          <a class="nav-link" href="nosotros.html">Nosotros</a>
-          <a class="nav-link" href="contacto.html">Contacto</a>
-        </nav>
+        <button class="mobile-toggle" type="button" aria-label="Abrir menú de navegación">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+          <li><a href="index.html#marcas" class="nav-link">Marcas y Clientes</a></li>
+          <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+        </ul>
+
+        <div class="header-cta">
+          <a href="contacto.html" class="btn btn-red">Escríbenos &rarr;</a>
+        </div>
       </div>
     </header>
 
-    <main style="padding-top: calc(var(--header-height) + 60px);" class="section-padding">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-bar">
+      <div class="container breadcrumb-inner">
+        <a href="index.html">Inicio</a>
+        <span class="sep">/</span>
+        <span class="current">Servicios</span>
+      </div>
+    </div>
+
+    <!-- MAIN SERVICES SECTION -->
+    <section class="section-dark" style="padding: 80px 0;">
       <div class="container">
-        <div style="text-align:center; max-width:800px; margin:0 auto 60px auto;" class="reveal">
-          <span class="gradient-accent-text" style="font-weight:700; text-transform:uppercase; font-size:0.875rem;">SOLUCIONES CORPORATIVAS</span>
-          <h1 style="font-size:3rem; margin-top:12px;">Servicios de Abastecimiento & Fintech B2B</h1>
-          <p style="font-size:1.15rem; color:var(--text-muted); margin-top:16px;">
-            Impulsamos el crecimiento de almacenes, minimarkets y distribuidoras con soluciones integrales de alta gama.
+        <div style="margin-bottom: 48px;">
+          <span class="tag-badge">SOLUCIONES COMERCIALES</span>
+          <h1 style="font-size: 3rem; font-weight: 800; letter-spacing: -0.03em;">Servicios de Distribución & Representación</h1>
+          <p style="color: var(--text-muted-dark); font-size: 1.125rem; margin-top: 12px; max-width: 640px;">
+            Impulsamos el crecimiento de marcas de consumo masivo con soluciones integrales de distribución logística y estrategia comercial en góndola.
           </p>
         </div>
 
-        <div class="benefits-grid">
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">📦</div>
-            <h3 class="benefit-title">Abastecimiento Consolidado</h3>
-            <p>Acceso directo a más de 50.000 SKUs con precios negociados por volumen industrial.</p>
+        <div class="negocios-grid">
+          <div class="card-business light">
+            <div>
+              <div class="card-business-top">
+                <div class="card-business-icon">📦</div>
+                <span class="card-business-num">01</span>
+              </div>
+              <h3 class="card-business-title">Distribución de productos</h3>
+              <p class="card-business-desc">
+                Abastecemos a supermercados, minimarkets, horeca y canal tradicional con productos de consumo y cuidado personal de alto valor con marcas representadas.
+              </p>
+            </div>
+            <div>
+              <a href="contacto.html" class="card-business-link">Solicitar distribución &rarr;</a>
+            </div>
           </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">💳</div>
-            <h3 class="benefit-title">Líneas de Crédito B2B</h3>
-            <p>Financiamiento flexible a 30 y 60 días ajustado al ciclo de ventas de su negocio.</p>
-          </div>
-          <div class="benefit-card reveal">
-            <div class="benefit-icon">🚚</div>
-            <h3 class="benefit-title">Logística Integrada</h3>
-            <p>Red de transporte con control de temperatura y despacho garantizado en 24h.</p>
+
+          <div class="card-business dark">
+            <div>
+              <div class="card-business-top">
+                <div class="card-business-icon">🤝</div>
+                <span class="card-business-num">02</span>
+              </div>
+              <h3 class="card-business-title">Representación comercial</h3>
+              <p class="card-business-desc">
+                Representamos marcas nacionales e internacionales impulsando su cartera de clientes, la negociación y la presencia en góndola.
+              </p>
+            </div>
+            <div>
+              <a href="contacto.html" class="card-business-link">Solicitar representación &rarr;</a>
+            </div>
           </div>
         </div>
       </div>
-    </main>
+    </section>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">keiner<span style="color: var(--brand-red);">.</span></a>
+            <p>Distribución de productos y representación comercial. Keiner 2026.</p>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Empresa</h4>
+            <ul class="footer-links">
+              <li><a href="nosotros.html">Nosotros</a></li>
+              <li><a href="index.html#marcas">Marcas</a></li>
+              <li><a href="index.html#clientes">Clientes</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Servicios</h4>
+            <ul class="footer-links">
+              <li><a href="index.html#que-hacemos">Distribución</a></li>
+              <li><a href="index.html#que-hacemos">Representación</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-col-title">Contacto</h4>
+            <div class="footer-contact-info">
+              <p>San José de la Sierra 30, dpto 103, Las Condes, Chile.</p>
+              <p>+56 9 7688 6689</p>
+              <p>contacto@keiner.cl</p>
+            </div>
+          </div>
+        </div>
+
         <div class="footer-bottom">
-          <p>© 2026 KEINER.CL Enterprise SpA. Todos los derechos reservados.</p>
+          <p>© 2026 Keiner. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
