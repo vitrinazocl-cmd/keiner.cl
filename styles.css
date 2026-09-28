@@ -374,9 +374,10 @@ button, input, textarea, select {
 
 .hero-logo-box {
   width: 100%;
+  max-width: 380px;
   background-color: #FFFFFF;
   border-radius: var(--radius-lg);
-  padding: 48px 40px;
+  padding: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -407,9 +408,10 @@ button, input, textarea, select {
 }
 
 .hero-logo-img {
-  width: 80%;
-  max-width: 320px;
+  width: 100%;
+  max-width: 340px;
   height: auto;
+  border-radius: var(--radius-md);
   display: block;
 }
 
