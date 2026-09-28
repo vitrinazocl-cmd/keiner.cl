@@ -103,6 +103,21 @@ button, input, textarea, select {
   color: var(--text-white);
 }
 
+.brand-logo-img {
+  height: 38px;
+  width: auto;
+  max-height: 42px;
+  display: block;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  transition: var(--transition);
+}
+
+.brand-logo-img:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
 .brand-logo span.dot {
   color: var(--brand-red);
 }
@@ -1002,6 +1017,15 @@ button, input, textarea, select {
   font-weight: 800;
   margin-bottom: 16px;
   display: block;
+}
+
+.footer-logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  margin-bottom: 16px;
+  filter: brightness(0) invert(1);
 }
 
 .footer-brand p {
