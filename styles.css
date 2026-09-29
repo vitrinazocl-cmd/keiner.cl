@@ -1694,6 +1694,7 @@ img, svg, video, iframe {
   font-weight: 600;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  text-decoration: none;
   transition: var(--transition);
 }
 

@@ -131,28 +131,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Meeting Bot Interactivity & Conversion Tracking
+  // 7. Feria Form Trigger & Conversion Tracking
   const botTrigger = document.getElementById('meetingBotTrigger');
   const botModal = document.getElementById('meetingBotModal');
   const botClose = document.getElementById('meetingBotClose');
 
-  if (botTrigger && botModal) {
-    botTrigger.addEventListener('click', () => {
-      const isActive = botModal.classList.toggle('active');
-      botTrigger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-      if (isActive) {
-        trackEvent('meeting_bot_start', { source: 'floating_widget' });
-        const firstInput = botModal.querySelector('input, button');
-        if (firstInput) firstInput.focus();
-      }
-    });
-  }
-
-  if (botClose && botModal) {
-    botClose.addEventListener('click', () => {
-      botModal.classList.remove('active');
-      if (botTrigger) botTrigger.setAttribute('aria-expanded', 'false');
-      trackEvent('meeting_bot_close', { method: 'close_button' });
+  if (botTrigger) {
+    botTrigger.addEventListener('click', (e) => {
+      trackEvent('feria_button_click', { source: 'floating_widget' });
+      // Native navigation to contactoevento.html handles redirect
     });
   }
 
