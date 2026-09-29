@@ -26,6 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
     page_path: window.location.pathname
   });
 
+  // Hero Video Speed Normalization to 0.75x smooth natural speed
+  const heroVideo = document.querySelector('.hero-full-img video, video.hero-full-img');
+  if (heroVideo) {
+    heroVideo.playbackRate = 0.75;
+    heroVideo.addEventListener('loadedmetadata', () => {
+      heroVideo.playbackRate = 0.75;
+    });
+  }
+
   // 2. Mobile Navigation Menu Toggle & Accessibility
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navLinks = document.querySelector('.nav-links');
