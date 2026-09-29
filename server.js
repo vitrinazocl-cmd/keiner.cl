@@ -438,7 +438,7 @@ app.post('/api/feria-lead', async (req, res) => {
 
 app.get('/api/feria-leads', (req, res) => {
   const pin = req.query.pin;
-  if (pin !== 'keiner123' && pin !== 'keiner2026') {
+  if (pin !== 'keiner#2027' && pin !== 'keiner123' && pin !== 'keiner2026') {
     return res.status(401).json({ ok: false, error: 'unauthorized' });
   }
 
@@ -448,7 +448,7 @@ app.get('/api/feria-leads', (req, res) => {
 
 app.post('/api/feria-leads/canjear', (req, res) => {
   const pin = req.query.pin || req.body.pin;
-  if (pin !== 'keiner123' && pin !== 'keiner2026') {
+  if (pin !== 'keiner#2027' && pin !== 'keiner123' && pin !== 'keiner2026') {
     return res.status(401).json({ ok: false, error: 'unauthorized' });
   }
 
@@ -471,7 +471,7 @@ app.post('/api/feria-leads/canjear', (req, res) => {
 
 app.post('/api/feria-leads/clear', (req, res) => {
   const pin = req.query.pin;
-  if (pin !== 'keiner123' && pin !== 'keiner2026') {
+  if (pin !== 'keiner#2027' && pin !== 'keiner123' && pin !== 'keiner2026') {
     return res.status(401).json({ ok: false, error: 'unauthorized' });
   }
 

@@ -469,7 +469,7 @@
 
   <script>
     const CORRECT_USER = 'keiner';
-    const CORRECT_PASS = 'keiner123';
+    const CORRECT_PASS = 'keiner#2027';
     let allLeads = [];
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -486,7 +486,9 @@
       }
 
       function attemptLogin() {
-        if (userInput.value.trim() === CORRECT_USER && passInput.value.trim() === CORRECT_PASS) {
+        const enteredUser = userInput.value.trim();
+        const enteredPass = passInput.value.trim();
+        if (enteredUser === CORRECT_USER && (enteredPass === CORRECT_PASS || enteredPass === 'keiner123' || enteredPass === 'keiner2026')) {
           sessionStorage.setItem('keiner_admin_authed', 'true');
           lockScreen.style.display = 'none';
           loginError.style.display = 'none';
