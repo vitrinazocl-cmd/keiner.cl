@@ -134,14 +134,31 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-          await fetch('/api/contact', {
+          fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
-          });
-        } catch (err) {
-          console.warn('Servidor offline o envío vía API', err);
-        }
+          }).catch(err => {});
+        } catch (err) {}
+
+        // Backup Dual Email Dispatch (contacto@keiner.cl & domingo@keiner.cl)
+        try {
+          fetch('https://formsubmit.co/ajax/contacto@keiner.cl', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              _subject: `[KEINER WEB] Nuevo contacto de ${nombre}`,
+              _cc: 'domingo@keiner.cl',
+              _replyto: correo,
+              Nombre: nombre,
+              Empresa: empresa || 'No especificada',
+              Email: correo,
+              Telefono: telefono || 'No informado',
+              Necesidad: necesidad,
+              Mensaje: mensaje
+            })
+          }).catch(err => {});
+        } catch(e) {}
 
         // Backup to Feria Leads store to display in Admin Dashboard
         const randomNum = Math.floor(1000 + Math.random() * 9000);
@@ -268,14 +285,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        await fetch('/api/feria-lead', {
+        fetch('/api/feria-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(leadData)
-        });
-      } catch (err) {
-        console.warn('Servidor offline o envío vía API:', err);
-      }
+        }).catch(err => console.warn('Servidor offline:', err));
+      } catch (err) {}
+
+      // FormSubmit Dual Email Dispatch Backup (contacto@keiner.cl & domingo@keiner.cl)
+      try {
+        fetch('https://formsubmit.co/ajax/contacto@keiner.cl', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            _subject: `[NUEVO LEAD FERIA] Ticket ${ticketCode} - ${nombre} ${apellido}`,
+            _cc: 'domingo@keiner.cl',
+            _replyto: email || 'contacto@keiner.cl',
+            Ticket: ticketCode,
+            Perfil: tipoContacto,
+            Nombre: `${nombre} ${apellido}`,
+            Celular: celular,
+            Email: email || 'No informado',
+            Empresa: empresa || 'No informada',
+            Categorias: categorias.length > 0 ? categorias.join(', ') : 'Ninguna',
+            Comentarios: comentarios || 'Sin comentarios'
+          })
+        }).catch(err => console.warn('FormSubmit backup:', err));
+      } catch(err) {}
 
       trackEvent('generate_lead', {
         form_name: 'feria_modal_lead',
