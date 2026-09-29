@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+        <rect width="200" height="60" fill="none"/>
+        <g transform="translate(15, 12)">
+            <text x="0" y="22" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="20" fill="#D4A373" letter-spacing="1.5">ALMADRE</text>
+            <text x="0" y="34" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="9" fill="#E60000" letter-spacing="3">PITA CHIPS</text>
+        </g>
+    </svg>

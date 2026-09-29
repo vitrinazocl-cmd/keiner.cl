@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+        <rect width="200" height="60" fill="none"/>
+        <g transform="translate(15, 12)">
+            <path d="M5 25 Q 15 5, 25 25" fill="none" stroke="#E60000" stroke-width="4"/>
+            <circle cx="15" cy="10" r="4" fill="#FFC700"/>
+            <text x="35" y="26" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="22" fill="#E60000" letter-spacing="1">turistik</text>
+        </g>
+    </svg>

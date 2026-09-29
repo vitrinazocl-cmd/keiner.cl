@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+        <rect width="200" height="60" fill="none"/>
+        <g transform="translate(20, 12)">
+            <text x="0" y="22" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="21" fill="#FFD700" letter-spacing="1.5">SOUR MIX</text>
+            <text x="0" y="34" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="9" fill="#FFFFFF" letter-spacing="2">COCKTAIL BASE</text>
+        </g>
+    </svg>
