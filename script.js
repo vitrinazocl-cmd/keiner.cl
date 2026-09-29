@@ -245,10 +245,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 9. Interactive Brand Showcase Banner Slider
+  // 9. Interactive Brand Showcase Banner Slider (Horizontal Track)
   const bannerSlider = document.getElementById('brandBannerSlider');
-  if (bannerSlider) {
-    const slides = bannerSlider.querySelectorAll('.banner-slide');
+  const sliderTrack = document.getElementById('bannerSliderTrack');
+  if (bannerSlider && sliderTrack) {
+    const slides = bannerSlider.querySelectorAll('.banner-slide-card');
     const dots = bannerSlider.querySelectorAll('.banner-slider-dots .dot');
     const prevBtn = document.getElementById('bannerSliderPrev');
     const nextBtn = document.getElementById('bannerSliderNext');
@@ -257,6 +258,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoSlideInterval = null;
 
     function goToSlide(index) {
+      // Shift track horizontally (20% per slide)
+      sliderTrack.style.transform = `translateX(-${index * 20}%)`;
+
       slides.forEach((slide, i) => {
         if (i === index) {
           slide.classList.add('active');

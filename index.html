@@ -343,23 +343,44 @@
           </div>
         </div>
 
-        <!-- Banner Showcase Slider (Carrusel de Marcas y Productos) -->
+        <!-- Banner Showcase Slider (Carrusel Horizontal de Marcas y Productos) -->
         <div class="brand-banner-slider" id="brandBannerSlider" aria-label="Carrusel de Marcas y Productos Representados">
-          <div class="slider-slides-wrapper">
-            <div class="banner-slide active">
-              <img src="assets/images/banner_marcas_keiner.jpg" alt="Marcas y Clientes Representados por Keiner" class="banner-slide-img" fetchpriority="high">
-            </div>
-            <div class="banner-slide">
-              <img src="assets/images/banner_slide_delicatto.webp" alt="Productos Delicato Representados por Keiner" class="banner-slide-img" loading="lazy">
-            </div>
-            <div class="banner-slide">
-              <img src="assets/images/banner_slide_pitachips.webp" alt="Pita Chips Almadre Representadas por Keiner" class="banner-slide-img" loading="lazy">
-            </div>
-            <div class="banner-slide">
-              <img src="assets/images/banner_slide_aldea.webp" alt="Packs Aldea Nativa Representados por Keiner" class="banner-slide-img" loading="lazy">
-            </div>
-            <div class="banner-slide">
-              <img src="assets/images/banner_slide_michemix.webp" alt="Línea Miche Mix Representada por Keiner" class="banner-slide-img" loading="lazy">
+          <div class="slider-track-container">
+            <div class="slider-track" id="bannerSliderTrack">
+              <!-- Slide 1: Banner de Logos Principal -->
+              <div class="banner-slide-card active">
+                <div class="slide-card-inner">
+                  <img src="assets/images/banner_marcas_keiner.jpg" alt="Marcas y Clientes Representados por Keiner" class="slide-card-img full-cover" fetchpriority="high">
+                </div>
+              </div>
+              <!-- Slide 2: Delicatto -->
+              <div class="banner-slide-card">
+                <div class="slide-card-inner">
+                  <img src="assets/images/banner_slide_delicatto.webp" alt="Productos Delicato Representados por Keiner" class="slide-card-img" loading="lazy">
+                  <div class="slide-card-badge">DELICATTO</div>
+                </div>
+              </div>
+              <!-- Slide 3: Pita Chips -->
+              <div class="banner-slide-card">
+                <div class="slide-card-inner">
+                  <img src="assets/images/banner_slide_pitachips.webp" alt="Pita Chips Almadre Representadas por Keiner" class="slide-card-img" loading="lazy">
+                  <div class="slide-card-badge">PITA CHIPS</div>
+                </div>
+              </div>
+              <!-- Slide 4: Aldea Nativa -->
+              <div class="banner-slide-card">
+                <div class="slide-card-inner">
+                  <img src="assets/images/banner_slide_aldea.webp" alt="Packs Aldea Nativa Representados por Keiner" class="slide-card-img" loading="lazy">
+                  <div class="slide-card-badge">ALDEA NATIVA</div>
+                </div>
+              </div>
+              <!-- Slide 5: Miche Mix -->
+              <div class="banner-slide-card">
+                <div class="slide-card-inner">
+                  <img src="assets/images/banner_slide_michemix.webp" alt="Línea Miche Mix Representada por Keiner" class="slide-card-img" loading="lazy">
+                  <div class="slide-card-badge">MICHE MIX</div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -369,11 +390,11 @@
 
           <!-- Slider Pagination Dots -->
           <div class="banner-slider-dots" id="bannerSliderDots">
-            <span class="dot active" data-index="0"></span>
-            <span class="dot" data-index="1"></span>
-            <span class="dot" data-index="2"></span>
-            <span class="dot" data-index="3"></span>
-            <span class="dot" data-index="4"></span>
+            <span class="dot active" data-index="0" title="Marcas Representadas"></span>
+            <span class="dot" data-index="1" title="Delicatto"></span>
+            <span class="dot" data-index="2" title="Pita Chips"></span>
+            <span class="dot" data-index="3" title="Aldea Nativa"></span>
+            <span class="dot" data-index="4" title="Miche Mix"></span>
           </div>
         </div>
 

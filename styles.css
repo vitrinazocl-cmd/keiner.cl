@@ -2249,64 +2249,105 @@ img, svg, video, iframe {
 }
 
 /* ==========================================================================
-   BRAND BANNER SHOWCASE SLIDER
+   BRAND BANNER SHOWCASE SLIDER (SLIDER HORIZONTAL DE MARCAS Y PRODUCTOS)
    ========================================================================== */
 .brand-banner-slider {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 460px;
   margin-bottom: 32px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-light);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
-  background-color: #0D0D0D;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  background-color: #0B0B0B;
 }
 
-.slider-slides-wrapper {
+.slider-track-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   position: relative;
-  width: 100%;
-  height: 100%;
 }
 
-.banner-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.slider-track {
+  display: flex;
   height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 500%; /* 5 slides x 100% */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.banner-slide-card {
+  width: 20%; /* 100% / 5 */
+  height: 100%;
+  flex-shrink: 0;
+  padding: 16px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.banner-slide.active {
-  opacity: 1;
-  visibility: visible;
-  z-index: 1;
-}
-
-.banner-slide-img {
+.slide-card-inner {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  display: block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Slider Controls */
+.slide-card-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.slide-card-img.full-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-card-inner:hover .slide-card-img {
+  transform: scale(1.03);
+}
+
+/* Badge de Marca en cada Slide */
+.slide-card-badge {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(13, 13, 13, 0.85);
+  color: var(--text-white);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--brand-red);
+  box-shadow: 0 4px 14px rgba(227, 27, 35, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Controls */
 .banner-slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  background: rgba(13, 13, 13, 0.7);
+  background: rgba(13, 13, 13, 0.75);
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  width: 44px;
-  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2314,71 +2355,62 @@ img, svg, video, iframe {
   font-size: 1.25rem;
   cursor: pointer;
   transition: var(--transition);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .banner-slider-btn:hover {
   background: var(--brand-red);
   border-color: var(--brand-red);
-  box-shadow: 0 6px 18px rgba(227, 27, 35, 0.5);
+  box-shadow: 0 6px 20px rgba(227, 27, 35, 0.5);
+  transform: translateY(-50%) scale(1.08);
 }
 
-.banner-slider-btn.prev-btn {
-  left: 16px;
-}
+.banner-slider-btn.prev-btn { left: 20px; }
+.banner-slider-btn.next-btn { right: 20px; }
 
-.banner-slider-btn.next-btn {
-  right: 16px;
-}
-
-/* Slider Pagination Dots */
+/* Dots */
 .banner-slider-dots {
   position: absolute;
-  bottom: 16px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
   display: flex;
   gap: 8px;
-  background: rgba(13, 13, 13, 0.55);
-  padding: 6px 14px;
+  background: rgba(13, 13, 13, 0.65);
+  padding: 8px 16px;
   border-radius: var(--radius-full);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .banner-slider-dots .dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.35);
   cursor: pointer;
   transition: var(--transition);
 }
 
 .banner-slider-dots .dot.active {
   background: var(--brand-red);
-  width: 24px;
-  border-radius: 5px;
+  width: 28px;
+  border-radius: 6px;
 }
 
 @media (max-width: 768px) {
-  .brand-banner-slider {
-    height: 320px;
-  }
-  .banner-slider-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 1rem;
-  }
-  .banner-slider-btn.prev-btn { left: 8px; }
-  .banner-slider-btn.next-btn { right: 8px; }
+  .brand-banner-slider { height: 340px; }
+  .banner-slide-card { padding: 8px; }
+  .banner-slider-btn { width: 38px; height: 38px; font-size: 1rem; }
+  .banner-slider-btn.prev-btn { left: 10px; }
+  .banner-slider-btn.next-btn { right: 10px; }
 }
 
 @media (max-width: 480px) {
-  .brand-banner-slider {
-    height: 240px;
-  }
+  .brand-banner-slider { height: 260px; }
+  .slide-card-badge { font-size: 0.6875rem; padding: 4px 10px; bottom: 10px; right: 10px; }
 }
 
