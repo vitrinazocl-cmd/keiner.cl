@@ -244,4 +244,102 @@ document.addEventListener('DOMContentLoaded', () => {
       trackEvent('contact_phone_click', { phone: telLink.href.replace('tel:', '') });
     });
   });
+
+  // 9. Interactive Brand Showcase Banner Slider
+  const bannerSlider = document.getElementById('brandBannerSlider');
+  if (bannerSlider) {
+    const slides = bannerSlider.querySelectorAll('.banner-slide');
+    const dots = bannerSlider.querySelectorAll('.banner-slider-dots .dot');
+    const prevBtn = document.getElementById('bannerSliderPrev');
+    const nextBtn = document.getElementById('bannerSliderNext');
+
+    let currentSlide = 0;
+    let autoSlideInterval = null;
+
+    function goToSlide(index) {
+      slides.forEach((slide, i) => {
+        if (i === index) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        if (i === index) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      const nextIndex = (currentSlide + 1) % slides.length;
+      goToSlide(nextIndex);
+    }
+
+    function prevSlide() {
+      const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+      goToSlide(prevIndex);
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        trackEvent('banner_slider_nav', { dir: 'next', slide: currentSlide });
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        trackEvent('banner_slider_nav', { dir: 'prev', slide: currentSlide });
+      });
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index, 10);
+        if (!isNaN(index)) {
+          goToSlide(index);
+          trackEvent('banner_slider_dot_click', { slide: index });
+        }
+      });
+    });
+
+    // Auto Play every 4.5 seconds
+    function startAutoSlide() {
+      stopAutoSlide();
+      autoSlideInterval = setInterval(nextSlide, 4500);
+    }
+
+    function stopAutoSlide() {
+      if (autoSlideInterval) clearInterval(autoSlideInterval);
+    }
+
+    startAutoSlide();
+
+    bannerSlider.addEventListener('mouseenter', stopAutoSlide);
+    bannerSlider.addEventListener('mouseleave', startAutoSlide);
+
+    // Touch Swipe Support for Mobile Devices
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    bannerSlider.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    bannerSlider.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 40) {
+        nextSlide();
+      } else if (touchEndX - touchStartX > 40) {
+        prevSlide();
+      }
+    }, { passive: true });
+  }
 });

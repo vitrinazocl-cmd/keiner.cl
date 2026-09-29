@@ -343,9 +343,38 @@
           </div>
         </div>
 
-        <!-- Banner Corporativo Integrado -->
-        <div style="margin-bottom: 32px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-light); box-shadow: 0 10px 30px rgba(0,0,0,0.06);">
-          <img src="assets/images/banner_marcas_keiner.jpg" alt="Showcase de Marcas Representadas por Keiner Chile" style="width: 100%; height: auto; display: block;">
+        <!-- Banner Showcase Slider (Carrusel de Marcas y Productos) -->
+        <div class="brand-banner-slider" id="brandBannerSlider" aria-label="Carrusel de Marcas y Productos Representados">
+          <div class="slider-slides-wrapper">
+            <div class="banner-slide active">
+              <img src="assets/images/banner_marcas_keiner.jpg" alt="Marcas y Clientes Representados por Keiner" class="banner-slide-img" fetchpriority="high">
+            </div>
+            <div class="banner-slide">
+              <img src="assets/images/banner_slide_delicatto.webp" alt="Productos Delicato Representados por Keiner" class="banner-slide-img" loading="lazy">
+            </div>
+            <div class="banner-slide">
+              <img src="assets/images/banner_slide_pitachips.webp" alt="Pita Chips Almadre Representadas por Keiner" class="banner-slide-img" loading="lazy">
+            </div>
+            <div class="banner-slide">
+              <img src="assets/images/banner_slide_aldea.webp" alt="Packs Aldea Nativa Representados por Keiner" class="banner-slide-img" loading="lazy">
+            </div>
+            <div class="banner-slide">
+              <img src="assets/images/banner_slide_michemix.webp" alt="Línea Miche Mix Representada por Keiner" class="banner-slide-img" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Slider Controls -->
+          <button type="button" class="banner-slider-btn prev-btn" id="bannerSliderPrev" aria-label="Slide anterior">&larr;</button>
+          <button type="button" class="banner-slider-btn next-btn" id="bannerSliderNext" aria-label="Slide siguiente">&rarr;</button>
+
+          <!-- Slider Pagination Dots -->
+          <div class="banner-slider-dots" id="bannerSliderDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+          </div>
         </div>
 
         <div class="brands-grid" id="brandsGrid" style="overflow-x: auto; padding-bottom: 8px;">
