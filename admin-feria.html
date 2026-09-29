@@ -383,11 +383,19 @@
 
   <div class="admin-content">
     
-    <!-- STATS -->
+    <!-- STATS DASHBOARD -->
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-label">Total Leads Registrados</div>
         <div class="stat-value highlight" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Registrados Hoy</div>
+        <div class="stat-value" style="color: #60A5FA;" id="statHoy">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Último Ticket Asignado</div>
+        <div class="stat-value" style="font-family: monospace; font-size: 1.5rem; color: #FFD700;" id="statUltimoTicket">---</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">Clientes</div>
@@ -492,6 +500,13 @@
       document.getElementById('btnRefresh').addEventListener('click', loadLeadsData);
       document.getElementById('btnExportCSV').addEventListener('click', exportToCSV);
       document.getElementById('btnClear').addEventListener('click', clearAllLeads);
+
+      // Sincronización continua en vivo cada 6 segundos
+      setInterval(() => {
+        if (sessionStorage.getItem('keiner_admin_authed') === 'true') {
+          loadLeadsData();
+        }
+      }, 6000);
     });
 
     async function loadLeadsData() {
@@ -537,8 +552,15 @@
         return text.includes(search);
       });
 
-      // Stats
+      // Calculate stats
+      const todayStr = new Date().toISOString().slice(0, 10);
+      const hoyCount = allLeads.filter(l => l.timestamp && l.timestamp.startsWith(todayStr)).length;
+      const latestTicket = allLeads.length > 0 ? (allLeads[0].ticketCode || '---') : '---';
+
+      // Update Dashboard Stats UI
       document.getElementById('statTotal').textContent = allLeads.length;
+      document.getElementById('statHoy').textContent = hoyCount;
+      document.getElementById('statUltimoTicket').textContent = latestTicket;
       document.getElementById('statClientes').textContent = allLeads.filter(l => l.tipoContacto === 'Cliente').length;
       document.getElementById('statProveedores').textContent = allLeads.filter(l => l.tipoContacto === 'Proveedor').length;
       document.getElementById('statOtros').textContent = allLeads.filter(l => l.tipoContacto === 'Otro').length;
@@ -607,7 +629,7 @@
 
       localStorage.removeItem('keiner_feria_leads');
       try {
-        await fetch(`/api/feria-leads/clear?pin=${CORRECT_PIN}`, { method: 'POST' });
+        await fetch(`/api/feria-leads/clear?pin=${CORRECT_PASS}`, { method: 'POST' });
       } catch(e) {}
 
       allLeads = [];
