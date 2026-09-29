@@ -6,10 +6,7 @@
   <title>Formulario de Contacto | KEINER</title>
   <meta name="robots" content="noindex, follow">
   
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
-  
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,29 +27,31 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 30px 16px;
+      padding: 24px 16px 60px;
     }
 
     .form-wrapper {
-      max-width: 640px;
+      max-width: 680px;
       width: 100%;
       background: #141419;
-      border: 1px solid #2A2A35;
+      border: 1px solid #2D2D38;
       border-radius: 12px;
-      padding: 32px 28px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      padding: 36px 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+      position: relative;
     }
 
     .form-header-logo {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .form-header-logo img {
-      height: 42px;
+      height: 44px;
       width: auto;
     }
 
+    /* Labels */
     .field-label {
       display: block;
       font-size: 0.85rem;
@@ -65,23 +64,15 @@
 
     .field-label .req {
       color: #E60000;
+      margin-left: 2px;
     }
 
-    .field-label .subnote {
-      font-size: 0.72rem;
-      color: #9CA3AF;
-      font-weight: 500;
-      text-transform: uppercase;
-      display: block;
-      margin-top: 2px;
-    }
-
-    /* Radios row */
+    /* 1. TIPO DE CONTACTO Radios */
     .radio-group-row {
       display: flex;
-      gap: 24px;
+      gap: 32px;
       align-items: center;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       flex-wrap: wrap;
     }
 
@@ -102,34 +93,36 @@
       cursor: pointer;
     }
 
-    /* 2 columns layout */
+    /* 2 Columns Grid */
     .row-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 20px;
+      gap: 20px;
+      margin-bottom: 22px;
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 560px) {
       .row-2col {
         grid-template-columns: 1fr;
       }
     }
 
     .form-field {
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
+    /* Inputs */
     .input-box {
       width: 100%;
       padding: 12px 14px;
       background: #1C1C24;
-      border: 1px solid #2D2D38;
+      border: 1px solid #333344;
       border-radius: 6px;
       color: #FFFFFF;
       font-size: 0.95rem;
       font-family: inherit;
       box-sizing: border-box;
+      transition: border-color 0.2s;
     }
 
     .input-box:focus {
@@ -138,75 +131,129 @@
       background: #22222E;
     }
 
-    /* Celular input with prefix */
-    .phone-input-wrap {
+    /* Celular input +569 prefix */
+    .phone-field-group {
       display: flex;
       align-items: center;
-      background: #1C1C24;
-      border: 1px solid #2D2D38;
-      border-radius: 6px;
-      overflow: hidden;
+      gap: 10px;
     }
 
-    .phone-prefix {
-      padding: 12px 12px;
-      background: #252532;
-      color: #FFFFFF;
+    .phone-prefix-label {
+      font-size: 1rem;
       font-weight: 700;
-      font-size: 0.95rem;
-      border-right: 1px solid #2D2D38;
-      user-select: none;
+      color: #FFFFFF;
+      white-space: nowrap;
     }
 
-    .phone-input-wrap input {
+    .phone-field-group .input-box {
       flex: 1;
-      border: none;
-      background: transparent;
+    }
+
+    /* Custom Dropdown for CATEGORÍA INTERÉS */
+    .dropdown-container {
+      position: relative;
+    }
+
+    .select-btn {
+      width: 100%;
       padding: 12px 14px;
+      background: #1C1C24;
+      border: 1px solid #333344;
+      border-radius: 6px;
       color: #FFFFFF;
       font-size: 0.95rem;
       font-family: inherit;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: border-color 0.2s;
     }
 
-    .phone-input-wrap input:focus {
+    .select-btn:focus, .select-btn.active {
       outline: none;
-    }
-
-    .phone-input-wrap:focus-within {
       border-color: #E60000;
     }
 
-    /* Checkboxes list */
-    .checkbox-list {
+    .arrow-icon {
+      font-size: 0.75rem;
+      color: #9CA3AF;
+      transition: transform 0.2s;
+    }
+
+    .select-btn.active .arrow-icon {
+      transform: rotate(180deg);
+    }
+
+    .checkbox-dropdown-panel {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #1A1A24;
+      border: 1px solid #333344;
+      border-radius: 8px;
+      padding: 14px;
+      z-index: 100;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    }
+
+    .checkbox-dropdown-panel.show {
+      display: block;
+      animation: fadeIn 0.15s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-instruction {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed #2D2D38;
+    }
+
+    .checkbox-options {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top: 8px;
-      background: #1C1C24;
-      border: 1px solid #2D2D38;
-      border-radius: 6px;
-      padding: 14px;
     }
 
-    .checkbox-item {
+    .check-item {
       display: flex;
       align-items: center;
       gap: 10px;
       cursor: pointer;
       font-size: 0.88rem;
       font-weight: 600;
-      color: #D1D5DB;
+      color: #E5E7EB;
     }
 
-    .checkbox-item input[type="checkbox"] {
+    .check-item input[type="checkbox"] {
       width: 18px;
       height: 18px;
       accent-color: #E60000;
       cursor: pointer;
     }
 
+    /* Submit Button */
+    .submit-container {
+      text-align: center;
+      margin-top: 28px;
+      margin-bottom: 16px;
+    }
+
     .btn-submit {
-      padding: 14px 40px;
+      padding: 14px 44px;
       background: #E60000;
       color: #FFFFFF;
       border: none;
@@ -216,35 +263,38 @@
       letter-spacing: 1px;
       cursor: pointer;
       text-transform: uppercase;
-      transition: background 0.2s ease;
-      display: inline-block;
+      transition: background 0.2s ease, transform 0.1s ease;
     }
 
     .btn-submit:hover {
       background: #CC0000;
     }
 
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
     .mandatory-note {
       font-size: 0.8rem;
       color: #9CA3AF;
-      margin-top: 16px;
+      font-weight: 500;
     }
 
-    /* Clean Success Screen */
+    /* Success Box */
     .success-box {
       display: none;
       text-align: center;
-      padding: 20px 0;
+      padding: 24px 0;
     }
 
     .ticket-code-badge {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 900;
       letter-spacing: 3px;
       color: #FFD700;
       font-family: monospace;
-      margin: 16px 0;
-      padding: 12px 20px;
+      margin: 18px 0;
+      padding: 14px 24px;
       background: #1C1C24;
       border: 1px dashed #E60000;
       border-radius: 8px;
@@ -255,12 +305,12 @@
       background: transparent;
       border: 1px solid #4B5563;
       color: #D1D5DB;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 20px;
+      margin-top: 16px;
     }
 
     .btn-reset:hover {
@@ -314,9 +364,9 @@
         <div class="row-2col">
           <div>
             <label for="fCelular" class="field-label">CELULAR <span class="req">*</span></label>
-            <div class="phone-input-wrap">
-              <span class="phone-prefix">+569</span>
-              <input type="tel" id="fCelular" name="celular" placeholder="" required>
+            <div class="phone-field-group">
+              <span class="phone-prefix-label">+ 5 6 9</span>
+              <input type="tel" id="fCelular" name="celular" class="input-box" required>
             </div>
           </div>
           <div>
@@ -325,27 +375,37 @@
           </div>
         </div>
 
-        <!-- ROW 3: NOMBRE EMPRESA | CATEGORÍA INTERÉS -->
+        <!-- ROW 3: NOMBRE EMPRESA | CATEGORÍA INTERÉS (WITH SELECCIONE DROPDOWN) -->
         <div class="row-2col">
           <div>
             <label for="fEmpresa" class="field-label">NOMBRE EMPRESA</label>
             <input type="text" id="fEmpresa" name="empresa" class="input-box">
           </div>
           <div>
-            <label class="field-label">CATEGORÍA INTERÉS <span class="subnote">(SE PUEDE SELECCIONAR MÁS DE UNO)</span></label>
-            <div class="checkbox-list">
-              <label class="checkbox-item">
-                <input type="checkbox" name="categoria" value="PITA CHIPS"> PITA CHIPS
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="categoria" value="MIX CÓCTELES"> MIX CÓCTELES
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="categoria" value="COMIDA KOREANA"> COMIDA KOREANA
-              </label>
-              <label class="checkbox-item">
-                <input type="checkbox" name="categoria" value="OTRO"> OTRO
-              </label>
+            <label class="field-label">CATEGORÍA INTERÉS</label>
+            <div class="dropdown-container">
+              <button type="button" class="select-btn" id="catSelectBtn">
+                <span id="catSelectText">SELECCIONE</span>
+                <span class="arrow-icon">▼</span>
+              </button>
+              
+              <div class="checkbox-dropdown-panel" id="catDropdownPanel">
+                <div class="panel-instruction">SE PUEDE SELECCIONAR MÁS DE UNO</div>
+                <div class="checkbox-options">
+                  <label class="check-item">
+                    <input type="checkbox" name="categoria" value="PITA CHIPS"> PITA CHIPS
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="categoria" value="MIX CÓCTELES"> MIX CÓCTELES
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="categoria" value="COMIDA KOREANA"> COMIDA KOREANA
+                  </label>
+                  <label class="check-item">
+                    <input type="checkbox" name="categoria" value="OTRO"> OTRO
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -356,8 +416,8 @@
           <textarea id="fComentarios" name="comentarios" class="input-box" rows="3" placeholder="TEXTO LIBRE"></textarea>
         </div>
 
-        <!-- ENVIAR BUTTON -->
-        <div style="margin-top: 24px;">
+        <!-- SUBMIT BUTTON -->
+        <div class="submit-container">
           <button type="submit" class="btn-submit" id="btnSubmit">ENVIAR</button>
         </div>
 
@@ -382,6 +442,43 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const catSelectBtn = document.getElementById('catSelectBtn');
+      const catDropdownPanel = document.getElementById('catDropdownPanel');
+      const catSelectText = document.getElementById('catSelectText');
+      const checkboxes = document.querySelectorAll('input[name="categoria"]');
+
+      // Toggle dropdown panel
+      catSelectBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = catDropdownPanel.classList.toggle('show');
+        catSelectBtn.classList.toggle('active', isOpen);
+      });
+
+      // Update text on select
+      checkboxes.forEach(chk => {
+        chk.addEventListener('change', updateSelectText);
+      });
+
+      function updateSelectText() {
+        const selected = Array.from(checkboxes).filter(c => c.checked).map(c => c.value);
+        if (selected.length === 0) {
+          catSelectText.textContent = 'SELECCIONE';
+        } else if (selected.length === 1) {
+          catSelectText.textContent = selected[0];
+        } else {
+          catSelectText.textContent = `${selected.length} SELECCIONADOS`;
+        }
+      }
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!catSelectBtn.contains(e.target) && !catDropdownPanel.contains(e.target)) {
+          catDropdownPanel.classList.remove('show');
+          catSelectBtn.classList.remove('active');
+        }
+      });
+
+      // Form Submit
       const form = document.getElementById('feriaForm');
       const formContainer = document.getElementById('formContainer');
       const successBox = document.getElementById('successBox');
@@ -393,14 +490,14 @@
 
         const nombre = document.getElementById('fNombre').value.trim();
         const apellido = document.getElementById('fApellido').value.trim();
-        const celularInput = document.getElementById('fCelular').value.trim();
+        const celularNum = document.getElementById('fCelular').value.trim();
 
-        if (!nombre || !apellido || !celularInput) {
+        if (!nombre || !apellido || !celularNum) {
           alert('Por favor completa los campos obligatorios: NOMBRE, APELLIDO y CELULAR.');
           return;
         }
 
-        const celular = celularInput.startsWith('+569') ? celularInput : `+569 ${celularInput}`;
+        const celular = `+569 ${celularNum}`;
         const tipoContacto = form.querySelector('input[name="tipoContacto"]:checked')?.value || 'CLIENTE';
         const email = document.getElementById('fEmail').value.trim();
         const empresa = document.getElementById('fEmpresa').value.trim();
@@ -450,6 +547,7 @@
 
       btnReset.addEventListener('click', () => {
         form.reset();
+        updateSelectText();
         successBox.style.display = 'none';
         formContainer.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
