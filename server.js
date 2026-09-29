@@ -462,9 +462,13 @@ app.use((err, _req, res, _next) => {
   return res.status(500).json({ ok: false, error: 'server_error' });
 });
 
-app.listen(port, () => {
-  console.log(`KEINER corporativo escuchando en ${siteOrigin}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`KEINER corporativo escuchando en ${siteOrigin}`);
+  });
+}
+
+export default app;
 
 function buildTransport() {
   const host = process.env.SMTP_HOST;
