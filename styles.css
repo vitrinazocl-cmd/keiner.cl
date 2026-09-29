@@ -2448,3 +2448,77 @@ img, svg, video, iframe {
   background: rgba(230, 0, 0, 0.12);
 }
 
+/* TOPIC PILLS (SECCIÓN CONTACTO) */
+.topic-pills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+  margin-bottom: 12px;
+}
+
+.topic-pill {
+  background: #FFFFFF;
+  border: 1.5px solid #E5E7EB;
+  color: #374151;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topic-pill:hover {
+  border-color: #111827;
+  color: #111827;
+}
+
+.topic-pill.active {
+  background: #111827;
+  border-color: #111827;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.section-dark .topic-pill {
+  background: transparent;
+  border: 1.5px solid #333344;
+  color: #E5E7EB;
+}
+
+.section-dark .topic-pill:hover {
+  border-color: #E60000;
+  color: #FFFFFF;
+}
+
+.section-dark .topic-pill.active {
+  background: #000000;
+  border-color: #000000;
+  color: #FFFFFF;
+}
+
+/* Explicit override for light card inside section-dark */
+.contact-form-card .topic-pill {
+  background: #FFFFFF !important;
+  border: 1.5px solid #D1D5DB !important;
+  color: #111827 !important;
+}
+
+.contact-form-card .topic-pill:hover {
+  border-color: #111827 !important;
+  color: #111827 !important;
+}
+
+.contact-form-card .topic-pill.active {
+  background: #111827 !important;
+  border-color: #111827 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+

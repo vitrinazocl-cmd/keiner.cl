@@ -65,21 +65,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 4. Topic Pills Selection in Contact Form
-  const topicPills = document.querySelectorAll('.topic-pill');
-  const selectedTopicInput = document.getElementById('selectedTopic');
-
-  topicPills.forEach(pill => {
-    pill.addEventListener('click', (e) => {
+  // 4. Topic Pills Selection in Contact Form (Event Delegation)
+  document.addEventListener('click', (e) => {
+    const pill = e.target.closest('.topic-pill');
+    if (pill) {
       e.preventDefault();
-      topicPills.forEach(p => p.classList.remove('active'));
+      const container = pill.closest('.topic-pills-container') || document;
+      container.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
       const value = pill.getAttribute('data-value') || pill.textContent.trim();
+      const selectedTopicInput = document.getElementById('selectedTopic');
       if (selectedTopicInput) {
         selectedTopicInput.value = value;
       }
       trackEvent('select_contact_topic', { topic: value });
-    });
+    }
   });
 
   // 5. Carousel Horizontal Scroll Buttons
