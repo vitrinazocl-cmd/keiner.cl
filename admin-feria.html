@@ -431,6 +431,7 @@
         </select>
       </div>
       <div class="action-btns">
+        <button class="btn-action" id="btnSyncLocal" style="background: #2563EB; color: #FFFFFF;" title="Subir registros guardados en la memoria local de este dispositivo hacia Supabase Cloud">☁️ Subir Leads Locales a Nube</button>
         <button class="btn-action btn-excel" id="btnExportCSV">📥 Exportar CSV (Excel)</button>
         <button class="btn-action btn-refresh" id="btnRefresh">🔄 Actualizar</button>
       </div>
@@ -510,6 +511,18 @@
       document.getElementById('filterFecha').addEventListener('change', renderTable);
       document.getElementById('btnRefresh').addEventListener('click', loadLeadsData);
       document.getElementById('btnExportCSV').addEventListener('click', exportToCSV);
+      const btnSyncLocal = document.getElementById('btnSyncLocal');
+      if (btnSyncLocal) {
+        btnSyncLocal.addEventListener('click', async () => {
+          btnSyncLocal.disabled = true;
+          btnSyncLocal.textContent = '⏳ Sincronizando Nube...';
+          const count = await uploadLocalLeadsToSupabase();
+          alert(`¡Sincronización completada! Se procesaron ${count} registros locales hacia la base de datos Supabase Cloud.`);
+          await loadLeadsData();
+          btnSyncLocal.disabled = false;
+          btnSyncLocal.textContent = '☁️ Subir Leads Locales a Nube';
+        });
+      }
 
       // Sincronización continua en vivo cada 6 segundos
       setInterval(() => {
@@ -521,6 +534,51 @@
 
     const DEFAULT_SUPABASE_URL = 'https://xpafqyttugfomdtduxel.supabase.co';
     const DEFAULT_SUPABASE_KEY = 'sb_publishable_PCKzHqKbLQyv_nwnWKMw8g_qxA3WJZu';
+
+    async function uploadLocalLeadsToSupabase() {
+      const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || DEFAULT_SUPABASE_URL;
+      const key = window.SUPABASE_KEY || localStorage.getItem('supabase_key') || DEFAULT_SUPABASE_KEY;
+      if (!url || !key) return 0;
+
+      let localLeads = [];
+      try {
+        localLeads = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
+      } catch(e) {}
+
+      if (localLeads.length === 0) return 0;
+
+      let processed = 0;
+      for (const lead of localLeads) {
+        try {
+          const res = await fetch(`${url.replace(/\/$/, '')}/rest/v1/LEADS_FERIA`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': key,
+              'Authorization': `Bearer ${key}`,
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify({
+              codigo_unico: lead.ticketCode || lead.codigo_unico || `KR-2026-REC`,
+              nombre: `${lead.nombre || ''} ${lead.apellido || ''}`.trim() || 'Lead Recuperado',
+              telefono: lead.celular || lead.telefono || 'No informado',
+              email: lead.email || '',
+              empresa: lead.empresa || '',
+              cargo: lead.tipoContacto || lead.cargo || 'CLIENTE',
+              fecha_registro: lead.timestamp || new Date().toISOString(),
+              premio: lead.categorias || lead.premio || 'Ruleta Espacio Riesco',
+              canjeado: lead.canjeado || 'NO',
+              observaciones: lead.comentarios || lead.observaciones || 'Recuperado de LocalStorage',
+              dispositivo: lead.dispositivo || 'Recuperado de Celular'
+            })
+          });
+          if (res.ok || res.status === 409) {
+            processed++;
+          }
+        } catch(e) {}
+      }
+      return processed;
+    }
 
     async function fetchSupabaseLeads() {
       const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || DEFAULT_SUPABASE_URL;
