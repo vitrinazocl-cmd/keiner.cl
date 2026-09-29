@@ -333,35 +333,45 @@ button, input, textarea, select {
    PAGE 1: INICIO (HERO & SECTIONS)
    ========================================================================== */
 
+.hero-section {
+  position: relative;
+  background-color: var(--bg-black);
+  padding: 30px 0 40px;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+}
+
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 520px;
+  grid-template-columns: 1.25fr 0.75fr;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
   background-color: var(--bg-black);
-  border-bottom: 1px solid var(--border-dark);
 }
 
 .hero-left {
-  padding: 80px 60px 80px 0;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .hero-title {
-  font-size: 3.25rem;
+  font-size: clamp(2.3rem, 3.5vw, 3.25rem);
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.03em;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   color: var(--text-white);
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
   color: #A0A0A0;
-  margin-bottom: 36px;
+  margin-bottom: 30px;
   max-width: 520px;
 }
 
@@ -374,15 +384,18 @@ button, input, textarea, select {
 
 .hero-right {
   position: relative;
-  background-color: #0D0D0D;
-  border-left: 1px solid var(--border-dark);
+  background-color: #050505;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   width: 100%;
-  height: 100%;
-  min-height: 480px;
+  max-width: 380px;
+  height: 480px;
+  margin: 0 auto;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
   padding: 0;
 }
 
@@ -392,6 +405,7 @@ button, input, textarea, select {
   object-fit: cover;
   object-position: center;
   display: block;
+  border-radius: 20px;
 }
 
 /* SECTION: LÍNEAS DE NEGOCIO */
