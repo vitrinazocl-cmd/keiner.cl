@@ -290,73 +290,102 @@
       <span class="whatsapp-tooltip">Hablar directo al WhatsApp (+56 9 5149 6392)</span>
     </a>
 
-    <!-- 2. Meeting Bot Trigger Button -->
-    <button type="button" class="meeting-bot-trigger" id="meetingBotTrigger" aria-label="Agendar reunión">
+    <!-- 2. Feria Form Floating Trigger Button -->
+    <button type="button" class="meeting-bot-trigger" id="meetingBotTrigger" aria-label="Formulario Feria Food & Service">
       <span class="bot-dot"></span>
-      <span>📅 Agendar Reunión</span>
+      <span>🎡 FORMULARIO FERIA</span>
     </button>
 
-    <!-- 3. Meeting Bot Modal -->
+    <!-- 3. Feria Form Modal Drawer -->
     <div class="meeting-bot-modal" id="meetingBotModal">
       <div class="bot-modal-header">
         <div class="title">
-          <span>🤖</span>
-          <span>Asistente Virtual Keiner</span>
+          <span>🎡</span>
+          <span>Formulario Feria Espacio Riesco</span>
         </div>
         <button type="button" class="bot-modal-close" id="meetingBotClose" aria-label="Cerrar">&times;</button>
       </div>
 
-      <div class="bot-modal-body">
-        <form id="botBookingForm">
-          <div id="botStep1">
-            <div class="bot-step-title" style="margin-bottom: 10px;">Paso 1: ¿Qué servicio requieres?</div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <button type="button" class="bot-option-btn" data-topic="Distribución de Productos">
-                <span>📦 Distribución de Productos</span>
-                <span>&rarr;</span>
-              </button>
-              <button type="button" class="bot-option-btn" data-topic="Representación Comercial">
-                <span>🤝 Representación Comercial</span>
-                <span>&rarr;</span>
-              </button>
-              <button type="button" class="bot-option-btn" data-topic="Consulta / Asesoría B2B">
-                <span>💬 Consulta / Asesoría B2B</span>
-                <span>&rarr;</span>
-              </button>
-            </div>
-          </div>
+      <div class="bot-modal-body" style="padding: 16px; overflow-y: auto; max-height: 75vh;">
+        <div id="modalFeriaContainer">
+          <p style="font-size: 0.85rem; color: #AAA; margin-bottom: 12px; text-align: center;">
+            Ingresa tus datos para girar la ruleta en el Stand de KEINER y ganar premios.
+            <br><a href="contactoevento.html" style="color: #FF4D4D; font-weight: bold; text-decoration: underline;">Abrir en pantalla completa &rarr;</a>
+          </p>
 
-          <div id="botStep2" style="display: none;">
-            <div class="bot-step-title" style="margin-bottom: 10px; margin-top: 8px;">Paso 2: Selecciona Fecha y Hora</div>
-            <div class="form-group" style="margin-bottom: 10px;">
-              <label class="form-label" style="color: #AAA;">Fecha de la reunión</label>
-              <input type="date" id="botDate" class="form-input" style="background: #202020; border-color: #333; color: white;" required>
+          <form id="modalFeriaForm" novalidate>
+            <div style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.8rem; font-weight: 700; color: #DDD; margin-bottom: 6px;">1. Perfil</label>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;">
+                <label style="background: #20202A; padding: 8px 4px; border-radius: 6px; text-align: center; font-size: 0.78rem; font-weight: 700; cursor: pointer; color: #FFF; border: 1px solid #333;">
+                  <input type="radio" name="modalTipoContacto" value="Cliente" checked> Cliente
+                </label>
+                <label style="background: #20202A; padding: 8px 4px; border-radius: 6px; text-align: center; font-size: 0.78rem; font-weight: 700; cursor: pointer; color: #FFF; border: 1px solid #333;">
+                  <input type="radio" name="modalTipoContacto" value="Proveedor"> Proveedor
+                </label>
+                <label style="background: #20202A; padding: 8px 4px; border-radius: 6px; text-align: center; font-size: 0.78rem; font-weight: 700; cursor: pointer; color: #FFF; border: 1px solid #333;">
+                  <input type="radio" name="modalTipoContacto" value="Otro"> Otro
+                </label>
+              </div>
             </div>
-            <div style="margin-bottom: 6px;" class="form-label">Horarios Disponibles</div>
-            <div class="time-slots-grid">
-              <button type="button" class="time-slot-btn" data-time="09:30 hrs">09:30 AM</button>
-              <button type="button" class="time-slot-btn" data-time="11:00 hrs">11:00 AM</button>
-              <button type="button" class="time-slot-btn" data-time="15:00 hrs">03:00 PM</button>
-              <button type="button" class="time-slot-btn" data-time="16:30 hrs">04:30 PM</button>
-            </div>
-          </div>
 
-          <div id="botStep3" style="display: none; margin-top: 8px;">
-            <div class="bot-step-title" style="margin-bottom: 10px;">Paso 3: Tus Datos de Contacto</div>
-            <div class="form-group" style="margin-bottom: 8px;">
-              <input type="text" id="botName" class="form-input" placeholder="Tu Nombre y Apellido" style="background: #202020; border-color: #333; color: white;" required>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+              <div>
+                <label style="display: block; font-size: 0.78rem; color: #CCC; margin-bottom: 4px;">Nombre *</label>
+                <input type="text" id="mNombre" class="form-input" placeholder="Nombre" style="background: #1C1C24; border-color: #333; color: white; padding: 8px 10px; font-size: 0.88rem;" required>
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.78rem; color: #CCC; margin-bottom: 4px;">Apellido *</label>
+                <input type="text" id="mApellido" class="form-input" placeholder="Apellido" style="background: #1C1C24; border-color: #333; color: white; padding: 8px 10px; font-size: 0.88rem;" required>
+              </div>
             </div>
-            <div class="form-group" style="margin-bottom: 8px;">
-              <input type="text" id="botCompany" class="form-input" placeholder="Empresa / Negocio" style="background: #202020; border-color: #333; color: white;" required>
-            </div>
-            <div class="form-group" style="margin-bottom: 12px;">
-              <input type="email" id="botEmail" class="form-input" placeholder="Correo Electrónico" style="background: #202020; border-color: #333; color: white;" required>
-            </div>
-            <button type="submit" class="btn btn-red" style="width: 100%; padding: 12px;">Confirmar y Agendar Reunión &rarr;</button>
-          </div>
-        </form>
 
-        <div id="botConfirm" style="display: none;"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+              <div>
+                <label style="display: block; font-size: 0.78rem; color: #CCC; margin-bottom: 4px;">Celular *</label>
+                <input type="tel" id="mCelular" class="form-input" placeholder="+56 9..." style="background: #1C1C24; border-color: #333; color: white; padding: 8px 10px; font-size: 0.88rem;" required>
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.78rem; color: #CCC; margin-bottom: 4px;">Email</label>
+                <input type="email" id="mEmail" class="form-input" placeholder="Correo" style="background: #1C1C24; border-color: #333; color: white; padding: 8px 10px; font-size: 0.88rem;">
+              </div>
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <label style="display: block; font-size: 0.78rem; color: #CCC; margin-bottom: 4px;">Empresa / Negocio</label>
+              <input type="text" id="mEmpresa" class="form-input" placeholder="Nombre Empresa" style="background: #1C1C24; border-color: #333; color: white; padding: 8px 10px; font-size: 0.88rem;">
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #DDD; margin-bottom: 4px;">Categorías de Interés</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.8rem; color: #BBB;">
+                <label><input type="checkbox" name="mCat" value="Pita Chips"> Pita Chips</label>
+                <label><input type="checkbox" name="mCat" value="Mix Cócteles"> Mix Cócteles</label>
+                <label><input type="checkbox" name="mCat" value="Comida Koreana"> Comida Koreana</label>
+                <label><input type="checkbox" name="mCat" value="Otro"> Otro</label>
+              </div>
+            </div>
+
+            <div style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.78rem; color: #CCC; margin-bottom: 4px;">Comentarios</label>
+              <textarea id="mComentarios" class="form-input" rows="2" placeholder="Notas u observaciones" style="background: #1C1C24; border-color: #333; color: white; padding: 8px 10px; font-size: 0.85rem;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-red" style="width: 100%; padding: 12px; font-weight: 800; font-size: 0.95rem; background: linear-gradient(135deg, #E60000 0%, #B30000 100%);">🎰 ENVIAR Y GIRAR RULETA &rarr;</button>
+          </form>
+
+          <div id="modalTicketScreen" style="display: none; text-align: center; padding: 16px 0;">
+            <div style="font-size: 2.5rem; margin-bottom: 8px;">🎡</div>
+            <h3 style="color: #FFF; font-weight: 800; font-size: 1.2rem;">¡REGISTRO EXITOSO!</h3>
+            <p style="color: #4ADE80; font-weight: 700; font-size: 0.85rem; margin-bottom: 12px;">Muestra este código en el Stand para girar la ruleta</p>
+            <div style="background: #1A1A24; border: 2px dashed #E60000; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+              <div style="font-size: 0.7rem; color: #AAA; text-transform: uppercase;">Código de Ticket</div>
+              <div id="mDisplayCode" style="font-size: 1.8rem; font-weight: 900; color: #FFD700; font-family: monospace; letter-spacing: 2px;">KNR-1234</div>
+              <div id="mDisplayName" style="font-size: 0.95rem; color: #FFF; font-weight: bold; margin-top: 4px;">Juan Pérez</div>
+            </div>
+            <button type="button" id="btnModalReset" style="background: transparent; border: 1px solid #555; color: #DDD; padding: 8px 14px; border-radius: 6px; font-size: 0.8rem; cursor: pointer;">Registrar a otra persona</button>
+          </div>
+        </div>
       </div>
     </div>
   </body>

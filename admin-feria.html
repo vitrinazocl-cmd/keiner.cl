@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base de Datos Leads Feria Espacio Riesco | KEINER Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0A0A0D;
+      --card-bg: #14141A;
+      --card-border: #22222E;
+      --accent-red: #E60000;
+      --accent-gold: #FFD700;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Lock Screen Modal */
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 13, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lock-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .lock-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .lock-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .lock-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .pin-input {
+      width: 100%;
+      padding: 14px;
+      background: #1C1C26;
+      border: 2px solid var(--card-border);
+      border-radius: 12px;
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+
+    .pin-input:focus {
+      outline: none;
+      border-color: var(--accent-red);
+    }
+
+    .lock-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent-red);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .lock-btn:hover {
+      background: #CC0000;
+    }
+
+    .error-msg {
+      color: var(--accent-red);
+      font-size: 0.85rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Admin Main Container */
+    .admin-header {
+      background: #101015;
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .admin-brand img {
+      height: 36px;
+      width: auto;
+    }
+
+    .admin-title-badge {
+      background: rgba(230, 0, 0, 0.15);
+      border: 1px solid rgba(230, 0, 0, 0.3);
+      color: #FF4D4D;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .admin-content {
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #FFFFFF;
+    }
+
+    .stat-value.highlight {
+      color: var(--accent-gold);
+    }
+
+    /* Toolbar */
+    .toolbar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 10px 14px;
+      background: #1A1A24;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: #FFFFFF;
+      font-size: 0.9rem;
+    }
+
+    .filter-select {
+      padding: 10px 14px;
+      background: #1A1A24;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: #FFFFFF;
+      font-size: 0.9rem;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-action:hover {
+      opacity: 0.9;
+    }
+
+    .btn-excel {
+      background: #107C41;
+      color: #FFFFFF;
+    }
+
+    .btn-refresh {
+      background: #2563EB;
+      color: #FFFFFF;
+    }
+
+    .btn-danger {
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid rgba(220, 38, 38, 0.4);
+      color: #EF4444;
+    }
+
+    /* Table */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    th {
+      background: #1A1A22;
+      color: var(--text-muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #1C1C26;
+      color: #E5E7EB;
+      vertical-align: middle;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .ticket-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      background: rgba(255, 215, 0, 0.15);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: var(--accent-gold);
+      border-radius: 6px;
+      font-weight: 800;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    .tipo-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .tipo-Cliente { background: rgba(59, 130, 246, 0.2); color: #60A5FA; }
+    .tipo-Proveedor { background: rgba(16, 185, 129, 0.2); color: #34D399; }
+    .tipo-Otro { background: rgba(168, 85, 247, 0.2); color: #C084FC; }
+
+    .no-data {
+      padding: 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOCK SCREEN PIN MODAL -->
+  <div class="lock-screen" id="lockScreen">
+    <div class="lock-card">
+      <div class="lock-icon">🔒</div>
+      <h2 class="lock-title">Acceso Admin Feria</h2>
+      <p class="lock-subtitle">Ingresa la clave PIN para ver la base de datos de la ruleta.</p>
+      <input type="password" id="pinInput" class="pin-input" placeholder="••••" maxlength="15" autofocus>
+      <button type="button" class="lock-btn" id="btnLogin">Ingresar a Base de Datos</button>
+      <div class="error-msg" id="loginError">Clave PIN incorrecta. Intenta nuevamente.</div>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div class="admin-header">
+    <div class="admin-brand">
+      <img src="assets/images/logo-keiner-header.png" alt="KEINER">
+      <span class="admin-title-badge">Base de Datos • Espacio Riesco 2026</span>
+    </div>
+    <div style="font-size: 0.85rem; color: var(--text-muted);">
+      Sincronización en vivo
+    </div>
+  </div>
+
+  <div class="admin-content">
+    
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Leads Registrados</div>
+        <div class="stat-value highlight" id="statTotal">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Clientes</div>
+        <div class="stat-value" id="statClientes">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Proveedores</div>
+        <div class="stat-value" id="statProveedores">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Otros</div>
+        <div class="stat-value" id="statOtros">0</div>
+      </div>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar-card">
+      <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre, celular, ticket, empresa...">
+        <select id="filterTipo" class="filter-select">
+          <option value="ALL">Todos los Perfiles</option>
+          <option value="Cliente">Clientes</option>
+          <option value="Proveedor">Proveedores</option>
+          <option value="Otro">Otros</option>
+        </select>
+      </div>
+      <div class="action-btns">
+        <button class="btn-action btn-excel" id="btnExportCSV">📥 Exportar Excel (CSV)</button>
+        <button class="btn-action btn-refresh" id="btnRefresh">🔄 Actualizar</button>
+        <button class="btn-action btn-danger" id="btnClear">🗑️ Limpiar BD</button>
+      </div>
+    </div>
+
+    <!-- DATA TABLE -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ticket</th>
+            <th>Fecha / Hora</th>
+            <th>Tipo</th>
+            <th>Nombre Completo</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Empresa</th>
+            <th>Categorías</th>
+            <th>Comentarios</th>
+          </tr>
+        </thead>
+        <tbody id="leadsTableBody">
+          <!-- Rows injected via JavaScript -->
+        </tbody>
+      </table>
+      <div class="no-data" id="noDataMsg" style="display: none;">
+        No hay registros almacenados aún. Los leads capturados aparecerán aquí en tiempo real.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const CORRECT_PIN = 'keiner2026';
+    let allLeads = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const lockScreen = document.getElementById('lockScreen');
+      const pinInput = document.getElementById('pinInput');
+      const btnLogin = document.getElementById('btnLogin');
+      const loginError = document.getElementById('loginError');
+
+      // Check Session Storage
+      if (sessionStorage.getItem('keiner_admin_authed') === 'true') {
+        lockScreen.style.display = 'none';
+        loadLeadsData();
+      }
+
+      function attemptLogin() {
+        if (pinInput.value.trim() === CORRECT_PIN) {
+          sessionStorage.setItem('keiner_admin_authed', 'true');
+          lockScreen.style.display = 'none';
+          loginError.style.display = 'none';
+          loadLeadsData();
+        } else {
+          loginError.style.display = 'block';
+          pinInput.focus();
+        }
+      }
+
+      btnLogin.addEventListener('click', attemptLogin);
+      pinInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') attemptLogin();
+      });
+
+      // Controls
+      document.getElementById('searchInput').addEventListener('input', renderTable);
+      document.getElementById('filterTipo').addEventListener('change', renderTable);
+      document.getElementById('btnRefresh').addEventListener('click', loadLeadsData);
+      document.getElementById('btnExportCSV').addEventListener('click', exportToCSV);
+      document.getElementById('btnClear').addEventListener('click', clearAllLeads);
+    });
+
+    async function loadLeadsData() {
+      let localLeads = [];
+      try {
+        localLeads = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
+      } catch(e) {}
+
+      let serverLeads = [];
+      try {
+        const res = await fetch(`/api/feria-leads?pin=${CORRECT_PIN}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.ok && Array.isArray(data.leads)) {
+            serverLeads = data.leads;
+          }
+        }
+      } catch(e) {}
+
+      // Merge avoiding duplicates by id or ticketCode
+      const map = new Map();
+      [...localLeads, ...serverLeads].forEach(item => {
+        if (item && (item.id || item.ticketCode)) {
+          const key = item.ticketCode || item.id;
+          map.set(key, item);
+        }
+      });
+
+      allLeads = Array.from(map.values()).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      renderTable();
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('leadsTableBody');
+      const noDataMsg = document.getElementById('noDataMsg');
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+      const filterTipo = document.getElementById('filterTipo').value;
+
+      let filtered = allLeads.filter(lead => {
+        if (filterTipo !== 'ALL' && lead.tipoContacto !== filterTipo) return false;
+        if (!search) return true;
+        const text = `${lead.nombre} ${lead.apellido} ${lead.celular} ${lead.email} ${lead.empresa} ${lead.ticketCode} ${lead.categorias} ${lead.comentarios}`.toLowerCase();
+        return text.includes(search);
+      });
+
+      // Stats
+      document.getElementById('statTotal').textContent = allLeads.length;
+      document.getElementById('statClientes').textContent = allLeads.filter(l => l.tipoContacto === 'Cliente').length;
+      document.getElementById('statProveedores').textContent = allLeads.filter(l => l.tipoContacto === 'Proveedor').length;
+      document.getElementById('statOtros').textContent = allLeads.filter(l => l.tipoContacto === 'Otro').length;
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        noDataMsg.style.display = 'block';
+        return;
+      }
+
+      noDataMsg.style.display = 'none';
+      tbody.innerHTML = filtered.map((lead, idx) => `
+        <tr>
+          <td>${filtered.length - idx}</td>
+          <td><span class="ticket-badge">${lead.ticketCode || 'N/A'}</span></td>
+          <td style="font-size:0.8rem; color:#9CA3AF;">${lead.fechaLectura || new Date(lead.timestamp).toLocaleString('es-CL')}</td>
+          <td><span class="tipo-pill tipo-${lead.tipoContacto || 'Cliente'}">${lead.tipoContacto || 'Cliente'}</span></td>
+          <td style="font-weight: 700; color:#FFFFFF;">${lead.nombre} ${lead.apellido}</td>
+          <td style="font-family:monospace; color:#4ADE80;">${lead.celular}</td>
+          <td>${lead.email || '-'}</td>
+          <td>${lead.empresa || '-'}</td>
+          <td style="font-size:0.82rem; color:#F3F4F6;">${lead.categorias || '-'}</td>
+          <td style="font-size:0.82rem; color:#9CA3AF; max-width:200px;">${lead.comentarios || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    function exportToCSV() {
+      if (allLeads.length === 0) {
+        alert('No hay leads para exportar.');
+        return;
+      }
+
+      const headers = ['Ticket Code', 'Fecha Hora', 'Tipo Contacto', 'Nombre', 'Apellido', 'Celular', 'Email', 'Empresa', 'Categorias Interes', 'Comentarios'];
+      
+      const rows = allLeads.map(l => [
+        `"${(l.ticketCode || '').replace(/"/g, '""')}"`,
+        `"${(l.fechaLectura || l.timestamp || '').replace(/"/g, '""')}"`,
+        `"${(l.tipoContacto || '').replace(/"/g, '""')}"`,
+        `"${(l.nombre || '').replace(/"/g, '""')}"`,
+        `"${(l.apellido || '').replace(/"/g, '""')}"`,
+        `"${(l.celular || '').replace(/"/g, '""')}"`,
+        `"${(l.email || '').replace(/"/g, '""')}"`,
+        `"${(l.empresa || '').replace(/"/g, '""')}"`,
+        `"${(l.categorias || '').replace(/"/g, '""')}"`,
+        `"${(l.comentarios || '').replace(/"/g, '""')}"`
+      ]);
+
+      // Add UTF-8 BOM for Microsoft Excel compatibility
+      const csvContent = '\uFEFF' + [headers.join(';'), ...rows.map(r => r.join(';'))].join('\n');
+      
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `Leads_Feria_Keiner_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    async function clearAllLeads() {
+      if (!confirm('¿Estás seguro de que deseas eliminar TODOS los registros de la base de datos? Esta acción no se puede deshacer.')) {
+        return;
+      }
+
+      localStorage.removeItem('keiner_feria_leads');
+      try {
+        await fetch(`/api/feria-leads/clear?pin=${CORRECT_PIN}`, { method: 'POST' });
+      } catch(e) {}
+
+      allLeads = [];
+      renderTable();
+      alert('Base de datos limpiada correctamente.');
+    }
+  </script>
+</body>
+</html>

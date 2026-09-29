@@ -156,68 +156,90 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Meeting Bot Step Navigation & Data Collection
-  const botOptions = document.querySelectorAll('.bot-option-btn');
-  const botTimeSlots = document.querySelectorAll('.time-slot-btn');
-  const botStep1 = document.getElementById('botStep1');
-  const botStep2 = document.getElementById('botStep2');
-  const botStep3 = document.getElementById('botStep3');
-  const botConfirm = document.getElementById('botConfirm');
-  const botBookingForm = document.getElementById('botBookingForm');
+  // Modal Feria Form Handling
+  const modalFeriaForm = document.getElementById('modalFeriaForm');
+  const modalTicketScreen = document.getElementById('modalTicketScreen');
+  const mDisplayCode = document.getElementById('mDisplayCode');
+  const mDisplayName = document.getElementById('mDisplayName');
+  const btnModalReset = document.getElementById('btnModalReset');
 
-  let selectedBotTopic = '';
-  let selectedBotTime = '';
-
-  botOptions.forEach(opt => {
-    opt.addEventListener('click', () => {
-      botOptions.forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      selectedBotTopic = opt.dataset.topic || opt.textContent.trim();
-      if (botStep2) botStep2.style.display = 'block';
-      trackEvent('meeting_bot_step', { step: 1, topic: selectedBotTopic });
-    });
-  });
-
-  botTimeSlots.forEach(slot => {
-    slot.addEventListener('click', () => {
-      botTimeSlots.forEach(s => s.classList.remove('selected'));
-      slot.classList.add('selected');
-      selectedBotTime = slot.dataset.time || slot.textContent.trim();
-      if (botStep3) botStep3.style.display = 'block';
-      trackEvent('meeting_bot_step', { step: 2, time: selectedBotTime });
-    });
-  });
-
-  if (botBookingForm) {
-    botBookingForm.addEventListener('submit', (e) => {
+  if (modalFeriaForm) {
+    modalFeriaForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('botName')?.value || 'Cliente';
-      const date = document.getElementById('botDate')?.value || 'Fecha seleccionada';
+      const nombre = document.getElementById('mNombre').value.trim();
+      const apellido = document.getElementById('mApellido').value.trim();
+      const celular = document.getElementById('mCelular').value.trim();
 
-      // Push Meeting Booking Lead Conversion
+      if (!nombre || !apellido || !celular) {
+        alert('Por favor completa los campos obligatorios: Nombre, Apellido y Celular.');
+        return;
+      }
+
+      const tipoContacto = modalFeriaForm.querySelector('input[name="modalTipoContacto"]:checked')?.value || 'Cliente';
+      const email = document.getElementById('mEmail').value.trim();
+      const empresa = document.getElementById('mEmpresa').value.trim();
+      const comentarios = document.getElementById('mComentarios').value.trim();
+
+      const catEls = modalFeriaForm.querySelectorAll('input[name="mCat"]:checked');
+      const categorias = Array.from(catEls).map(el => el.value);
+
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      const ticketCode = `KNR-${randomNum}`;
+
+      const leadData = {
+        id: Date.now().toString(),
+        ticketCode: ticketCode,
+        timestamp: new Date().toISOString(),
+        fechaLectura: new Date().toLocaleString('es-CL'),
+        tipoContacto: tipoContacto,
+        nombre: nombre,
+        apellido: apellido,
+        celular: celular,
+        email: email,
+        empresa: empresa,
+        categorias: categorias.length > 0 ? categorias.join(', ') : 'Ninguna',
+        comentarios: comentarios
+      };
+
+      try {
+        const existing = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
+        existing.unshift(leadData);
+        localStorage.setItem('keiner_feria_leads', JSON.stringify(existing));
+      } catch (err) {
+        console.error('Error guardando localmente:', err);
+      }
+
+      try {
+        fetch('/api/feria-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadData)
+        }).catch(err => console.warn('Servidor offline, guardado en localStorage', err));
+      } catch (err) {}
+
       trackEvent('generate_lead', {
-        form_name: 'meeting_bot_booking',
-        meeting_topic: selectedBotTopic || 'Consulta Comercial',
-        meeting_date: date,
-        meeting_time: selectedBotTime || '11:00 hrs'
+        form_name: 'feria_modal_lead',
+        ticket_code: ticketCode,
+        tipo_contacto: tipoContacto
       });
 
-      if (botStep1) botStep1.style.display = 'none';
-      if (botStep2) botStep2.style.display = 'none';
-      if (botStep3) botStep3.style.display = 'none';
-      if (botConfirm) {
-        botConfirm.innerHTML = `
-          <div class="bot-confirm-card">
-            <h4 style="color: var(--brand-red); font-size: 1.0625rem; font-weight: 700; margin-bottom: 8px;">¡Reunión Agendada con Éxito! 🎉</h4>
-            <p style="margin-bottom: 8px;"><strong>Hola ${name}</strong>, tu reunión ha sido programada:</p>
-            <ul style="list-style: none; padding: 0; margin-bottom: 12px; font-size: 0.8125rem;">
-              <li>📌 <strong>Motivo:</strong> ${selectedBotTopic || 'Consulta Comercial'}</li>
-              <li>📅 <strong>Fecha & Hora:</strong> ${date} a las ${selectedBotTime || '11:00 hrs'}</li>
-              <li>📍 <strong>Modalidad:</strong> Google Meet / Presencial</li>
-            </ul>
-            <p style="font-size: 0.75rem; color: #888;">Hemos enviado la confirmación y el enlace de reunión a tu correo electrónico.</p>
-          </div>
-        `;
+      if (mDisplayCode) mDisplayCode.textContent = ticketCode;
+      if (mDisplayName) mDisplayName.textContent = `${nombre} ${apellido}`;
+
+      modalFeriaForm.style.display = 'none';
+      if (modalTicketScreen) modalTicketScreen.style.display = 'block';
+    });
+  }
+
+  if (btnModalReset) {
+    btnModalReset.addEventListener('click', () => {
+      if (modalFeriaForm) {
+        modalFeriaForm.reset();
+        modalFeriaForm.style.display = 'block';
+      }
+      if (modalTicketScreen) modalTicketScreen.style.display = 'none';
+    });
+  }
         botConfirm.style.display = 'block';
       }
     });

@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
@@ -171,9 +172,73 @@ const chatSchema = z
   })
   .strict();
 
+const feriaLeadSchema = z.object({
+  id: z.string().optional(),
+  ticketCode: z.string().optional(),
+  timestamp: z.string().optional(),
+  fechaLectura: z.string().optional(),
+  tipoContacto: z.string().trim().max(50),
+  nombre: z.string().trim().min(1).max(100),
+  apellido: z.string().trim().min(1).max(100),
+  celular: z.string().trim().min(5).max(30),
+  email: z.string().trim().max(100).optional().default(''),
+  empresa: z.string().trim().max(100).optional().default(''),
+  categorias: z.string().trim().max(200).optional().default(''),
+  comentarios: z.string().trim().max(1000).optional().default(''),
+});
+
+const dbDir = path.join(__dirname, 'db');
+const feriaLeadsFile = path.join(dbDir, 'feria-leads.json');
+
+function getFeriaLeadsData() {
+  try {
+    if (!fs.existsSync(dbDir)) {
+      fs.mkdirSync(dbDir, { recursive: true });
+    }
+    if (!fs.existsSync(feriaLeadsFile)) {
+      fs.writeFileSync(feriaLeadsFile, JSON.stringify([]), 'utf8');
+      return [];
+    }
+    const content = fs.readFileSync(feriaLeadsFile, 'utf8');
+    return JSON.parse(content || '[]');
+  } catch (err) {
+    console.error('[feria_db_read_error]', err);
+    return [];
+  }
+}
+
+function saveFeriaLeadData(lead) {
+  try {
+    const current = getFeriaLeadsData();
+    current.unshift(lead);
+    fs.writeFileSync(feriaLeadsFile, JSON.stringify(current, null, 2), 'utf8');
+  } catch (err) {
+    console.error('[feria_db_write_error]', err);
+  }
+}
+
+function clearFeriaLeadsData() {
+  try {
+    if (!fs.existsSync(dbDir)) {
+      fs.mkdirSync(dbDir, { recursive: true });
+    }
+    fs.writeFileSync(feriaLeadsFile, JSON.stringify([]), 'utf8');
+  } catch (err) {
+    console.error('[feria_db_clear_error]', err);
+  }
+}
+
 const sanitize = (value) => value.replace(/[<>]/g, '');
 
 const transport = buildTransport();
+
+app.get('/contactoevento', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'contactoevento.html'));
+});
+
+app.get('/admin-feria', (_req, res) => {
+  res.sendFile(path.join(__dirname, 'admin-feria.html'));
+});
 
 app.use(express.static(__dirname, {
   etag: true,
@@ -200,6 +265,37 @@ app.get('/api/public-config', (_req, res) => {
     ok: true,
     powerBi: getPublicPowerBiConfig(),
   });
+});
+
+app.post('/api/feria-lead', (req, res) => {
+  const parseResult = feriaLeadSchema.safeParse(req.body);
+  if (!parseResult.success) {
+    return res.status(400).json({ ok: false, error: 'invalid_payload' });
+  }
+
+  const lead = parseResult.data;
+  saveFeriaLeadData(lead);
+  return res.status(200).json({ ok: true, ticketCode: lead.ticketCode || 'KNR-OK' });
+});
+
+app.get('/api/feria-leads', (req, res) => {
+  const pin = req.query.pin;
+  if (pin !== 'keiner2026') {
+    return res.status(401).json({ ok: false, error: 'unauthorized' });
+  }
+
+  const leads = getFeriaLeadsData();
+  return res.status(200).json({ ok: true, leads });
+});
+
+app.post('/api/feria-leads/clear', (req, res) => {
+  const pin = req.query.pin;
+  if (pin !== 'keiner2026') {
+    return res.status(401).json({ ok: false, error: 'unauthorized' });
+  }
+
+  clearFeriaLeadsData();
+  return res.status(200).json({ ok: true });
 });
 
 app.post('/api/contact', contactLimiter, async (req, res) => {
