@@ -3,18 +3,44 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Términos y Condiciones - Keiner">
+    <meta name="description" content="Términos y Condiciones - Keiner SpA: Regulaciones de uso de la plataforma corporativa y servicios de representación comercial.">
+    <meta name="author" content="Keiner SpA">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#E31B23">
     <title>Keiner - Sitio Corporativo | Términos y Condiciones</title>
+
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://keiner.cl/terms.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://keiner.cl/terms.html">
+    <meta property="og:site_name" content="Keiner Corporativo">
+    <meta property="og:title" content="Términos y Condiciones - Keiner">
+    <meta property="og:description" content="Términos y condiciones de uso del sitio corporativo Keiner SpA.">
+    <meta property="og:image" content="https://keiner.cl/assets/images/logo-keiner-hero-square.png">
+    <meta property="og:locale" content="es_CL">
+
+    <!-- DataLayer Initialization (GA4 / GTM) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+    </script>
+
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
   </head>
   <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- SITE HEADER -->
     <header class="site-header">
       <div class="container header-inner">
         <a href="index.html" class="brand-logo" aria-label="Keiner Inicio">
-          <img src="assets/images/logo-keiner-header.png" alt="Keiner Logo" class="brand-logo-img">
+          <img src="assets/images/logo-keiner-header.png" alt="Keiner Logo" class="brand-logo-img" width="160" height="42">
         </a>
 
         <ul class="nav-links">
@@ -24,19 +50,22 @@
         </ul>
 
         <div class="header-cta">
-          <a href="contacto.html" class="btn btn-red">Escríbenos &rarr;</a>
+          <a href="contacto.html" class="btn btn-red" aria-label="Escríbenos a contacto">Escríbenos &rarr;</a>
         </div>
       </div>
     </header>
 
     <!-- BREADCRUMB -->
-    <div class="breadcrumb-bar">
+    <nav class="breadcrumb-bar" aria-label="Navegación secundaria">
       <div class="container breadcrumb-inner">
         <a href="index.html">Inicio</a>
         <span class="sep">/</span>
         <span class="current">Términos y Condiciones</span>
       </div>
-    </div>
+    </nav>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main id="main-content">
 
     <section class="section-dark" style="padding: 80px 0;">
       <div class="container" style="max-width: 800px;">
@@ -51,7 +80,7 @@
           <p style="margin-bottom: 20px;">Los contenidos, diseño visual y la marca Keiner son propiedad exclusiva de la empresa.</p>
         </div>
       </div>
-    </section>
+    </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">

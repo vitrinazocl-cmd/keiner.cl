@@ -4,26 +4,109 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="KEINER - Distribución de productos y representación comercial de marcas de consumo masivo en Chile.">
-    <title>Keiner - Sitio Corporativo | Inicio</title>
+    <meta name="keywords" content="distribución Chile, representación comercial, marcas consumo masivo, retail Chile, logística FMCG, comercialización Keiner">
+    <meta name="author" content="Keiner SpA">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#E31B23">
+    <title>Keiner - Sitio Corporativo | Representación Comercial y Distribución</title>
+
     <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://keiner.cl/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://keiner.cl/">
+    <meta property="og:site_name" content="Keiner Corporativo">
+    <meta property="og:title" content="Keiner - Representación Comercial y Distribución de Marcas en Chile">
+    <meta property="og:description" content="Estudiamos las necesidades de nuestros socios comerciales, simplificando y potenciando su operación en el mercado chileno.">
+    <meta property="og:image" content="https://keiner.cl/assets/images/logo-keiner-hero-square.png">
+    <meta property="og:locale" content="es_CL">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Keiner - Representación Comercial y Distribución de Marcas">
+    <meta name="twitter:description" content="Conectamos la oferta y la demanda de marcas de consumo masivo en Chile.">
+    <meta name="twitter:image" content="https://keiner.cl/assets/images/logo-keiner-hero-square.png">
+
+    <!-- DataLayer Initialization (GA4 / GTM) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+    </script>
+
+    <!-- Schema.org JSON-LD Microdata -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Corporation",
+          "@id": "https://keiner.cl/#organization",
+          "name": "Keiner SpA",
+          "url": "https://keiner.cl",
+          "logo": "https://keiner.cl/assets/images/logo-keiner-corporativo.svg",
+          "description": "Distribución de productos y representación comercial de marcas de consumo masivo en Chile.",
+          "telephone": "+56951496392",
+          "email": "contacto@keiner.cl",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "San José de la Sierra 30, dpto 103",
+            "addressLocality": "Las Condes",
+            "addressRegion": "Región Metropolitana",
+            "addressCountry": "CL"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+56951496392",
+            "contactType": "sales",
+            "areaServed": "CL",
+            "availableLanguage": "Spanish"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://keiner.cl/#website",
+          "url": "https://keiner.cl",
+          "name": "Keiner Corporativo",
+          "publisher": { "@id": "https://keiner.cl/#organization" },
+          "inLanguage": "es-CL"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://keiner.cl/#webpage",
+          "url": "https://keiner.cl",
+          "name": "Keiner - Sitio Corporativo | Inicio",
+          "isPartOf": { "@id": "https://keiner.cl/#website" },
+          "about": { "@id": "https://keiner.cl/#organization" },
+          "description": "Distribución de productos y representación comercial de marcas de consumo masivo en Chile."
+        }
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
   </head>
   <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- SITE HEADER -->
     <header class="site-header">
       <div class="container header-inner">
         <a href="index.html" class="brand-logo" aria-label="Keiner Inicio">
-          <img src="assets/images/logo-keiner-header.png" alt="Keiner Logo" class="brand-logo-img">
+          <img src="assets/images/logo-keiner-header.png" alt="Keiner Logo" class="brand-logo-img" width="160" height="42">
         </a>
 
-        <button class="mobile-toggle" type="button" aria-label="Abrir menú de navegación">
+        <button class="mobile-toggle" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="primary-nav">
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <ul class="nav-links">
+        <ul class="nav-links" id="primary-nav">
           <li><a href="index.html" class="nav-link active">Inicio</a></li>
           <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
           <li><a href="#marcas" class="nav-link">Marcas y Clientes</a></li>
@@ -31,10 +114,13 @@
         </ul>
 
         <div class="header-cta">
-          <a href="contacto.html" class="btn btn-red">Escríbenos &rarr;</a>
+          <a href="contacto.html" class="btn btn-red" aria-label="Escríbenos a contacto">Escríbenos &rarr;</a>
         </div>
       </div>
     </header>
+
+    <!-- MAIN CONTENT WRAPPER (A11y) -->
+    <main id="main-content">
 
     <!-- 1. HERO SECTION -->
     <section class="hero-section">
@@ -53,7 +139,7 @@
           </div>
 
           <div class="hero-right">
-            <img src="assets/images/logo-keiner-hero-square.png" alt="Keiner Logo Oficial" class="hero-full-img">
+            <img src="assets/images/logo-keiner-hero-square.png" alt="Keiner Logo Oficial" class="hero-full-img" fetchpriority="high" decoding="async">
           </div>
         </div>
       </div>
@@ -316,7 +402,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </main>
 
     <!-- FOOTER -->
     <footer class="site-footer">
