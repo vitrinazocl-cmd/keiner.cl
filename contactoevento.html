@@ -3,16 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario Feria Espacio Riesco 2026 | KEINER - Ruleta de Premios</title>
-  <meta name="description" content="Regístrate en el stand de KEINER en la Feria Food & Service Espacio Riesco y participa por increíbles premios en nuestra ruleta.">
+  <title>Formulario de Contacto | KEINER</title>
   <meta name="robots" content="noindex, follow">
   
-  <!-- Open Graph -->
-  <meta property="og:title" content="Ruleta Keiner - Feria Food & Service 2026">
-  <meta property="og:description" content="Regístrate y participa en la ruleta del stand de KEINER en Espacio Riesco.">
-  <meta property="og:image" content="assets/images/logo-keiner-hero.png">
-  <meta property="og:type" content="website">
-
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
   
@@ -21,10 +14,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css">
-  
   <style>
-    /* Specific Event Form Mobile Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background-color: #0A0A0C;
       color: #F3F4F6;
@@ -32,327 +28,242 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-    }
-
-    .event-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px 16px 60px;
-      width: 100%;
-    }
-
-    .event-header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    .event-logo {
-      height: 48px;
-      width: auto;
-      margin-bottom: 12px;
-    }
-
-    .event-badge {
-      display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(230, 0, 0, 0.15);
-      border: 1px solid rgba(230, 0, 0, 0.4);
-      color: #FF4D4D;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      justify-content: flex-start;
+      padding: 30px 16px;
     }
 
-    .event-title {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #FFFFFF;
-      margin-bottom: 8px;
-      line-height: 1.25;
-    }
-
-    .event-title span {
-      background: linear-gradient(135deg, #FF4D4D 0%, #E60000 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .event-subtitle {
-      color: #9CA3AF;
-      font-size: 0.95rem;
-      line-height: 1.4;
-    }
-
-    .feria-card {
+    .form-wrapper {
+      max-width: 640px;
+      width: 100%;
       background: #141419;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      border: 1px solid #2A2A35;
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
-    .form-group-radios {
-      margin-bottom: 20px;
+    .form-header-logo {
+      text-align: center;
+      margin-bottom: 28px;
     }
 
-    .form-group-radios label.section-label {
+    .form-header-logo img {
+      height: 42px;
+      width: auto;
+    }
+
+    .field-label {
       display: block;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #E5E7EB;
-      margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
 
-    .radio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .field-label .req {
+      color: #E60000;
+    }
+
+    .field-label .subnote {
+      font-size: 0.72rem;
+      color: #9CA3AF;
+      font-weight: 500;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Radios row */
+    .radio-group-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .radio-item {
+      display: flex;
+      align-items: center;
       gap: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #D1D5DB;
     }
 
-    .radio-pill {
-      position: relative;
+    .radio-item input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #E60000;
       cursor: pointer;
     }
 
-    .radio-pill input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .radio-pill .pill-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 8px;
-      background: #1C1C24;
-      border: 2px solid #2D2D38;
-      border-radius: 10px;
-      color: #9CA3AF;
-      font-weight: 700;
-      font-size: 0.88rem;
-      text-align: center;
-      transition: all 0.2s ease;
-    }
-
-    .radio-pill input[type="radio"]:checked + .pill-box {
-      background: rgba(230, 0, 0, 0.15);
-      border-color: #E60000;
-      color: #FFFFFF;
-      box-shadow: 0 0 12px rgba(230, 0, 0, 0.3);
-    }
-
-    .form-row-2 {
+    /* 2 columns layout */
+    .row-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 16px;
+      margin-bottom: 20px;
     }
 
-    @media (max-width: 480px) {
-      .form-row-2 {
+    @media (max-width: 540px) {
+      .row-2col {
         grid-template-columns: 1fr;
       }
     }
 
-    .field-block {
-      margin-bottom: 16px;
+    .form-field {
+      margin-bottom: 20px;
     }
 
-    .field-block label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #D1D5DB;
-      margin-bottom: 6px;
-    }
-
-    .field-block label .req {
-      color: #E60000;
-    }
-
-    .field-input {
+    .input-box {
       width: 100%;
       padding: 12px 14px;
       background: #1C1C24;
       border: 1px solid #2D2D38;
-      border-radius: 8px;
+      border-radius: 6px;
       color: #FFFFFF;
       font-size: 0.95rem;
       font-family: inherit;
-      transition: border-color 0.2s ease;
+      box-sizing: border-box;
     }
 
-    .field-input:focus {
+    .input-box:focus {
       outline: none;
       border-color: #E60000;
-      background: #22222D;
+      background: #22222E;
     }
 
-    .checkboxes-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .check-pill {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .check-pill input[type="checkbox"] {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .check-pill .check-box {
+    /* Celular input with prefix */
+    .phone-input-wrap {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
       background: #1C1C24;
       border: 1px solid #2D2D38;
-      border-radius: 8px;
-      color: #9CA3AF;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
+      border-radius: 6px;
+      overflow: hidden;
     }
 
-    .check-pill input[type="checkbox"]:checked + .check-box {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: #E60000;
+    .phone-prefix {
+      padding: 12px 12px;
+      background: #252532;
       color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-right: 1px solid #2D2D38;
+      user-select: none;
     }
 
-    .check-pill .check-box::before {
-      content: '';
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border: 2px solid #4B5563;
-      border-radius: 4px;
-      box-sizing: border-box;
-      transition: all 0.2s ease;
-    }
-
-    .check-pill input[type="checkbox"]:checked + .check-box::before {
-      background-color: #E60000;
-      border-color: #E60000;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-      background-size: 12px;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    .submit-btn-feria {
-      width: 100%;
-      padding: 16px;
-      background: linear-gradient(135deg, #E60000 0%, #B30000 100%);
-      color: #FFFFFF;
+    .phone-input-wrap input {
+      flex: 1;
       border: none;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(230, 0, 0, 0.4);
+      background: transparent;
+      padding: 12px 14px;
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    .phone-input-wrap input:focus {
+      outline: none;
+    }
+
+    .phone-input-wrap:focus-within {
+      border-color: #E60000;
+    }
+
+    /* Checkboxes list */
+    .checkbox-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+      background: #1C1C24;
+      border: 1px solid #2D2D38;
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .checkbox-item {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #D1D5DB;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #E60000;
+      cursor: pointer;
+    }
+
+    .btn-submit {
+      padding: 14px 40px;
+      background: #E60000;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-submit:hover {
+      background: #CC0000;
+    }
+
+    .mandatory-note {
+      font-size: 0.8rem;
+      color: #9CA3AF;
       margin-top: 16px;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .submit-btn-feria:active {
-      transform: scale(0.98);
-    }
-
-    /* Ticket Confirmation Overlay */
-    .ticket-screen {
+    /* Clean Success Screen */
+    .success-box {
       display: none;
       text-align: center;
-      padding: 10px 0;
+      padding: 20px 0;
     }
 
-    .ticket-screen.active {
-      display: block;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .roulette-icon {
-      font-size: 3.5rem;
-      margin-bottom: 12px;
-      display: inline-block;
-      animation: spinBounce 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes spinBounce {
-      0% { transform: scale(0) rotate(-180deg); }
-      80% { transform: scale(1.15) rotate(10deg); }
-      100% { transform: scale(1) rotate(0deg); }
-    }
-
-    .ticket-card {
-      background: linear-gradient(145deg, #1E1E26 0%, #15151B 100%);
-      border: 2px dashed #E60000;
-      border-radius: 16px;
-      padding: 24px;
-      margin: 20px 0;
-      position: relative;
-    }
-
-    .ticket-code {
-      font-size: 2.2rem;
+    .ticket-code-badge {
+      font-size: 2rem;
       font-weight: 900;
       letter-spacing: 3px;
       color: #FFD700;
       font-family: monospace;
-      margin: 10px 0;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+      margin: 16px 0;
+      padding: 12px 20px;
+      background: #1C1C24;
+      border: 1px dashed #E60000;
+      border-radius: 8px;
+      display: inline-block;
     }
 
-    .ticket-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #FFFFFF;
-    }
-
-    .ticket-instruct {
-      font-size: 0.9rem;
-      color: #9CA3AF;
-      margin-top: 8px;
-    }
-
-    .reset-btn {
+    .btn-reset {
       background: transparent;
       border: 1px solid #4B5563;
       color: #D1D5DB;
       padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 0.88rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
-      margin-top: 16px;
+      margin-top: 20px;
     }
 
-    .reset-btn:hover {
+    .btn-reset:hover {
       border-color: #FFFFFF;
       color: #FFFFFF;
     }
@@ -360,160 +271,144 @@
 </head>
 <body>
 
-  <div class="event-container">
-    
-    <!-- HEADER -->
-    <div class="event-header">
+  <div class="form-wrapper">
+    <div class="form-header-logo">
       <a href="index.html">
-        <img src="assets/images/logo-keiner-header.png" alt="KEINER" class="event-logo">
+        <img src="assets/images/logo-keiner-header.png" alt="KEINER">
       </a>
-      <br>
-      <div class="event-badge">
-        📍 ESPACIO RIESCO • FOOD & SERVICE 2026
-      </div>
-      <h1 class="event-title">🎡 Registro <span>Ruleta Keiner</span></h1>
-      <p class="event-subtitle">Llena tus datos en 30 segundos y gira nuestra ruleta en el Stand para ganar increíbles premios.</p>
     </div>
 
-    <!-- MAIN FORM CARD -->
-    <div class="feria-card" id="formCard">
+    <!-- FORM CONTAINER -->
+    <div id="formContainer">
       <form id="feriaForm" novalidate>
 
         <!-- TIPO DE CONTACTO -->
-        <div class="form-group-radios">
-          <label class="section-label">1. ¿Cuál es tu perfil? <span class="req">*</span></label>
-          <div class="radio-grid">
-            <label class="radio-pill">
-              <input type="radio" name="tipoContacto" value="Cliente" checked>
-              <div class="pill-box">🤝 Cliente</div>
+        <div class="form-field">
+          <label class="field-label">TIPO DE CONTACTO</label>
+          <div class="radio-group-row">
+            <label class="radio-item">
+              <input type="radio" name="tipoContacto" value="PROVEEDOR"> PROVEEDOR
             </label>
-            <label class="radio-pill">
-              <input type="radio" name="tipoContacto" value="Proveedor">
-              <div class="pill-box">🏭 Proveedor</div>
+            <label class="radio-item">
+              <input type="radio" name="tipoContacto" value="CLIENTE" checked> CLIENTE
             </label>
-            <label class="radio-pill">
-              <input type="radio" name="tipoContacto" value="Otro">
-              <div class="pill-box">✨ Otro</div>
+            <label class="radio-item">
+              <input type="radio" name="tipoContacto" value="OTRO"> OTRO
             </label>
           </div>
         </div>
 
-        <!-- NOMBRE Y APELLIDO -->
-        <div class="form-row-2">
-          <div class="field-block">
-            <label for="fNombre">Nombre <span class="req">*</span></label>
-            <input type="text" id="fNombre" name="nombre" class="field-input" placeholder="Ej: Juan" required>
+        <!-- ROW 1: NOMBRE * | APELLIDO * -->
+        <div class="row-2col">
+          <div>
+            <label for="fNombre" class="field-label">NOMBRE <span class="req">*</span></label>
+            <input type="text" id="fNombre" name="nombre" class="input-box" required>
           </div>
-          <div class="field-block">
-            <label for="fApellido">Apellido <span class="req">*</span></label>
-            <input type="text" id="fApellido" name="apellido" class="field-input" placeholder="Ej: Pérez" required>
-          </div>
-        </div>
-
-        <!-- CELULAR Y EMAIL -->
-        <div class="form-row-2">
-          <div class="field-block">
-            <label for="fCelular">Celular <span class="req">*</span></label>
-            <input type="tel" id="fCelular" name="celular" class="field-input" placeholder="+56 9 1234 5678" required>
-          </div>
-          <div class="field-block">
-            <label for="fEmail">Email</label>
-            <input type="email" id="fEmail" name="email" class="field-input" placeholder="correo@ejemplo.com">
+          <div>
+            <label for="fApellido" class="field-label">APELLIDO <span class="req">*</span></label>
+            <input type="text" id="fApellido" name="apellido" class="input-box" required>
           </div>
         </div>
 
-        <!-- EMPRESA -->
-        <div class="field-block">
-          <label for="fEmpresa">Nombre Empresa / Negocio</label>
-          <input type="text" id="fEmpresa" name="empresa" class="field-input" placeholder="Ej: Importadora X / Minimarket Y">
+        <!-- ROW 2: CELULAR * | EMAIL -->
+        <div class="row-2col">
+          <div>
+            <label for="fCelular" class="field-label">CELULAR <span class="req">*</span></label>
+            <div class="phone-input-wrap">
+              <span class="phone-prefix">+569</span>
+              <input type="tel" id="fCelular" name="celular" placeholder="" required>
+            </div>
+          </div>
+          <div>
+            <label for="fEmail" class="field-label">EMAIL</label>
+            <input type="email" id="fEmail" name="email" class="input-box">
+          </div>
         </div>
 
-        <!-- CATEGORIAS DE INTERES -->
-        <div class="field-block">
-          <label class="section-label">Categorías de Interés <span style="font-weight:normal; font-size:0.8rem; color:#9CA3AF;">(Puedes marcar varias)</span></label>
-          <div class="checkboxes-grid">
-            <label class="check-pill">
-              <input type="checkbox" name="categoria" value="Pita Chips">
-              <div class="check-box">🥖 Pita Chips</div>
-            </label>
-            <label class="check-pill">
-              <input type="checkbox" name="categoria" value="Mix Cócteles">
-              <div class="check-box">🍹 Mix Cócteles</div>
-            </label>
-            <label class="check-pill">
-              <input type="checkbox" name="categoria" value="Comida Koreana">
-              <div class="check-box">🥢 Comida Koreana</div>
-            </label>
-            <label class="check-pill">
-              <input type="checkbox" name="categoria" value="Otro">
-              <div class="check-box">📦 Otro</div>
-            </label>
+        <!-- ROW 3: NOMBRE EMPRESA | CATEGORÍA INTERÉS -->
+        <div class="row-2col">
+          <div>
+            <label for="fEmpresa" class="field-label">NOMBRE EMPRESA</label>
+            <input type="text" id="fEmpresa" name="empresa" class="input-box">
+          </div>
+          <div>
+            <label class="field-label">CATEGORÍA INTERÉS <span class="subnote">(SE PUEDE SELECCIONAR MÁS DE UNO)</span></label>
+            <div class="checkbox-list">
+              <label class="checkbox-item">
+                <input type="checkbox" name="categoria" value="PITA CHIPS"> PITA CHIPS
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="categoria" value="MIX CÓCTELES"> MIX CÓCTELES
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="categoria" value="COMIDA KOREANA"> COMIDA KOREANA
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" name="categoria" value="OTRO"> OTRO
+              </label>
+            </div>
           </div>
         </div>
 
         <!-- COMENTARIOS -->
-        <div class="field-block">
-          <label for="fComentarios">Comentarios u Observaciones</label>
-          <textarea id="fComentarios" name="comentarios" class="field-input" rows="2" placeholder="¿Buscas representación, distribución o cotización?"></textarea>
+        <div class="form-field">
+          <label for="fComentarios" class="field-label">COMENTARIOS</label>
+          <textarea id="fComentarios" name="comentarios" class="input-box" rows="3" placeholder="TEXTO LIBRE"></textarea>
         </div>
 
-        <!-- SUBMIT BUTTON -->
-        <button type="submit" class="submit-btn-feria" id="btnSubmitFeria">
-          <span>🎰 ENVIAR Y GIRAR RULETA</span>
-        </button>
+        <!-- ENVIAR BUTTON -->
+        <div style="margin-top: 24px;">
+          <button type="submit" class="btn-submit" id="btnSubmit">ENVIAR</button>
+        </div>
+
+        <div class="mandatory-note">* CAMPOS MANDATORIOS</div>
+
       </form>
     </div>
 
-    <!-- CONFIRMATION TICKET SCREEN -->
-    <div class="feria-card ticket-screen" id="ticketScreen">
-      <div class="roulette-icon">🎡</div>
-      <h2 style="font-size: 1.5rem; font-weight: 800; color: #FFFFFF; margin-bottom: 4px;">¡REGISTRO EXITOSO!</h2>
-      <p style="color: #4ADE80; font-weight: 700; font-size: 0.95rem;">Ya estás listo para participar en la Ruleta</p>
-
-      <div class="ticket-card">
-        <div style="font-size: 0.75rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px;">Tu Código de Ticket</div>
-        <div class="ticket-code" id="displayTicketCode">KNR-9842</div>
-        <div class="ticket-name" id="displayTicketName">Juan Pérez</div>
-        <div class="ticket-instruct">Muestra este código en la pantalla de tu celular a la persona del Stand Keiner.</div>
+    <!-- SUCCESS SCREEN -->
+    <div class="success-box" id="successBox">
+      <h2 style="font-size: 1.4rem; font-weight: 800; color: #FFFFFF; margin-bottom: 8px;">REGISTRO EXITOSO</h2>
+      <p style="color: #9CA3AF; font-size: 0.9rem;">Código asignado para la ruleta:</p>
+      
+      <div class="ticket-code-badge" id="displayTicketCode">KNR-9842</div>
+      
+      <div>
+        <button type="button" class="btn-reset" id="btnReset">Registrar otro contacto</button>
       </div>
-
-      <button type="button" class="reset-btn" id="btnResetForm">Registrar a otra persona →</button>
     </div>
 
   </div>
 
   <script>
-    // Generar o enviar Lead
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('feriaForm');
-      const formCard = document.getElementById('formCard');
-      const ticketScreen = document.getElementById('ticketScreen');
+      const formContainer = document.getElementById('formContainer');
+      const successBox = document.getElementById('successBox');
       const displayTicketCode = document.getElementById('displayTicketCode');
-      const displayTicketName = document.getElementById('displayTicketName');
-      const btnResetForm = document.getElementById('btnResetForm');
+      const btnReset = document.getElementById('btnReset');
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const nombre = document.getElementById('fNombre').value.trim();
         const apellido = document.getElementById('fApellido').value.trim();
-        const celular = document.getElementById('fCelular').value.trim();
+        const celularInput = document.getElementById('fCelular').value.trim();
 
-        if (!nombre || !apellido || !celular) {
-          alert('Por favor completa los campos obligatorios: Nombre, Apellido y Celular.');
+        if (!nombre || !apellido || !celularInput) {
+          alert('Por favor completa los campos obligatorios: NOMBRE, APELLIDO y CELULAR.');
           return;
         }
 
-        const tipoContacto = form.querySelector('input[name="tipoContacto"]:checked')?.value || 'Cliente';
+        const celular = celularInput.startsWith('+569') ? celularInput : `+569 ${celularInput}`;
+        const tipoContacto = form.querySelector('input[name="tipoContacto"]:checked')?.value || 'CLIENTE';
         const email = document.getElementById('fEmail').value.trim();
         const empresa = document.getElementById('fEmpresa').value.trim();
         const comentarios = document.getElementById('fComentarios').value.trim();
 
-        // Categorias seleccionadas
         const catEls = form.querySelectorAll('input[name="categoria"]:checked');
         const categorias = Array.from(catEls).map(el => el.value);
 
-        // Generar Ticket Code único
         const randomNum = Math.floor(1000 + Math.random() * 9000);
         const ticketCode = `KNR-${randomNum}`;
 
@@ -532,7 +427,6 @@
           comentarios: comentarios
         };
 
-        // 1. Guardar en localStorage inmediatamente (Offline-first)
         try {
           const existing = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
           existing.unshift(leadData);
@@ -541,28 +435,23 @@
           console.error('Error guardando localmente:', err);
         }
 
-        // 2. Enviar a servidor REST si está disponible
         try {
           fetch('/api/feria-lead', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(leadData)
           }).catch(err => console.warn('Servidor offline, guardado en localStorage', err));
-        } catch (err) {
-          console.warn('Network offline', err);
-        }
+        } catch (err) {}
 
-        // 3. Mostrar Pantalla de Ticket
         displayTicketCode.textContent = ticketCode;
-        displayTicketName.textContent = `${nombre} ${apellido}`;
-        formCard.style.display = 'none';
-        ticketScreen.classList.add('active');
+        formContainer.style.display = 'none';
+        successBox.style.display = 'block';
       });
 
-      btnResetForm.addEventListener('click', () => {
+      btnReset.addEventListener('click', () => {
         form.reset();
-        ticketScreen.classList.remove('active');
-        formCard.style.display = 'block';
+        successBox.style.display = 'none';
+        formContainer.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     });
