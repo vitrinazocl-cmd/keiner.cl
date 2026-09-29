@@ -598,7 +598,42 @@
           comentarios: comentarios
         };
 
-        // Multi-backend cloud sync: try api-feria.php and /api/feria-lead
+        const DEFAULT_SUPABASE_URL = 'https://xpafqyttugfomdtduxel.supabase.co';
+
+        async function syncToSupabase(lead) {
+          const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || DEFAULT_SUPABASE_URL;
+          const key = window.SUPABASE_KEY || localStorage.getItem('supabase_key') || '';
+          if (!url || !key) return;
+
+          try {
+            await fetch(`${url.replace(/\/$/, '')}/rest/v1/LEADS_FERIA`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'apikey': key,
+                'Authorization': `Bearer ${key}`,
+                'Prefer': 'return=representation'
+              },
+              body: JSON.stringify({
+                codigo_unico: lead.ticketCode || lead.codigo_unico,
+                nombre: `${lead.nombre} ${lead.apellido || ''}`.trim(),
+                telefono: lead.celular || lead.telefono || '',
+                email: lead.email || '',
+                empresa: lead.empresa || '',
+                cargo: lead.tipoContacto || lead.cargo || 'CLIENTE',
+                fecha_registro: lead.timestamp || new Date().toISOString(),
+                premio: lead.categorias || lead.premio || 'Ruleta Espacio Riesco',
+                canjeado: lead.canjeado || 'NO',
+                observaciones: lead.comentarios || lead.observaciones || '',
+                dispositivo: 'Móvil / Web'
+              })
+            });
+          } catch (e) {
+            console.warn('[SUPABASE_SYNC_WARN]', e);
+          }
+        }
+
+        // Multi-backend cloud sync: try api-feria.php, /api/feria-lead, and Supabase
         let assignedCode = ticketCode;
         let isDuplicate = false;
 
@@ -645,6 +680,9 @@
             console.warn('Backend sync warning:', eApi);
           }
         }
+
+        // Attempt 3: Supabase Direct Cloud Sync
+        syncToSupabase(leadData);
 
         try {
           const existing = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');

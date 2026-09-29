@@ -519,8 +519,10 @@
       }, 6000);
     });
 
+    const DEFAULT_SUPABASE_URL = 'https://xpafqyttugfomdtduxel.supabase.co';
+
     async function fetchSupabaseLeads() {
-      const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || '';
+      const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || DEFAULT_SUPABASE_URL;
       const key = window.SUPABASE_KEY || localStorage.getItem('supabase_key') || '';
       if (!url || !key) return [];
       try {
