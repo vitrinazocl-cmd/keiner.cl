@@ -190,6 +190,8 @@ const feriaLeadSchema = z.object({
   comentarios: z.string().trim().max(1000).optional().default(''),
 });
 
+let globalLeadsCache = [];
+
 function resolveDbPaths() {
   const preferredDir = process.env.DATA_DIR || path.join(__dirname, 'db');
   try {
@@ -219,30 +221,34 @@ function resolveDbPaths() {
 
 function getFeriaLeadsData() {
   try {
-    const { dbDir, feriaLeadsFile } = resolveDbPaths();
-    if (!fs.existsSync(feriaLeadsFile)) {
-      fs.writeFileSync(feriaLeadsFile, JSON.stringify([]), 'utf8');
-      return [];
+    const { feriaLeadsFile } = resolveDbPaths();
+    if (fs.existsSync(feriaLeadsFile)) {
+      const content = fs.readFileSync(feriaLeadsFile, 'utf8');
+      const diskLeads = JSON.parse(content || '[]');
+      diskLeads.forEach(lead => {
+        const key = lead.ticketCode || lead.id;
+        if (key && !globalLeadsCache.some(g => (g.ticketCode || g.id) === key)) {
+          globalLeadsCache.push(lead);
+        }
+      });
     }
-    const content = fs.readFileSync(feriaLeadsFile, 'utf8');
-    return JSON.parse(content || '[]');
   } catch (err) {
     console.error('[feria_db_read_error]', err);
-    return [];
   }
+  return globalLeadsCache.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
 }
 
 function saveFeriaLeadData(lead) {
   try {
     const { feriaLeadsFile, feriaLeadsHistoryFile } = resolveDbPaths();
-    const current = getFeriaLeadsData();
+    const key = lead.ticketCode || lead.id;
+    const exists = globalLeadsCache.some(g => (g.ticketCode || g.id) === key);
     
-    // Check duplicate by ticketCode or id
-    const exists = current.some(item => (lead.ticketCode && item.ticketCode === lead.ticketCode) || (lead.id && item.id === lead.id));
     if (!exists) {
-      current.unshift(lead);
-      fs.writeFileSync(feriaLeadsFile, JSON.stringify(current, null, 2), 'utf8');
+      globalLeadsCache.unshift(lead);
+      fs.writeFileSync(feriaLeadsFile, JSON.stringify(globalLeadsCache, null, 2), 'utf8');
       fs.appendFileSync(feriaLeadsHistoryFile, JSON.stringify(lead) + '\n', 'utf8');
+      console.log(`[LEAD_SAVED_GLOBAL_DB] Ticket: ${lead.ticketCode || lead.id} | Name: ${lead.nombre} ${lead.apellido}`);
     }
   } catch (err) {
     console.error('[feria_db_write_error]', err);

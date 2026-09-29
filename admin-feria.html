@@ -379,8 +379,8 @@
       <img src="assets/images/logo-keiner-form-white.png" alt="KEINER" style="height: 28px;">
       <span class="admin-title-badge">Base de Datos • Espacio Riesco 2026</span>
     </div>
-    <div style="font-size: 0.85rem; color: var(--text-muted);">
-      Sincronización en vivo
+    <div id="syncStatus" style="font-size: 0.85rem; color: #4ADE80; font-weight: 700;">
+      🟢 Sincronizando Base de Datos Central...
     </div>
   </div>
 
@@ -514,32 +514,56 @@
     });
 
     async function loadLeadsData() {
-      let localLeads = [];
-      try {
-        localLeads = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
-      } catch(e) {}
-
+      const syncStatus = document.getElementById('syncStatus');
       let serverLeads = [];
+      let isServerConnected = false;
+
       try {
         const res = await fetch(`/api/feria-leads?pin=${CORRECT_PASS}`);
         if (res.ok) {
           const data = await res.json();
           if (data.ok && Array.isArray(data.leads)) {
             serverLeads = data.leads;
+            isServerConnected = true;
           }
         }
+      } catch (err) {
+        console.warn('Conexión directa al servidor:', err);
+      }
+
+      let localLeads = [];
+      try {
+        localLeads = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
       } catch(e) {}
 
-      // Merge avoiding duplicates by id or ticketCode
+      // Server database is primary source of truth, merged with local cache
       const map = new Map();
-      [...localLeads, ...serverLeads].forEach(item => {
-        if (item && (item.id || item.ticketCode)) {
+      [...serverLeads, ...localLeads].forEach(item => {
+        if (item && (item.ticketCode || item.id)) {
           const key = item.ticketCode || item.id;
-          map.set(key, item);
+          if (!map.has(key)) {
+            map.set(key, item);
+          }
         }
       });
 
-      allLeads = Array.from(map.values()).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      allLeads = Array.from(map.values()).sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+      // Sync central records back to local storage
+      try {
+        localStorage.setItem('keiner_feria_leads', JSON.stringify(allLeads));
+      } catch(e) {}
+
+      if (syncStatus) {
+        if (isServerConnected) {
+          syncStatus.innerHTML = `🟢 Servidor Central En Vivo • ${allLeads.length} leads registrados globalmente`;
+          syncStatus.style.color = '#4ADE80';
+        } else {
+          syncStatus.innerHTML = `🟡 Base de Datos Local • ${allLeads.length} leads en esta máquina`;
+          syncStatus.style.color = '#FACC15';
+        }
+      }
+
       renderTable();
     }
 
