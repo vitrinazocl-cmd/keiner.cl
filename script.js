@@ -74,13 +74,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 4. Topic Pills Selection in Contact Form (Event Delegation)
-  document.addEventListener('click', (e) => {
-    const pill = e.target.closest('.topic-pill');
-    if (pill) {
+  // 4. Topic Pills Selection in Contact Form
+  const topicPills = document.querySelectorAll('.topic-pill');
+  topicPills.forEach(pill => {
+    pill.addEventListener('click', (e) => {
       e.preventDefault();
-      const container = pill.closest('.topic-pills-container') || document;
-      container.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+      e.stopPropagation();
+      const container = pill.closest('.topic-pills-container') || pill.parentElement;
+      if (container) {
+        container.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+      }
       pill.classList.add('active');
       const value = pill.getAttribute('data-value') || pill.textContent.trim();
       const selectedTopicInput = document.getElementById('selectedTopic');
@@ -88,6 +91,22 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedTopicInput.value = value;
       }
       trackEvent('select_contact_topic', { topic: value });
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const pill = e.target.closest('.topic-pill');
+    if (pill) {
+      const container = pill.closest('.topic-pills-container') || pill.parentElement;
+      if (container) {
+        container.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+      }
+      pill.classList.add('active');
+      const value = pill.getAttribute('data-value') || pill.textContent.trim();
+      const selectedTopicInput = document.getElementById('selectedTopic');
+      if (selectedTopicInput) {
+        selectedTopicInput.value = value;
+      }
     }
   });
 
@@ -118,7 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const correo = document.getElementById('email')?.value.trim() || '';
       const telefono = document.getElementById('telefono')?.value.trim() || '';
       const mensaje = document.getElementById('mensaje')?.value.trim() || '';
-      const necesidad = selectedTopicInput?.value || 'Distribución de mi marca';
+      const selectedInput = document.getElementById('selectedTopic');
+      const necesidad = selectedInput?.value || 'Distribución de mi marca';
 
       if (!nombre || !correo || !mensaje) {
         alert('Por favor completa los campos obligatorios: Nombre, Correo y Mensaje.');

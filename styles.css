@@ -2518,13 +2518,13 @@ img, svg, video, iframe {
 }
 
 /* Explicit override for light card inside section-dark */
-.contact-form-card .topic-pill {
+.contact-form-card .topic-pill:not(.active) {
   background: #FFFFFF !important;
   border: 1.5px solid #D1D5DB !important;
   color: #111827 !important;
 }
 
-.contact-form-card .topic-pill:hover {
+.contact-form-card .topic-pill:hover:not(.active) {
   border-color: #111827 !important;
   color: #111827 !important;
 }
@@ -2533,6 +2533,6 @@ img, svg, video, iframe {
   background: #111827 !important;
   border-color: #111827 !important;
   color: #FFFFFF !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 

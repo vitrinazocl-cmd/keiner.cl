@@ -145,11 +145,24 @@
               <div class="form-group">
                 <label class="form-label">¿En qué podemos ayudarte?</label>
                 <div class="topic-pills-container">
-                  <button type="button" class="topic-pill active" data-value="Distribución de mi marca">Distribución de mi marca</button>
-                  <button type="button" class="topic-pill" data-value="Representación comercial">Representación comercial</button>
-                  <button type="button" class="topic-pill" data-value="Busco un cliente">Busco un cliente</button>
+                  <button type="button" class="topic-pill active" data-value="Distribución de mi marca" onclick="selectTopicPill(this)">Distribución de mi marca</button>
+                  <button type="button" class="topic-pill" data-value="Representación comercial" onclick="selectTopicPill(this)">Representación comercial</button>
+                  <button type="button" class="topic-pill" data-value="Busco un cliente" onclick="selectTopicPill(this)">Busco un cliente</button>
                 </div>
               </div>
+              <script>
+                function selectTopicPill(btn) {
+                  if (!btn) return;
+                  const container = btn.closest('.topic-pills-container') || btn.parentElement;
+                  if (container) {
+                    container.querySelectorAll('.topic-pill').forEach(function(p) { p.classList.remove('active'); });
+                  }
+                  btn.classList.add('active');
+                  const val = btn.getAttribute('data-value') || btn.textContent.trim();
+                  const input = document.getElementById('selectedTopic');
+                  if (input) input.value = val;
+                }
+              </script>
 
               <div class="form-group">
                 <label class="form-label" for="mensaje">Mensaje</label>
