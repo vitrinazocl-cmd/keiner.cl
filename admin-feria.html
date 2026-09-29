@@ -519,6 +519,44 @@
       }, 6000);
     });
 
+    async function fetchSupabaseLeads() {
+      const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || '';
+      const key = window.SUPABASE_KEY || localStorage.getItem('supabase_key') || '';
+      if (!url || !key) return [];
+      try {
+        const res = await fetch(`${url.replace(/\/$/, '')}/rest/v1/LEADS_FERIA?select=*`, {
+          headers: {
+            'apikey': key,
+            'Authorization': `Bearer ${key}`
+          }
+        });
+        if (res.ok) {
+          const data = await res.json();
+          return data.map(item => ({
+            id: item.id,
+            ticketCode: item.codigo_unico,
+            codigo_unico: item.codigo_unico,
+            nombre: item.nombre,
+            celular: item.telefono,
+            telefono: item.telefono,
+            email: item.email,
+            empresa: item.empresa,
+            tipoContacto: item.cargo || 'CLIENTE',
+            cargo: item.cargo || 'CLIENTE',
+            timestamp: item.fecha_registro,
+            fechaLectura: new Date(item.fecha_registro).toLocaleString('es-CL'),
+            categorias: item.premio,
+            premio: item.premio,
+            canjeado: item.canjeado || 'NO',
+            comentarios: item.observaciones,
+            observaciones: item.observaciones,
+            dispositivo: item.dispositivo || 'Web'
+          }));
+        }
+      } catch(e) {}
+      return [];
+    }
+
     async function loadLeadsData() {
       const syncStatus = document.getElementById('syncStatus');
       let serverLeads = [];
@@ -554,6 +592,12 @@
         }
       }
 
+      // Attempt 3: Direct Supabase REST API
+      const supabaseLeads = await fetchSupabaseLeads();
+      if (supabaseLeads.length > 0) {
+        isServerConnected = true;
+      }
+
       let localLeads = [];
       try {
         localLeads = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
@@ -561,7 +605,7 @@
 
       // Server database is primary source of truth, merged with local cache
       const map = new Map();
-      [...serverLeads, ...localLeads].forEach(item => {
+      [...serverLeads, ...supabaseLeads, ...localLeads].forEach(item => {
         if (item && (item.ticketCode || item.codigo_unico || item.id)) {
           const key = item.ticketCode || item.codigo_unico || item.id;
           if (!map.has(key)) {
