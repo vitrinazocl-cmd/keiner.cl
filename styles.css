@@ -1114,17 +1114,35 @@ button, input, textarea, select {
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================================================== */
 
+/* ==========================================================================
+   OPTIMIZACIÓN RESPONSIVA 100% PARA DISPOSITIVOS MÓVILES (320px - 1024px)
+   ========================================================================== */
+
+/* Prevenir overflow horizontal global en moviles */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
+}
+
+img, svg, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 
   .hero-left {
-    padding: 60px 0;
+    padding: 40px 0 20px;
   }
 
   .hero-right {
-    min-height: 300px;
+    min-height: auto;
   }
 
   .section-header-split,
@@ -1134,60 +1152,109 @@ button, input, textarea, select {
   .contact-main-grid,
   .about-header-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
-  .brands-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+  .brands-grid,
   .clients-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 
   .valores-grid,
-  .pasos-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  .pasos-grid,
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+  /* iOS Input Auto-Zoom Fix */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Header & Navigation Menu Drawer */
+  .site-header {
+    padding: 12px 0;
+  }
+
+  .header-inner {
+    position: relative;
+  }
+
   .nav-links {
     display: none;
-    position: absolute;
-    top: 72px;
+    position: fixed;
+    top: 66px;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    background-color: var(--bg-black);
+    height: calc(100vh - 66px);
+    background-color: rgba(13, 13, 13, 0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-dark);
     flex-direction: column;
-    padding: 24px;
-    gap: 16px;
+    padding: 32px 24px;
+    gap: 20px;
+    z-index: 9999;
+    overflow-y: auto;
   }
 
   .nav-links.show {
     display: flex;
   }
 
+  .nav-link {
+    font-size: 1.125rem;
+    font-weight: 700;
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
   .mobile-toggle {
     display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 
   .hero-title {
-    font-size: 2.25rem;
+    font-size: clamp(1.85rem, 7vw, 2.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 14px 20px;
   }
 
   .about-main-title,
   .contact-hero-title {
-    font-size: 2.5rem;
+    font-size: 2.125rem;
   }
 
   .cta-banner-inner {
     flex-direction: column;
     align-items: flex-start;
+    gap: 20px;
   }
 
   .form-grid-2,
@@ -1197,12 +1264,104 @@ button, input, textarea, select {
   .pasos-grid,
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .footer-bottom {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     text-align: center;
+  }
+
+  /* Floating Widgets en Movil */
+  .whatsapp-float-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-icon-svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .whatsapp-tooltip {
+    display: none !important;
+  }
+
+  .meeting-bot-trigger {
+    bottom: 78px;
+    right: 16px;
+    padding: 8px 14px;
+    font-size: 0.8125rem;
+  }
+
+  .meeting-bot-modal {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+    max-height: 85vh;
+    border-radius: 16px;
+    z-index: 10001;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .brand-logo-img {
+    max-height: 36px;
+    width: auto;
+  }
+
+  .header-cta .btn {
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .hero-section {
+    padding: 30px 0 20px;
+  }
+
+  .hero-full-img {
+    max-height: 260px;
+  }
+
+  /* Cinturon Marquee en Pantallas Compactas */
+  .brand-marquee-section {
+    padding: 12px 0;
+  }
+
+  .marquee-circle-badge {
+    width: 66px;
+    height: 66px;
+    padding: 4px;
+  }
+
+  .marquee-track {
+    gap: 16px;
+  }
+
+  .contact-form-card {
+    padding: 20px 14px;
+  }
+
+  .topic-pills-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .topic-pill {
+    font-size: 0.78125rem;
+    padding: 8px 12px;
   }
 }
 
