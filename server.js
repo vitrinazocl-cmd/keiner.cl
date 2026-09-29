@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import dotenv from 'dotenv';
@@ -189,15 +190,36 @@ const feriaLeadSchema = z.object({
   comentarios: z.string().trim().max(1000).optional().default(''),
 });
 
-const dbDir = path.join(__dirname, 'db');
-const feriaLeadsFile = path.join(dbDir, 'feria-leads.json');
-const feriaLeadsHistoryFile = path.join(dbDir, 'feria-leads-history.jsonl');
+function resolveDbPaths() {
+  const preferredDir = process.env.DATA_DIR || path.join(__dirname, 'db');
+  try {
+    if (!fs.existsSync(preferredDir)) {
+      fs.mkdirSync(preferredDir, { recursive: true });
+    }
+    const testFile = path.join(preferredDir, '.write_test');
+    fs.writeFileSync(testFile, 'ok', 'utf8');
+    fs.unlinkSync(testFile);
+    return {
+      dbDir: preferredDir,
+      feriaLeadsFile: path.join(preferredDir, 'feria-leads.json'),
+      feriaLeadsHistoryFile: path.join(preferredDir, 'feria-leads-history.jsonl')
+    };
+  } catch (_e) {
+    const fallbackDir = path.join(os.tmpdir(), 'keiner-db');
+    if (!fs.existsSync(fallbackDir)) {
+      fs.mkdirSync(fallbackDir, { recursive: true });
+    }
+    return {
+      dbDir: fallbackDir,
+      feriaLeadsFile: path.join(fallbackDir, 'feria-leads.json'),
+      feriaLeadsHistoryFile: path.join(fallbackDir, 'feria-leads-history.jsonl')
+    };
+  }
+}
 
 function getFeriaLeadsData() {
   try {
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
+    const { dbDir, feriaLeadsFile } = resolveDbPaths();
     if (!fs.existsSync(feriaLeadsFile)) {
       fs.writeFileSync(feriaLeadsFile, JSON.stringify([]), 'utf8');
       return [];
@@ -212,16 +234,16 @@ function getFeriaLeadsData() {
 
 function saveFeriaLeadData(lead) {
   try {
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
-    // 1. Primary JSON DB
+    const { feriaLeadsFile, feriaLeadsHistoryFile } = resolveDbPaths();
     const current = getFeriaLeadsData();
-    current.unshift(lead);
-    fs.writeFileSync(feriaLeadsFile, JSON.stringify(current, null, 2), 'utf8');
-
-    // 2. Immutable Append-Only History Backup Log (.jsonl)
-    fs.appendFileSync(feriaLeadsHistoryFile, JSON.stringify(lead) + '\n', 'utf8');
+    
+    // Check duplicate by ticketCode or id
+    const exists = current.some(item => (lead.ticketCode && item.ticketCode === lead.ticketCode) || (lead.id && item.id === lead.id));
+    if (!exists) {
+      current.unshift(lead);
+      fs.writeFileSync(feriaLeadsFile, JSON.stringify(current, null, 2), 'utf8');
+      fs.appendFileSync(feriaLeadsHistoryFile, JSON.stringify(lead) + '\n', 'utf8');
+    }
   } catch (err) {
     console.error('[feria_db_write_error]', err);
   }
