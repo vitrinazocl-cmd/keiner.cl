@@ -1,0 +1,11 @@
+# Apache / cPanel URL Rewriting for KEINER FERIA ESPACIO RIESCO 2026 API
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Rewrite /api/feria-lead -> api-feria.php
+  RewriteRule ^api/feria-lead$ api-feria.php [L,QSA]
+  RewriteRule ^api/feria-leads$ api-feria.php [L,QSA]
+  RewriteRule ^api/feria-leads/canjear$ api-feria.php [L,QSA]
+  RewriteRule ^api/feria-leads/clear$ api-feria.php [L,QSA]
+</IfModule>

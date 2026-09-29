@@ -524,17 +524,34 @@
       let serverLeads = [];
       let isServerConnected = false;
 
+      // Attempt 1: Direct PHP backend api-feria.php
       try {
-        const res = await fetch(`/api/feria-leads?pin=${CORRECT_PASS}`);
-        if (res.ok) {
-          const data = await res.json();
+        const resPhp = await fetch(`api-feria.php?action=get_all&pin=${CORRECT_PASS}`);
+        if (resPhp.ok) {
+          const data = await resPhp.json();
           if (data.ok && Array.isArray(data.leads)) {
             serverLeads = data.leads;
             isServerConnected = true;
           }
         }
-      } catch (err) {
-        console.warn('Conexión directa al servidor:', err);
+      } catch (errPhp) {
+        console.warn('Sync PHP:', errPhp);
+      }
+
+      // Attempt 2: Node.js / Express route /api/feria-leads
+      if (!isServerConnected) {
+        try {
+          const res = await fetch(`/api/feria-leads?pin=${CORRECT_PASS}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.ok && Array.isArray(data.leads)) {
+              serverLeads = data.leads;
+              isServerConnected = true;
+            }
+          }
+        } catch (err) {
+          console.warn('Sync Express:', err);
+        }
       }
 
       let localLeads = [];
@@ -545,8 +562,8 @@
       // Server database is primary source of truth, merged with local cache
       const map = new Map();
       [...serverLeads, ...localLeads].forEach(item => {
-        if (item && (item.ticketCode || item.id)) {
-          const key = item.ticketCode || item.id;
+        if (item && (item.ticketCode || item.codigo_unico || item.id)) {
+          const key = item.ticketCode || item.codigo_unico || item.id;
           if (!map.has(key)) {
             map.set(key, item);
           }
@@ -562,7 +579,7 @@
 
       if (syncStatus) {
         if (isServerConnected) {
-          syncStatus.innerHTML = `🟢 Base de Datos LEADS_FERIA Conectada • ${allLeads.length} leads en vivo`;
+          syncStatus.innerHTML = `🟢 Base de Datos Central LEADS_FERIA Conectada • ${allLeads.length} leads en vivo`;
           syncStatus.style.color = '#4ADE80';
         } else {
           syncStatus.innerHTML = `🟡 Modo Memoria Local • ${allLeads.length} leads en esta máquina`;
@@ -574,7 +591,7 @@
     }
 
     async function toggleCanje(ticketCode) {
-      const target = allLeads.find(l => l.ticketCode === ticketCode || l.id === ticketCode);
+      const target = allLeads.find(l => (l.ticketCode && l.ticketCode === ticketCode) || (l.codigo_unico && l.codigo_unico === ticketCode) || l.id === ticketCode);
       if (!target) return;
 
       const nextStatus = target.canjeado === 'SI' ? 'NO' : 'SI';
@@ -586,10 +603,18 @@
       } catch(e) {}
 
       try {
+        await fetch(`api-feria.php?action=canjear&pin=${CORRECT_PASS}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ticketCode: target.ticketCode || target.codigo_unico, id: target.id, canjeado: nextStatus })
+        });
+      } catch(e) {}
+
+      try {
         await fetch(`/api/feria-leads/canjear?pin=${CORRECT_PASS}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ticketCode: target.ticketCode, id: target.id, canjeado: nextStatus })
+          body: JSON.stringify({ ticketCode: target.ticketCode || target.codigo_unico, id: target.id, canjeado: nextStatus })
         });
       } catch (err) {
         console.warn('Servidor offline para actualización de canje', err);

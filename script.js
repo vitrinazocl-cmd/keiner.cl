@@ -258,23 +258,73 @@ document.addEventListener('DOMContentLoaded', () => {
       const catEls = modalFeriaForm.querySelectorAll('input[name="mCat"]:checked');
       const categorias = Array.from(catEls).map(el => el.value);
 
-      const randomNum = Math.floor(1000 + Math.random() * 9000);
-      const ticketCode = `KNR-${randomNum}`;
+      const existingLeads = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
+      const nextNum = existingLeads.length + 1;
+      const paddedNum = String(nextNum).padStart(5, '0');
+      let ticketCode = `KR-2026-${paddedNum}`;
 
       const leadData = {
         id: Date.now().toString(),
         ticketCode: ticketCode,
+        codigo_unico: ticketCode,
         timestamp: new Date().toISOString(),
         fechaLectura: new Date().toLocaleString('es-CL'),
         tipoContacto: tipoContacto,
         nombre: nombre,
         apellido: apellido,
         celular: celular,
+        telefono: celular,
         email: email,
         empresa: empresa,
         categorias: categorias.length > 0 ? categorias.join(', ') : 'Ninguna',
+        premio: categorias.length > 0 ? categorias.join(', ') : 'Ruleta Espacio Riesco',
+        canjeado: 'NO',
         comentarios: comentarios
       };
+
+      let assignedCode = ticketCode;
+
+      try {
+        const resPhp = await fetch('api-feria.php?action=save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadData)
+        });
+        if (resPhp.ok) {
+          const data = await resPhp.json();
+          if (data.ok && data.ticketCode) {
+            assignedCode = data.ticketCode;
+            leadData.ticketCode = data.ticketCode;
+            leadData.codigo_unico = data.ticketCode;
+            if (mDisplayCode) mDisplayCode.textContent = data.ticketCode;
+          }
+          if (data.duplicate && data.message) {
+            alert(data.message);
+          }
+        }
+      } catch (ePhp) {
+        try {
+          const resApi = await fetch('/api/feria-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(leadData)
+          });
+          if (resApi.ok) {
+            const data = await resApi.json();
+            if (data.ok && data.ticketCode) {
+              assignedCode = data.ticketCode;
+              leadData.ticketCode = data.ticketCode;
+              leadData.codigo_unico = data.ticketCode;
+              if (mDisplayCode) mDisplayCode.textContent = data.ticketCode;
+            }
+            if (data.duplicate && data.message) {
+              alert(data.message);
+            }
+          }
+        } catch (eApi) {
+          console.warn('Backend sync warning:', eApi);
+        }
+      }
 
       try {
         const existing = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
@@ -284,36 +334,16 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error guardando localmente:', err);
       }
 
-      try {
-        const res = await fetch('/api/feria-lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(leadData)
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (data.ok && data.ticketCode) {
-            leadData.ticketCode = data.ticketCode;
-            if (mDisplayCode) mDisplayCode.textContent = data.ticketCode;
-          }
-          if (data.duplicate && data.message) {
-            alert(data.message);
-          }
-        }
-      } catch (err) {
-        console.warn('Servidor offline:', err);
-      }
-
       // FormSubmit Dual Email Dispatch Backup (contacto@keiner.cl & domingo@keiner.cl)
       try {
         fetch('https://formsubmit.co/ajax/contacto@keiner.cl', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            _subject: `[NUEVO LEAD FERIA] Ticket ${ticketCode} - ${nombre} ${apellido}`,
+            _subject: `[NUEVO LEAD FERIA] Ticket ${assignedCode} - ${nombre} ${apellido}`,
             _cc: 'domingo@keiner.cl',
             _replyto: email || 'contacto@keiner.cl',
-            Ticket: ticketCode,
+            Ticket: assignedCode,
             Perfil: tipoContacto,
             Nombre: `${nombre} ${apellido}`,
             Celular: celular,
@@ -327,11 +357,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       trackEvent('generate_lead', {
         form_name: 'feria_modal_lead',
-        ticket_code: ticketCode,
+        ticket_code: assignedCode,
         tipo_contacto: tipoContacto
       });
 
-      if (mDisplayCode) mDisplayCode.textContent = ticketCode;
+      if (mDisplayCode) mDisplayCode.textContent = assignedCode;
       if (mDisplayName) mDisplayName.textContent = `${nombre} ${apellido}`.trim();
 
       modalFeriaForm.style.display = 'none';
