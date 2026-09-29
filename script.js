@@ -285,12 +285,24 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        fetch('/api/feria-lead', {
+        const res = await fetch('/api/feria-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(leadData)
-        }).catch(err => console.warn('Servidor offline:', err));
-      } catch (err) {}
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.ok && data.ticketCode) {
+            leadData.ticketCode = data.ticketCode;
+            if (mDisplayCode) mDisplayCode.textContent = data.ticketCode;
+          }
+          if (data.duplicate && data.message) {
+            alert(data.message);
+          }
+        }
+      } catch (err) {
+        console.warn('Servidor offline:', err);
+      }
 
       // FormSubmit Dual Email Dispatch Backup (contacto@keiner.cl & domingo@keiner.cl)
       try {

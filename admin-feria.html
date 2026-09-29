@@ -397,40 +397,42 @@
         <div class="stat-value" style="color: #60A5FA;" id="statHoy">0</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Último Ticket Asignado</div>
-        <div class="stat-value" style="font-family: monospace; font-size: 1.5rem; color: #FFD700;" id="statUltimoTicket">---</div>
+        <div class="stat-label">Premios Entregados (Canjeado SI)</div>
+        <div class="stat-value" style="color: #4ADE80;" id="statEntregados">0</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Clientes</div>
-        <div class="stat-value" id="statClientes">0</div>
+        <div class="stat-label">Premios Pendientes</div>
+        <div class="stat-value" style="color: #FACC15;" id="statPendientes">0</div>
       </div>
       <div class="stat-card">
-        <div class="stat-label">Proveedores</div>
-        <div class="stat-value" id="statProveedores">0</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Otros</div>
-        <div class="stat-value" id="statOtros">0</div>
+        <div class="stat-label">Último Código Asignado</div>
+        <div class="stat-value" style="font-family: monospace; font-size: 1.4rem; color: #FFD700;" id="statUltimoTicket">---</div>
       </div>
     </div>
 
     <!-- TOOLBAR -->
     <div class="toolbar-card">
-      <div class="search-box">
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por nombre, celular, ticket, empresa...">
+      <div class="search-box" style="flex-wrap: wrap;">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Buscar por Nombre, Teléfono, Código KR-2026-..., Empresa, Email...">
         <select id="filterTipo" class="filter-select">
           <option value="ALL">Todos los Perfiles</option>
           <option value="Cliente">Clientes</option>
           <option value="Proveedor">Proveedores</option>
           <option value="Otro">Otros</option>
         </select>
+        <select id="filterCanjeado" class="filter-select">
+          <option value="ALL">Todos los Estados Premio</option>
+          <option value="SI">🎁 Premios Entregados (SI)</option>
+          <option value="NO">⏳ Premios Pendientes (NO)</option>
+        </select>
+        <select id="filterFecha" class="filter-select">
+          <option value="ALL">Todas las Fechas</option>
+          <option value="TODAY">Solo Registrados Hoy</option>
+        </select>
       </div>
       <div class="action-btns">
-        <button class="btn-action btn-excel" id="btnExportCSV">📥 Exportar Excel (CSV)</button>
+        <button class="btn-action btn-excel" id="btnExportCSV">📥 Exportar CSV (Excel)</button>
         <button class="btn-action btn-refresh" id="btnRefresh">🔄 Actualizar</button>
-        <span style="font-size: 0.8rem; color: #4ADE80; font-weight: 700; background: rgba(74, 222, 128, 0.1); border: 1px solid rgba(74, 222, 128, 0.3); padding: 8px 12px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px;">
-          🛡️ Registro Permanente Activo
-        </span>
       </div>
     </div>
 
@@ -440,15 +442,17 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Ticket</th>
+            <th>Código Único</th>
             <th>Fecha / Hora</th>
-            <th>Tipo</th>
+            <th>Perfil / Cargo</th>
             <th>Nombre Completo</th>
-            <th>Celular</th>
+            <th>Teléfono</th>
             <th>Email</th>
             <th>Empresa</th>
-            <th>Categorías</th>
-            <th>Comentarios</th>
+            <th>Premio / Interés</th>
+            <th>Estado Canje</th>
+            <th>Dispositivo</th>
+            <th>Acción</th>
           </tr>
         </thead>
         <tbody id="leadsTableBody">
@@ -502,6 +506,8 @@
       // Controls
       document.getElementById('searchInput').addEventListener('input', renderTable);
       document.getElementById('filterTipo').addEventListener('change', renderTable);
+      document.getElementById('filterCanjeado').addEventListener('change', renderTable);
+      document.getElementById('filterFecha').addEventListener('change', renderTable);
       document.getElementById('btnRefresh').addEventListener('click', loadLeadsData);
       document.getElementById('btnExportCSV').addEventListener('click', exportToCSV);
 
@@ -556,10 +562,10 @@
 
       if (syncStatus) {
         if (isServerConnected) {
-          syncStatus.innerHTML = `🟢 Servidor Central En Vivo • ${allLeads.length} leads registrados globalmente`;
+          syncStatus.innerHTML = `🟢 Base de Datos LEADS_FERIA Conectada • ${allLeads.length} leads en vivo`;
           syncStatus.style.color = '#4ADE80';
         } else {
-          syncStatus.innerHTML = `🟡 Base de Datos Local • ${allLeads.length} leads en esta máquina`;
+          syncStatus.innerHTML = `🟡 Modo Memoria Local • ${allLeads.length} leads en esta máquina`;
           syncStatus.style.color = '#FACC15';
         }
       }
@@ -567,31 +573,65 @@
       renderTable();
     }
 
+    async function toggleCanje(ticketCode) {
+      const target = allLeads.find(l => l.ticketCode === ticketCode || l.id === ticketCode);
+      if (!target) return;
+
+      const nextStatus = target.canjeado === 'SI' ? 'NO' : 'SI';
+      target.canjeado = nextStatus;
+      renderTable();
+
+      try {
+        localStorage.setItem('keiner_feria_leads', JSON.stringify(allLeads));
+      } catch(e) {}
+
+      try {
+        await fetch(`/api/feria-leads/canjear?pin=${CORRECT_PASS}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ticketCode: target.ticketCode, id: target.id, canjeado: nextStatus })
+        });
+      } catch (err) {
+        console.warn('Servidor offline para actualización de canje', err);
+      }
+    }
+
     function renderTable() {
       const tbody = document.getElementById('leadsTableBody');
       const noDataMsg = document.getElementById('noDataMsg');
       const search = document.getElementById('searchInput').value.toLowerCase().trim();
       const filterTipo = document.getElementById('filterTipo').value;
+      const filterCanjeado = document.getElementById('filterCanjeado').value;
+      const filterFecha = document.getElementById('filterFecha').value;
+
+      const todayStr = new Date().toISOString().slice(0, 10);
 
       let filtered = allLeads.filter(lead => {
         if (filterTipo !== 'ALL' && lead.tipoContacto !== filterTipo) return false;
+        
+        const isCanjeadoSI = lead.canjeado === 'SI';
+        if (filterCanjeado === 'SI' && !isCanjeadoSI) return false;
+        if (filterCanjeado === 'NO' && isCanjeadoSI) return false;
+
+        if (filterFecha === 'TODAY' && lead.timestamp && !lead.timestamp.startsWith(todayStr)) return false;
+
         if (!search) return true;
-        const text = `${lead.nombre} ${lead.apellido} ${lead.celular} ${lead.email} ${lead.empresa} ${lead.ticketCode} ${lead.categorias} ${lead.comentarios}`.toLowerCase();
+        const text = `${lead.nombre} ${lead.apellido || ''} ${lead.celular || lead.telefono || ''} ${lead.email || ''} ${lead.empresa || ''} ${lead.ticketCode || lead.codigo_unico || ''} ${lead.categorias || lead.premio || ''} ${lead.comentarios || lead.observaciones || ''}`.toLowerCase();
         return text.includes(search);
       });
 
-      // Calculate stats
-      const todayStr = new Date().toISOString().slice(0, 10);
+      // Calculate Metrics (Requisitos #7)
       const hoyCount = allLeads.filter(l => l.timestamp && l.timestamp.startsWith(todayStr)).length;
-      const latestTicket = allLeads.length > 0 ? (allLeads[0].ticketCode || '---') : '---';
+      const entregadosCount = allLeads.filter(l => l.canjeado === 'SI').length;
+      const pendientesCount = allLeads.length - entregadosCount;
+      const latestTicket = allLeads.length > 0 ? (allLeads[0].ticketCode || allLeads[0].codigo_unico || '---') : '---';
 
       // Update Dashboard Stats UI
       document.getElementById('statTotal').textContent = allLeads.length;
       document.getElementById('statHoy').textContent = hoyCount;
+      document.getElementById('statEntregados').textContent = entregadosCount;
+      document.getElementById('statPendientes').textContent = pendientesCount;
       document.getElementById('statUltimoTicket').textContent = latestTicket;
-      document.getElementById('statClientes').textContent = allLeads.filter(l => l.tipoContacto === 'Cliente').length;
-      document.getElementById('statProveedores').textContent = allLeads.filter(l => l.tipoContacto === 'Proveedor').length;
-      document.getElementById('statOtros').textContent = allLeads.filter(l => l.tipoContacto === 'Otro').length;
 
       if (filtered.length === 0) {
         tbody.innerHTML = '';
@@ -600,20 +640,39 @@
       }
 
       noDataMsg.style.display = 'none';
-      tbody.innerHTML = filtered.map((lead, idx) => `
-        <tr>
-          <td>${filtered.length - idx}</td>
-          <td><span class="ticket-badge">${lead.ticketCode || 'N/A'}</span></td>
-          <td style="font-size:0.8rem; color:#9CA3AF;">${lead.fechaLectura || new Date(lead.timestamp).toLocaleString('es-CL')}</td>
-          <td><span class="tipo-pill tipo-${lead.tipoContacto || 'Cliente'}">${lead.tipoContacto || 'Cliente'}</span></td>
-          <td style="font-weight: 700; color:#FFFFFF;">${lead.nombre} ${lead.apellido}</td>
-          <td style="font-family:monospace; color:#4ADE80;">${lead.celular}</td>
-          <td>${lead.email || '-'}</td>
-          <td>${lead.empresa || '-'}</td>
-          <td style="font-size:0.82rem; color:#F3F4F6;">${lead.categorias || '-'}</td>
-          <td style="font-size:0.82rem; color:#9CA3AF; max-width:200px;">${lead.comentarios || '-'}</td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = filtered.map((lead, idx) => {
+        const code = lead.ticketCode || lead.codigo_unico || 'N/A';
+        const isCanjeado = lead.canjeado === 'SI';
+        const fullName = `${lead.nombre || ''} ${lead.apellido || ''}`.trim();
+        const phone = lead.celular || lead.telefono || '-';
+        const premioText = lead.categorias || lead.premio || 'Ruleta Espacio Riesco';
+        const deviceText = lead.dispositivo || 'Web / Móvil';
+
+        return `
+          <tr>
+            <td>${filtered.length - idx}</td>
+            <td><span class="ticket-badge">${code}</span></td>
+            <td style="font-size:0.8rem; color:#9CA3AF;">${lead.fechaLectura || (lead.timestamp ? new Date(lead.timestamp).toLocaleString('es-CL') : '-')}</td>
+            <td><span class="tipo-pill tipo-${lead.tipoContacto || 'Cliente'}">${lead.tipoContacto || lead.cargo || 'Cliente'}</span></td>
+            <td style="font-weight: 700; color:#FFFFFF;">${fullName}</td>
+            <td style="font-family:monospace; color:#4ADE80;">${phone}</td>
+            <td>${lead.email || '-'}</td>
+            <td>${lead.empresa || '-'}</td>
+            <td style="font-size:0.82rem; color:#F3F4F6;">${premioText}</td>
+            <td>
+              <span style="display:inline-block; padding:3px 10px; border-radius:6px; font-weight:800; font-size:0.78rem; ${isCanjeado ? 'background:rgba(74,222,128,0.2); color:#4ADE80; border:1px solid rgba(74,222,128,0.4);' : 'background:rgba(250,204,21,0.2); color:#FACC15; border:1px solid rgba(250,204,21,0.4);'}">
+                ${isCanjeado ? '✅ CANJEADO (SI)' : '⏳ PENDIENTE (NO)'}
+              </span>
+            </td>
+            <td style="font-size:0.78rem; color:#9CA3AF;">${deviceText}</td>
+            <td>
+              <button type="button" class="btn-canjear" onclick="toggleCanje('${code}')" style="background:${isCanjeado ? '#374151' : '#E60000'}; color:#FFFFFF; border:none; padding:6px 12px; border-radius:6px; font-size:0.78rem; font-weight:800; cursor:pointer; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                ${isCanjeado ? '↩ Deshacer Canje' : '🎁 Marcar premio entregado'}
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
     }
 
     function exportToCSV() {
@@ -622,19 +681,21 @@
         return;
       }
 
-      const headers = ['Ticket Code', 'Fecha Hora', 'Tipo Contacto', 'Nombre', 'Apellido', 'Celular', 'Email', 'Empresa', 'Categorias Interes', 'Comentarios'];
+      const headers = ['ID', 'Codigo Unico', 'Fecha Registro', 'Cargo / Perfil', 'Nombre', 'Telefono', 'Email', 'Empresa', 'Premio', 'Canjeado', 'Dispositivo', 'Observaciones'];
       
-      const rows = allLeads.map(l => [
-        `"${(l.ticketCode || '').replace(/"/g, '""')}"`,
+      const rows = allLeads.map((l, idx) => [
+        `"${l.id || idx + 1}"`,
+        `"${(l.ticketCode || l.codigo_unico || '').replace(/"/g, '""')}"`,
         `"${(l.fechaLectura || l.timestamp || '').replace(/"/g, '""')}"`,
-        `"${(l.tipoContacto || '').replace(/"/g, '""')}"`,
-        `"${(l.nombre || '').replace(/"/g, '""')}"`,
-        `"${(l.apellido || '').replace(/"/g, '""')}"`,
-        `"${(l.celular || '').replace(/"/g, '""')}"`,
+        `"${(l.tipoContacto || l.cargo || '').replace(/"/g, '""')}"`,
+        `"${(`${l.nombre || ''} ${l.apellido || ''}`).trim().replace(/"/g, '""')}"`,
+        `"${(l.celular || l.telefono || '').replace(/"/g, '""')}"`,
         `"${(l.email || '').replace(/"/g, '""')}"`,
         `"${(l.empresa || '').replace(/"/g, '""')}"`,
-        `"${(l.categorias || '').replace(/"/g, '""')}"`,
-        `"${(l.comentarios || '').replace(/"/g, '""')}"`
+        `"${(l.categorias || l.premio || '').replace(/"/g, '""')}"`,
+        `"${(l.canjeado || 'NO').replace(/"/g, '""')}"`,
+        `"${(l.dispositivo || 'Web').replace(/"/g, '""')}"`,
+        `"${(l.comentarios || l.observaciones || '').replace(/"/g, '""')}"`
       ]);
 
       // Add UTF-8 BOM for Microsoft Excel compatibility
@@ -644,7 +705,7 @@
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.setAttribute('href', url);
-      link.setAttribute('download', `Leads_Feria_Keiner_${new Date().toISOString().slice(0,10)}.csv`);
+      link.setAttribute('download', `LEADS_FERIA_KEINER_${new Date().toISOString().slice(0,10)}.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);

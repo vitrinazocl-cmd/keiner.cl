@@ -260,6 +260,94 @@ function clearFeriaLeadsData() {
   console.log('[PERMANENT_STORAGE] Clear operation ignored to maintain permanent data records.');
 }
 
+function generateSequentialCode() {
+  const leads = getFeriaLeadsData();
+  const nextNum = leads.length + 1;
+  const padded = String(nextNum).padStart(5, '0');
+  return `KR-2026-${padded}`;
+}
+
+function detectDeviceType(userAgentStr) {
+  const ua = String(userAgentStr || '').toLowerCase();
+  if (ua.includes('ipad') || (ua.includes('android') && !ua.includes('mobile'))) {
+    return 'Tablet';
+  }
+  if (ua.includes('iphone') || ua.includes('mobile') || ua.includes('android')) {
+    return 'Móvil / Celular';
+  }
+  return 'Escritorio / PC';
+}
+
+function findDuplicateLead(phone, email) {
+  const leads = getFeriaLeadsData();
+  const cleanPhone = String(phone || '').replace(/\D/g, '');
+  const cleanEmail = String(email || '').trim().toLowerCase();
+
+  return leads.find(l => {
+    const lPhone = String(l.celular || l.telefono || '').replace(/\D/g, '');
+    const lEmail = String(l.email || '').trim().toLowerCase();
+    
+    if (cleanPhone && cleanPhone.length >= 7 && lPhone && lPhone.length >= 7 && (cleanPhone.endsWith(lPhone) || lPhone.endsWith(cleanPhone))) {
+      return true;
+    }
+    if (cleanEmail && cleanEmail.includes('@') && lEmail === cleanEmail) {
+      return true;
+    }
+    return false;
+  });
+}
+
+async function syncSupabaseLead(lead) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+  if (!supabaseUrl || !supabaseKey) return;
+
+  try {
+    await fetch(`${supabaseUrl.replace(/\/$/, '')}/rest/v1/LEADS_FERIA`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`,
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        codigo_unico: lead.ticketCode,
+        nombre: `${lead.nombre} ${lead.apellido || ''}`.trim(),
+        telefono: lead.celular || '',
+        email: lead.email || '',
+        empresa: lead.empresa || '',
+        cargo: lead.tipoContacto || 'CLIENTE',
+        fecha_registro: lead.timestamp || new Date().toISOString(),
+        premio: lead.categorias || 'Ruleta Espacio Riesco',
+        canjeado: lead.canjeado || 'NO',
+        observaciones: lead.comentarios || '',
+        dispositivo: lead.dispositivo || 'Web'
+      })
+    });
+  } catch (err) {
+    console.warn('[SUPABASE_SYNC_WARN]', err?.message || err);
+  }
+}
+
+async function updateSupabaseCanje(ticketCode, canjeadoStatus) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+  if (!supabaseUrl || !supabaseKey) return;
+
+  try {
+    await fetch(`${supabaseUrl.replace(/\/$/, '')}/rest/v1/LEADS_FERIA?codigo_unico=eq.${encodeURIComponent(ticketCode)}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': supabaseKey,
+        'Authorization': `Bearer ${supabaseKey}`
+      },
+      body: JSON.stringify({ canjeado: canjeadoStatus })
+    });
+  } catch (_e) {}
+}
+
 const sanitize = (value) => value.replace(/[<>]/g, '');
 
 const transport = buildTransport();
@@ -315,17 +403,28 @@ app.post('/api/feria-lead', async (req, res) => {
     lead.apellido = parts.slice(1).join(' ');
   }
 
-  if (!lead.ticketCode) {
-    lead.ticketCode = `KNR-${Math.floor(1000 + Math.random() * 9000)}`;
-  }
-  if (!lead.timestamp) {
-    lead.timestamp = new Date().toISOString();
-  }
-  if (!lead.fechaLectura) {
-    lead.fechaLectura = new Date().toLocaleString('es-CL');
+  // Check duplicate by phone or email
+  const duplicate = findDuplicateLead(lead.celular, lead.email);
+  if (duplicate) {
+    console.log(`[DUPLICATE_LEAD_PREVENTED] Phone: ${lead.celular} | Assigned Code: ${duplicate.ticketCode}`);
+    return res.status(200).json({
+      ok: true,
+      duplicate: true,
+      ticketCode: duplicate.ticketCode,
+      message: 'Visitante ya registrado anteriormente. Se mantiene su código asignado.',
+      lead: duplicate
+    });
   }
 
+  // Generate sequential unique ticket code KR-2026-XXXXX
+  lead.ticketCode = generateSequentialCode();
+  lead.timestamp = lead.timestamp || new Date().toISOString();
+  lead.fechaLectura = lead.fechaLectura || new Date().toLocaleString('es-CL');
+  lead.canjeado = lead.canjeado || 'NO';
+  lead.dispositivo = detectDeviceType(req.get('user-agent'));
+
   saveFeriaLeadData(lead);
+  syncSupabaseLead(lead);
 
   // Send automatic email notifications to contacto@keiner.cl, domingo@keiner.cl AND to the user
   try {
@@ -334,7 +433,7 @@ app.post('/api/feria-lead', async (req, res) => {
     console.error('[feria_email_trigger_error]', err?.message || err);
   }
 
-  return res.status(200).json({ ok: true, ticketCode: lead.ticketCode || 'KNR-OK' });
+  return res.status(200).json({ ok: true, ticketCode: lead.ticketCode, lead });
 });
 
 app.get('/api/feria-leads', (req, res) => {
@@ -345,6 +444,29 @@ app.get('/api/feria-leads', (req, res) => {
 
   const leads = getFeriaLeadsData();
   return res.status(200).json({ ok: true, leads });
+});
+
+app.post('/api/feria-leads/canjear', (req, res) => {
+  const pin = req.query.pin || req.body.pin;
+  if (pin !== 'keiner123' && pin !== 'keiner2026') {
+    return res.status(401).json({ ok: false, error: 'unauthorized' });
+  }
+
+  const { ticketCode, id, canjeado } = req.body;
+  const leads = getFeriaLeadsData();
+  const target = leads.find(l => (ticketCode && l.ticketCode === ticketCode) || (id && l.id === id));
+
+  if (!target) {
+    return res.status(404).json({ ok: false, error: 'lead_not_found' });
+  }
+
+  target.canjeado = canjeado || (target.canjeado === 'SI' ? 'NO' : 'SI');
+  
+  const { feriaLeadsFile } = resolveDbPaths();
+  fs.writeFileSync(feriaLeadsFile, JSON.stringify(leads, null, 2), 'utf8');
+  updateSupabaseCanje(target.ticketCode, target.canjeado);
+
+  return res.status(200).json({ ok: true, lead: target });
 });
 
 app.post('/api/feria-leads/clear', (req, res) => {
