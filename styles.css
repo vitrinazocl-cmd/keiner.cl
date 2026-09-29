@@ -1776,3 +1776,130 @@ button, input, textarea, select {
   color: #FFFFFF;
 }
 
+/* ==========================================================================
+   CINTURÓN DE MARCAS EN MOVIMIENTO (INFINITE LOGO MARQUEE)
+   ========================================================================== */
+
+.brand-marquee-section {
+  background-color: #0B0B0B;
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+  padding: 16px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.marquee-track-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+  animation: infiniteMarquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes infiniteMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.marquee-item.brand-tottus {
+  border: 1px solid #76BC21;
+  color: #76BC21;
+  background: rgba(118, 188, 33, 0.1);
+}
+
+.marquee-item.brand-aldea {
+  border: 1px solid #6A7B38;
+  color: #8C9F54;
+  background: rgba(106, 123, 56, 0.1);
+}
+
+.marquee-item.brand-kios {
+  border: 1px solid #E31B23;
+  color: #E31B23;
+  background: rgba(227, 27, 35, 0.1);
+}
+
+.marquee-item.brand-delicatto {
+  border: 1px solid #7E4334;
+  color: #C28574;
+  background: rgba(74, 35, 27, 0.2);
+}
+
+.marquee-item.brand-trebol {
+  border: 1px solid #00A859;
+  color: #00A859;
+  background: rgba(0, 168, 89, 0.1);
+}
+
+.marquee-item.brand-superofertas {
+  border: 1px solid #E31B23;
+  color: #FF4D54;
+  background: rgba(227, 27, 35, 0.1);
+}
+
+.marquee-item.brand-ahorraya {
+  border: 1px solid #0055B8;
+  color: #3385FF;
+  background: rgba(0, 85, 184, 0.15);
+}
+
+.marquee-item.brand-pitachips {
+  border: 1px solid #D35400;
+  color: #E67E22;
+  background: rgba(211, 84, 0, 0.15);
+}
+
+.marquee-item.brand-michemix {
+  border: 1px solid #E67E22;
+  color: #F39C12;
+  background: rgba(230, 126, 34, 0.15);
+}
+
+.marquee-item.brand-sourmix {
+  border: 1px solid #8BC34A;
+  color: #8BC34A;
+  background: rgba(139, 195, 74, 0.15);
+}
+
+.marquee-item.brand-tetrac {
+  border: 1px solid #3A7BD5;
+  color: #64B5F6;
+  background: rgba(10, 37, 64, 0.3);
+}
+
+.marquee-item:hover {
+  transform: scale(1.05);
+}
+
