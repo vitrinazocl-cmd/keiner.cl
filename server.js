@@ -189,6 +189,7 @@ const feriaLeadSchema = z.object({
 
 const dbDir = path.join(__dirname, 'db');
 const feriaLeadsFile = path.join(dbDir, 'feria-leads.json');
+const feriaLeadsHistoryFile = path.join(dbDir, 'feria-leads-history.jsonl');
 
 function getFeriaLeadsData() {
   try {
@@ -209,23 +210,24 @@ function getFeriaLeadsData() {
 
 function saveFeriaLeadData(lead) {
   try {
+    if (!fs.existsSync(dbDir)) {
+      fs.mkdirSync(dbDir, { recursive: true });
+    }
+    // 1. Primary JSON DB
     const current = getFeriaLeadsData();
     current.unshift(lead);
     fs.writeFileSync(feriaLeadsFile, JSON.stringify(current, null, 2), 'utf8');
+
+    // 2. Immutable Append-Only History Backup Log (.jsonl)
+    fs.appendFileSync(feriaLeadsHistoryFile, JSON.stringify(lead) + '\n', 'utf8');
   } catch (err) {
     console.error('[feria_db_write_error]', err);
   }
 }
 
 function clearFeriaLeadsData() {
-  try {
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
-    fs.writeFileSync(feriaLeadsFile, JSON.stringify([]), 'utf8');
-  } catch (err) {
-    console.error('[feria_db_clear_error]', err);
-  }
+  // Permanently disabled to protect lead records
+  console.log('[PERMANENT_STORAGE] Clear operation ignored to maintain permanent data records.');
 }
 
 const sanitize = (value) => value.replace(/[<>]/g, '');
