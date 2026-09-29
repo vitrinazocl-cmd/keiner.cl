@@ -280,7 +280,7 @@ app.post('/api/feria-lead', (req, res) => {
 
 app.get('/api/feria-leads', (req, res) => {
   const pin = req.query.pin;
-  if (pin !== 'keiner2026') {
+  if (pin !== 'keiner123' && pin !== 'keiner2026') {
     return res.status(401).json({ ok: false, error: 'unauthorized' });
   }
 
@@ -290,7 +290,7 @@ app.get('/api/feria-leads', (req, res) => {
 
 app.post('/api/feria-leads/clear', (req, res) => {
   const pin = req.query.pin;
-  if (pin !== 'keiner2026') {
+  if (pin !== 'keiner123' && pin !== 'keiner2026') {
     return res.status(401).json({ ok: false, error: 'unauthorized' });
   }
 

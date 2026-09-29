@@ -346,22 +346,34 @@
 </head>
 <body>
 
-  <!-- LOCK SCREEN PIN MODAL -->
+  <!-- LOCK SCREEN LOGIN MODAL -->
   <div class="lock-screen" id="lockScreen">
     <div class="lock-card">
-      <div class="lock-icon">🔒</div>
-      <h2 class="lock-title">Acceso Admin Feria</h2>
-      <p class="lock-subtitle">Ingresa la clave PIN para ver la base de datos de la ruleta.</p>
-      <input type="password" id="pinInput" class="pin-input" placeholder="••••" maxlength="15" autofocus>
-      <button type="button" class="lock-btn" id="btnLogin">Ingresar a Base de Datos</button>
-      <div class="error-msg" id="loginError">Clave PIN incorrecta. Intenta nuevamente.</div>
+      <div style="margin-bottom: 12px;">
+        <img src="assets/images/logo-keiner-form-white.png" alt="keiner" style="height: 36px; width: auto;">
+      </div>
+      <h2 class="lock-title">Acceso Admin Base de Datos</h2>
+      <p class="lock-subtitle">Ingresa tu usuario y clave para acceder al registro privado.</p>
+
+      <div style="margin-bottom: 12px; text-align: left;">
+        <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #AAA; margin-bottom: 4px;">USUARIO</label>
+        <input type="text" id="userInput" class="pin-input" placeholder="Usuario" style="text-align: left; letter-spacing: normal; font-size: 1rem; padding: 12px 14px;" autofocus>
+      </div>
+
+      <div style="margin-bottom: 18px; text-align: left;">
+        <label style="display: block; font-size: 0.75rem; font-weight: 700; color: #AAA; margin-bottom: 4px;">CONTRASEÑA</label>
+        <input type="password" id="passInput" class="pin-input" placeholder="Contraseña" style="text-align: left; letter-spacing: normal; font-size: 1rem; padding: 12px 14px;">
+      </div>
+
+      <button type="button" class="lock-btn" id="btnLogin">INGRESAR A BASE DE DATOS</button>
+      <div class="error-msg" id="loginError" style="margin-top: 12px;">Usuario o contraseña incorrectos.</div>
     </div>
   </div>
 
   <!-- ADMIN DASHBOARD -->
   <div class="admin-header">
     <div class="admin-brand">
-      <img src="assets/images/logo-keiner-header.png" alt="KEINER">
+      <img src="assets/images/logo-keiner-form-white.png" alt="KEINER" style="height: 28px;">
       <span class="admin-title-badge">Base de Datos • Espacio Riesco 2026</span>
     </div>
     <div style="font-size: 0.85rem; color: var(--text-muted);">
@@ -438,12 +450,14 @@
   </div>
 
   <script>
-    const CORRECT_PIN = 'keiner2026';
+    const CORRECT_USER = 'keiner';
+    const CORRECT_PASS = 'keiner123';
     let allLeads = [];
 
     document.addEventListener('DOMContentLoaded', () => {
       const lockScreen = document.getElementById('lockScreen');
-      const pinInput = document.getElementById('pinInput');
+      const userInput = document.getElementById('userInput');
+      const passInput = document.getElementById('passInput');
       const btnLogin = document.getElementById('btnLogin');
       const loginError = document.getElementById('loginError');
 
@@ -454,19 +468,21 @@
       }
 
       function attemptLogin() {
-        if (pinInput.value.trim() === CORRECT_PIN) {
+        if (userInput.value.trim() === CORRECT_USER && passInput.value.trim() === CORRECT_PASS) {
           sessionStorage.setItem('keiner_admin_authed', 'true');
           lockScreen.style.display = 'none';
           loginError.style.display = 'none';
           loadLeadsData();
         } else {
           loginError.style.display = 'block';
-          pinInput.focus();
         }
       }
 
       btnLogin.addEventListener('click', attemptLogin);
-      pinInput.addEventListener('keydown', (e) => {
+      userInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') passInput.focus();
+      });
+      passInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') attemptLogin();
       });
 
@@ -486,7 +502,7 @@
 
       let serverLeads = [];
       try {
-        const res = await fetch(`/api/feria-leads?pin=${CORRECT_PIN}`);
+        const res = await fetch(`/api/feria-leads?pin=${CORRECT_PASS}`);
         if (res.ok) {
           const data = await res.json();
           if (data.ok && Array.isArray(data.leads)) {
