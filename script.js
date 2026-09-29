@@ -321,10 +321,44 @@ document.addEventListener('DOMContentLoaded', () => {
               alert(data.message);
             }
           }
-        } catch (eApi) {
-          console.warn('Backend sync warning:', eApi);
+      const DEFAULT_SUPABASE_URL = 'https://xpafqyttugfomdtduxel.supabase.co';
+      const DEFAULT_SUPABASE_KEY = 'sb_publishable_PCKzHqKbLQyv_nwnWKMw8g_qxA3WJZu';
+
+      async function syncToSupabaseModal(lead) {
+        const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || DEFAULT_SUPABASE_URL;
+        const key = window.SUPABASE_KEY || localStorage.getItem('supabase_key') || DEFAULT_SUPABASE_KEY;
+        if (!url || !key) return;
+
+        try {
+          await fetch(`${url.replace(/\/$/, '')}/rest/v1/LEADS_FERIA`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': key,
+              'Authorization': `Bearer ${key}`,
+              'Prefer': 'return=representation'
+            },
+            body: JSON.stringify({
+              codigo_unico: lead.ticketCode || lead.codigo_unico,
+              nombre: `${lead.nombre} ${lead.apellido || ''}`.trim(),
+              telefono: lead.celular || lead.telefono || '',
+              email: lead.email || '',
+              empresa: lead.empresa || '',
+              cargo: lead.tipoContacto || lead.cargo || 'CLIENTE',
+              fecha_registro: lead.timestamp || new Date().toISOString(),
+              premio: lead.categorias || lead.premio || 'Ruleta Espacio Riesco',
+              canjeado: lead.canjeado || 'NO',
+              observaciones: lead.comentarios || lead.observaciones || '',
+              dispositivo: 'Móvil / Web Modal'
+            })
+          });
+        } catch (e) {
+          console.warn('[SUPABASE_SYNC_WARN]', e);
         }
       }
+
+      // Supabase Direct Cloud Sync
+      syncToSupabaseModal(leadData);
 
       try {
         const existing = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');

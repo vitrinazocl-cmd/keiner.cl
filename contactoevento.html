@@ -599,10 +599,11 @@
         };
 
         const DEFAULT_SUPABASE_URL = 'https://xpafqyttugfomdtduxel.supabase.co';
+        const DEFAULT_SUPABASE_KEY = 'sb_publishable_PCKzHqKbLQyv_nwnWKMw8g_qxA3WJZu';
 
         async function syncToSupabase(lead) {
           const url = window.SUPABASE_URL || localStorage.getItem('supabase_url') || DEFAULT_SUPABASE_URL;
-          const key = window.SUPABASE_KEY || localStorage.getItem('supabase_key') || '';
+          const key = window.SUPABASE_KEY || localStorage.getItem('supabase_key') || DEFAULT_SUPABASE_KEY;
           if (!url || !key) return;
 
           try {
