@@ -155,9 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const nombre = document.getElementById('mNombre').value.trim();
       const apellido = document.getElementById('mApellido').value.trim();
-      const celular = document.getElementById('mCelular').value.trim();
+      const paisCode = document.getElementById('mPais')?.value || '+56';
+      const celularRaw = document.getElementById('mCelular').value.trim();
+      const celular = `${paisCode} ${celularRaw}`;
 
-      if (!nombre || !apellido || !celular) {
+      if (!nombre || !apellido || !celularRaw) {
         alert('Por favor completa los campos obligatorios: Nombre, Apellido y Celular.');
         return;
       }

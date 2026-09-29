@@ -134,18 +134,37 @@
       background: #22222E;
     }
 
-    /* Celular input +569 prefix */
+    /* Celular input + Country select prefix */
     .phone-field-group {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .phone-prefix-label {
-      font-size: 1rem;
-      font-weight: 700;
+    .phone-country-select {
+      background: #1C1C24;
+      border: 1px solid #333344;
+      border-radius: 6px;
       color: #FFFFFF;
-      white-space: nowrap;
+      font-size: 0.88rem;
+      font-weight: 700;
+      font-family: inherit;
+      padding: 12px 6px;
+      cursor: pointer;
+      outline: none;
+      min-width: 120px;
+      max-width: 145px;
+      transition: border-color 0.2s;
+    }
+
+    .phone-country-select:focus {
+      border-color: #E60000;
+    }
+
+    .phone-country-select option {
+      background: #1A1A24;
+      color: #FFFFFF;
+      padding: 6px;
     }
 
     .phone-field-group .input-box {
@@ -368,13 +387,44 @@
           <div>
             <label for="fCelular" class="field-label">CELULAR <span class="req">*</span></label>
             <div class="phone-field-group">
-              <span class="phone-prefix-label">+ 5 6 9</span>
-              <input type="tel" id="fCelular" name="celular" class="input-box" required>
+              <select id="fPais" name="pais" class="phone-country-select" aria-label="Código de País">
+                <option value="+56" selected>🇨🇱 +56 (Chile)</option>
+                <option value="+54">🇦🇷 +54 (Argentina)</option>
+                <option value="+51">🇵🇪 +51 (Perú)</option>
+                <option value="+57">🇨🇴 +57 (Colombia)</option>
+                <option value="+52">🇲🇽 +52 (México)</option>
+                <option value="+1">🇺🇸 +1 (EE.UU.)</option>
+                <option value="+1">🇨🇦 +1 (Canadá)</option>
+                <option value="+34">🇪🇸 +34 (España)</option>
+                <option value="+55">🇧🇷 +55 (Brasil)</option>
+                <option value="+591">🇧🇴 +591 (Bolivia)</option>
+                <option value="+593">🇪🇨 +593 (Ecuador)</option>
+                <option value="+598">🇺🇾 +598 (Uruguay)</option>
+                <option value="+595">🇵🇾 +595 (Paraguay)</option>
+                <option value="+58">🇻🇪 +58 (Venezuela)</option>
+                <option value="+507">🇵🇦 +507 (Panamá)</option>
+                <option value="+506">🇨🇷 +506 (Costa Rica)</option>
+                <option value="+1">🇩🇴 +1 (Rep. Dominicana)</option>
+                <option value="+502">🇬🇹 +502 (Guatemala)</option>
+                <option value="+504">🇭🇳 +504 (Honduras)</option>
+                <option value="+503">🇸🇻 +503 (El Salvador)</option>
+                <option value="+505">🇳🇮 +505 (Nicaragua)</option>
+                <option value="+44">🇬🇧 +44 (Reino Unido)</option>
+                <option value="+49">🇩🇪 +49 (Alemania)</option>
+                <option value="+33">🇫🇷 +33 (Francia)</option>
+                <option value="+39">🇮🇹 +39 (Italia)</option>
+                <option value="+61">🇦🇺 +61 (Australia)</option>
+                <option value="+86">🇨🇳 +86 (China)</option>
+                <option value="+81">🇯🇵 +81 (Japón)</option>
+                <option value="+82">🇰🇷 +82 (Corea del Sur)</option>
+                <option value="+">🌐 + (Otro)</option>
+              </select>
+              <input type="tel" id="fCelular" name="celular" class="input-box" placeholder="9 1234 5678" required>
             </div>
           </div>
           <div>
             <label for="fEmail" class="field-label">EMAIL</label>
-            <input type="email" id="fEmail" name="email" class="input-box">
+            <input type="email" id="fEmail" name="email" class="input-box" placeholder="correo@ejemplo.com">
           </div>
         </div>
 
@@ -511,7 +561,8 @@
           return;
         }
 
-        const celular = `+569 ${celularNum}`;
+        const paisCode = document.getElementById('fPais')?.value || '+56';
+        const celular = `${paisCode} ${celularNum}`;
         const tipoContacto = form.querySelector('input[name="tipoContacto"]:checked')?.value || 'CLIENTE';
         const email = document.getElementById('fEmail').value.trim();
         const empresa = document.getElementById('fEmpresa').value.trim();
