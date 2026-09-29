@@ -1781,29 +1781,30 @@ button, input, textarea, select {
    ========================================================================== */
 
 .brand-marquee-section {
-  background-color: #0B0B0B;
-  border-top: 1px solid var(--border-dark);
-  border-bottom: 1px solid var(--border-dark);
+  background-color: #FFFFFF;
+  border-top: 2px solid #E5E5E5;
+  border-bottom: 2px solid #E5E5E5;
   padding: 16px 0;
   overflow: hidden;
   position: relative;
   z-index: 10;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .marquee-track-container {
   display: flex;
   overflow: hidden;
   user-select: none;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
 }
 
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   width: max-content;
-  animation: infiniteMarquee 28s linear infinite;
+  animation: infiniteMarquee 35s linear infinite;
 }
 
 .marquee-track:hover {
@@ -1819,87 +1820,238 @@ button, input, textarea, select {
   }
 }
 
-.marquee-item {
+/* Insignias Circulares de Marcas */
+.marquee-circle-badge {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px 24px;
-  border-radius: var(--radius-full);
-  font-size: 0.875rem;
+  text-align: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.marquee-circle-badge:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  z-index: 5;
+}
+
+/* 1. Tottus */
+.marquee-circle-badge.badge-tottus {
+  background: #76BC21;
+  color: #FFFFFF;
+}
+.badge-tottus .tottus-dots {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 2px;
+}
+.badge-tottus .dot {
+  width: 4px;
+  height: 4px;
+  background: #FFFFFF;
+  border-radius: 50%;
+}
+.badge-tottus .name {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+/* 2. Aldea Nativa */
+.marquee-circle-badge.badge-aldea {
+  background: #4A5D23;
+  color: #FFFFFF;
+}
+.badge-aldea .leaf {
+  font-size: 14px;
+  line-height: 1;
+}
+.badge-aldea .name {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: lowercase;
+}
+
+/* 3. Kios Club */
+.marquee-circle-badge.badge-kios {
+  background: #E31B23;
+  color: #FFFFFF;
+}
+.badge-kios .main {
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+.badge-kios .sub {
+  font-size: 9px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1;
+}
+.badge-kios .stars {
+  font-size: 7px;
+  color: #FFD700;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* 4. Delicatto */
+.marquee-circle-badge.badge-delicatto {
+  background: #3D1C14;
+  border: 2px solid #C28574;
+  color: #F5D6C6;
+}
+.badge-delicatto .name {
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  transition: var(--transition);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
 }
 
-.marquee-item.brand-tottus {
-  border: 1px solid #76BC21;
-  color: #76BC21;
-  background: rgba(118, 188, 33, 0.1);
+/* 5. Trébol */
+.marquee-circle-badge.badge-trebol {
+  background: #009A44;
+  color: #FFFFFF;
+}
+.badge-trebol .clover {
+  font-size: 14px;
+  line-height: 1;
+}
+.badge-trebol .name {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: lowercase;
 }
 
-.marquee-item.brand-aldea {
-  border: 1px solid #6A7B38;
-  color: #8C9F54;
-  background: rgba(106, 123, 56, 0.1);
+/* 6. Super Ofertas */
+.marquee-circle-badge.badge-superofertas {
+  background: #D32F2F;
+  color: #FFFFFF;
+}
+.badge-superofertas .cart {
+  font-size: 13px;
+  line-height: 1;
+}
+.badge-superofertas .name {
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 2px;
 }
 
-.marquee-item.brand-kios {
-  border: 1px solid #E31B23;
-  color: #E31B23;
-  background: rgba(227, 27, 35, 0.1);
+/* 7. Ahorra Ya! */
+.marquee-circle-badge.badge-ahorraya {
+  background: #0055B8;
+  color: #FFFFFF;
+}
+.badge-ahorraya .name {
+  font-size: 8.5px;
+  font-weight: 900;
+  line-height: 1.05;
+}
+.badge-ahorraya .smile {
+  font-size: 11px;
+  color: #FFD700;
+  line-height: 1;
 }
 
-.marquee-item.brand-delicatto {
-  border: 1px solid #7E4334;
-  color: #C28574;
-  background: rgba(74, 35, 27, 0.2);
+/* 8. Pita Chips (5 Sabores) */
+.pita-badge-content .title {
+  font-size: 7.5px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  line-height: 1;
+  display: block;
+}
+.pita-badge-content .sub {
+  font-size: 7px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-top: 2px;
+  display: block;
+  background: rgba(0,0,0,0.25);
+  padding: 1px 4px;
+  border-radius: 4px;
 }
 
-.marquee-item.brand-trebol {
-  border: 1px solid #00A859;
-  color: #00A859;
-  background: rgba(0, 168, 89, 0.1);
+.badge-pita-orig {
+  background: #D35400;
+  color: #FFFFFF;
+}
+.badge-pita-tomate {
+  background: #C0392B;
+  color: #FFFFFF;
+}
+.badge-pita-cebolla {
+  background: #7D3C98;
+  color: #FFFFFF;
+}
+.badge-pita-curcuma {
+  background: #D4AC0D;
+  color: #FFFFFF;
+}
+.badge-pita-jalapeno {
+  background: #1E8449;
+  color: #FFFFFF;
 }
 
-.marquee-item.brand-superofertas {
-  border: 1px solid #E31B23;
-  color: #FF4D54;
-  background: rgba(227, 27, 35, 0.1);
+/* 9. Miche Mix */
+.marquee-circle-badge.badge-michemix {
+  background: #C0392B;
+  color: #FFFFFF;
+}
+.badge-michemix .icon {
+  font-size: 13px;
+  line-height: 1;
+}
+.badge-michemix .name {
+  font-size: 8.5px;
+  font-weight: 900;
+  line-height: 1;
 }
 
-.marquee-item.brand-ahorraya {
-  border: 1px solid #0055B8;
-  color: #3385FF;
-  background: rgba(0, 85, 184, 0.15);
+/* 10. Sour Mix */
+.marquee-circle-badge.badge-sourmix {
+  background: #7CB342;
+  color: #FFFFFF;
+}
+.badge-sourmix .icon {
+  font-size: 13px;
+  line-height: 1;
+}
+.badge-sourmix .name {
+  font-size: 8.5px;
+  font-weight: 900;
+  line-height: 1;
 }
 
-.marquee-item.brand-pitachips {
-  border: 1px solid #D35400;
-  color: #E67E22;
-  background: rgba(211, 84, 0, 0.15);
+/* 11. Tetra-C */
+.marquee-circle-badge.badge-tetrac {
+  background: #0A192F;
+  border: 2px solid #00E5FF;
+  color: #00E5FF;
 }
-
-.marquee-item.brand-michemix {
-  border: 1px solid #E67E22;
-  color: #F39C12;
-  background: rgba(230, 126, 34, 0.15);
+.badge-tetrac .cube {
+  font-size: 13px;
+  line-height: 1;
 }
-
-.marquee-item.brand-sourmix {
-  border: 1px solid #8BC34A;
-  color: #8BC34A;
-  background: rgba(139, 195, 74, 0.15);
-}
-
-.marquee-item.brand-tetrac {
-  border: 1px solid #3A7BD5;
-  color: #64B5F6;
-  background: rgba(10, 37, 64, 0.3);
-}
-
-.marquee-item:hover {
-  transform: scale(1.05);
+.badge-tetrac .name {
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
 }
 
