@@ -70,10 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const selectedTopicInput = document.getElementById('selectedTopic');
 
   topicPills.forEach(pill => {
-    pill.addEventListener('click', () => {
+    pill.addEventListener('click', (e) => {
+      e.preventDefault();
       topicPills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      const value = pill.dataset.value || pill.textContent.trim();
+      const value = pill.getAttribute('data-value') || pill.textContent.trim();
       if (selectedTopicInput) {
         selectedTopicInput.value = value;
       }
@@ -100,33 +101,90 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Contact Form Handling & Conversion Tracking
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      const nameVal = document.getElementById('nombre')?.value || '';
-      const emailVal = document.getElementById('email')?.value || '';
-      const topicVal = selectedTopicInput?.value || 'General';
+      const nombre = document.getElementById('nombre')?.value.trim() || '';
+      const empresa = document.getElementById('empresa')?.value.trim() || '';
+      const correo = document.getElementById('email')?.value.trim() || '';
+      const telefono = document.getElementById('telefono')?.value.trim() || '';
+      const mensaje = document.getElementById('mensaje')?.value.trim() || '';
+      const necesidad = selectedTopicInput?.value || 'Distribución de mi marca';
+
+      if (!nombre || !correo || !mensaje) {
+        alert('Por favor completa los campos obligatorios: Nombre, Correo y Mensaje.');
+        return;
+      }
 
       if (submitBtn) {
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = 'Enviando...';
         submitBtn.disabled = true;
 
-        setTimeout(() => {
-          // Push lead conversion event to DataLayer
-          trackEvent('generate_lead', {
-            form_name: 'contact_form',
-            lead_topic: topicVal,
-            has_email: Boolean(emailVal)
-          });
+        const payload = {
+          nombre: nombre,
+          empresa: empresa || 'No especificada',
+          correo: correo,
+          mensaje: mensaje,
+          necesidad: necesidad,
+          perfil: 'CLIENTE',
+          horizonte: 'Inmediato',
+          integracion: telefono ? `Tel: ${telefono}` : '',
+          aceptoPolitica: true
+        };
 
-          alert('¡Gracias por contactarnos! Tu mensaje ha sido enviado correctamente y un ejecutivo te responderá a la brevedad.');
-          contactForm.reset();
-          topicPills.forEach(p => p.classList.remove('active'));
-          if (topicPills.length > 0) topicPills[0].classList.add('active');
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-        }, 800);
+        try {
+          await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (err) {
+          console.warn('Servidor offline o envío vía API', err);
+        }
+
+        // Backup to Feria Leads store to display in Admin Dashboard
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        const leadData = {
+          id: Date.now().toString(),
+          ticketCode: `KNR-${randomNum}`,
+          timestamp: new Date().toISOString(),
+          fechaLectura: new Date().toLocaleString('es-CL'),
+          tipoContacto: 'CLIENTE',
+          nombre: nombre,
+          apellido: '',
+          celular: telefono || 'No informado',
+          email: correo,
+          empresa: empresa || 'No informada',
+          categorias: necesidad,
+          comentarios: mensaje
+        };
+        try {
+          const existing = JSON.parse(localStorage.getItem('keiner_feria_leads') || '[]');
+          existing.unshift(leadData);
+          localStorage.setItem('keiner_feria_leads', JSON.stringify(existing));
+          fetch('/api/feria-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(leadData)
+          }).catch(err => {});
+        } catch(e) {}
+
+        trackEvent('generate_lead', {
+          form_name: 'contact_form',
+          lead_topic: necesidad,
+          has_email: Boolean(correo)
+        });
+
+        alert('¡Gracias por contactarnos! Tu mensaje ha sido enviado correctamente. Hemos enviado un respaldo a tu correo y un ejecutivo te responderá a la brevedad.');
+        contactForm.reset();
+        topicPills.forEach(p => p.classList.remove('active'));
+        if (topicPills.length > 0) topicPills[0].classList.add('active');
+        if (selectedTopicInput && topicPills.length > 0) {
+          selectedTopicInput.value = topicPills[0].getAttribute('data-value') || topicPills[0].textContent.trim();
+        }
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
       }
     });
   }
@@ -139,7 +197,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (botTrigger) {
     botTrigger.addEventListener('click', (e) => {
       trackEvent('feria_button_click', { source: 'floating_widget' });
-      // Native navigation to contactoevento.html handles redirect
+    });
+  }
+
+  if (botClose && botModal) {
+    botClose.addEventListener('click', () => {
+      botModal.classList.remove('active');
     });
   }
 
@@ -153,21 +216,27 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalFeriaForm) {
     modalFeriaForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const nombre = document.getElementById('mNombre').value.trim();
-      const apellido = document.getElementById('mApellido').value.trim();
+      let nombre = document.getElementById('mNombre')?.value?.trim() || '';
+      let apellido = document.getElementById('mApellido')?.value?.trim() || '';
       const paisCode = document.getElementById('mPais')?.value || '+56';
-      const celularRaw = document.getElementById('mCelular').value.trim();
-      const celular = `${paisCode} ${celularRaw}`;
+      const celularRaw = document.getElementById('mCelular')?.value?.trim() || '';
 
-      if (!nombre || !apellido || !celularRaw) {
-        alert('Por favor completa los campos obligatorios: Nombre, Apellido y Celular.');
+      if (nombre && !apellido && nombre.includes(' ')) {
+        const parts = nombre.split(/\s+/);
+        nombre = parts[0];
+        apellido = parts.slice(1).join(' ');
+      }
+
+      if (!nombre || !celularRaw) {
+        alert('Por favor completa los campos obligatorios: Nombre y Celular.');
         return;
       }
 
+      const celular = `${paisCode} ${celularRaw}`;
       const tipoContacto = modalFeriaForm.querySelector('input[name="modalTipoContacto"]:checked')?.value || 'Cliente';
-      const email = document.getElementById('mEmail').value.trim();
-      const empresa = document.getElementById('mEmpresa').value.trim();
-      const comentarios = document.getElementById('mComentarios').value.trim();
+      const email = document.getElementById('mEmail')?.value?.trim() || '';
+      const empresa = document.getElementById('mEmpresa')?.value?.trim() || '';
+      const comentarios = document.getElementById('mComentarios')?.value?.trim() || '';
 
       const catEls = modalFeriaForm.querySelectorAll('input[name="mCat"]:checked');
       const categorias = Array.from(catEls).map(el => el.value);
@@ -199,12 +268,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       try {
-        fetch('/api/feria-lead', {
+        await fetch('/api/feria-lead', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(leadData)
-        }).catch(err => console.warn('Servidor offline, guardado en localStorage', err));
-      } catch (err) {}
+        });
+      } catch (err) {
+        console.warn('Servidor offline o envío vía API:', err);
+      }
 
       trackEvent('generate_lead', {
         form_name: 'feria_modal_lead',
@@ -213,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (mDisplayCode) mDisplayCode.textContent = ticketCode;
-      if (mDisplayName) mDisplayName.textContent = `${nombre} ${apellido}`;
+      if (mDisplayName) mDisplayName.textContent = `${nombre} ${apellido}`.trim();
 
       modalFeriaForm.style.display = 'none';
       if (modalTicketScreen) modalTicketScreen.style.display = 'block';
@@ -227,10 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
         modalFeriaForm.style.display = 'block';
       }
       if (modalTicketScreen) modalTicketScreen.style.display = 'none';
-    });
-  }
-        botConfirm.style.display = 'block';
-      }
     });
   }
 

@@ -552,12 +552,18 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const nombre = document.getElementById('fNombre').value.trim();
-        const apellido = document.getElementById('fApellido').value.trim();
+        let nombre = document.getElementById('fNombre').value.trim();
+        let apellido = document.getElementById('fApellido').value.trim();
         const celularNum = document.getElementById('fCelular').value.trim();
 
-        if (!nombre || !apellido || !celularNum) {
-          alert('Por favor completa los campos obligatorios: NOMBRE, APELLIDO y CELULAR.');
+        if (nombre && !apellido && nombre.includes(' ')) {
+          const parts = nombre.split(/\s+/);
+          nombre = parts[0];
+          apellido = parts.slice(1).join(' ');
+        }
+
+        if (!nombre || !celularNum) {
+          alert('Por favor completa los campos obligatorios: NOMBRE y CELULAR.');
           return;
         }
 
@@ -598,12 +604,14 @@
         }
 
         try {
-          fetch('/api/feria-lead', {
+          await fetch('/api/feria-lead', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(leadData)
-          }).catch(err => console.warn('Servidor offline, guardado en localStorage', err));
-        } catch (err) {}
+          });
+        } catch (err) {
+          console.warn('Servidor offline o envío vía API:', err);
+        }
 
         displayTicketCode.textContent = ticketCode;
         formContainer.style.display = 'none';

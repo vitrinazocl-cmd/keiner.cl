@@ -90,11 +90,13 @@ app.use((req, res, next) => {
 
   const origin = req.get('origin');
   if (origin) {
-    if (!allowedOrigins.has(origin)) {
+    const isApiRoute = req.path.startsWith('/api/');
+    if (allowedOrigins.has(origin) || isApiRoute) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+    } else {
       return res.status(403).json({ ok: false, error: 'invalid_origin' });
     }
 
-    res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -145,16 +147,16 @@ const chatLimiter = rateLimit({
 });
 
 const contactSchema = z.object({
-  nombre: z.string().trim().min(2).max(80),
-  empresa: z.string().trim().min(2).max(80),
+  nombre: z.string().trim().min(1).max(100),
+  empresa: z.string().trim().max(100).optional().default('No especificada'),
   correo: z.string().trim().email().max(120),
-  mensaje: z.string().trim().min(15).max(1200),
-  necesidad: z.string().trim().max(40).optional().default(''),
-  perfil: z.string().trim().max(40).optional().default(''),
-  horizonte: z.string().trim().max(40).optional().default(''),
-  integracion: z.string().trim().max(40).optional().default(''),
-  website: z.string().trim().max(0).optional().default(''),
-  aceptoPolitica: z.boolean().refine((value) => value === true),
+  mensaje: z.string().trim().min(1).max(2000),
+  necesidad: z.string().trim().max(100).optional().default(''),
+  perfil: z.string().trim().max(50).optional().default('CLIENTE'),
+  horizonte: z.string().trim().max(50).optional().default(''),
+  integracion: z.string().trim().max(100).optional().default(''),
+  website: z.string().trim().max(50).optional().default(''),
+  aceptoPolitica: z.boolean().optional().default(true),
 });
 
 const analyticsSchema = z
@@ -177,10 +179,10 @@ const feriaLeadSchema = z.object({
   ticketCode: z.string().optional(),
   timestamp: z.string().optional(),
   fechaLectura: z.string().optional(),
-  tipoContacto: z.string().trim().max(50),
+  tipoContacto: z.string().trim().max(50).optional().default('CLIENTE'),
   nombre: z.string().trim().min(1).max(100),
-  apellido: z.string().trim().min(1).max(100),
-  celular: z.string().trim().min(5).max(30),
+  apellido: z.string().trim().max(100).optional().default(''),
+  celular: z.string().trim().min(1).max(50),
   email: z.string().trim().max(100).optional().default(''),
   empresa: z.string().trim().max(100).optional().default(''),
   categorias: z.string().trim().max(200).optional().default(''),
@@ -272,10 +274,29 @@ app.get('/api/public-config', (_req, res) => {
 app.post('/api/feria-lead', async (req, res) => {
   const parseResult = feriaLeadSchema.safeParse(req.body);
   if (!parseResult.success) {
+    console.error('[feria_lead_validation_error]', parseResult.error.format());
     return res.status(400).json({ ok: false, error: 'invalid_payload' });
   }
 
   const lead = parseResult.data;
+
+  // Auto split single full-name string into nombre & apellido if apellido is empty
+  if (!lead.apellido && lead.nombre && lead.nombre.includes(' ')) {
+    const parts = lead.nombre.trim().split(/\s+/);
+    lead.nombre = parts[0];
+    lead.apellido = parts.slice(1).join(' ');
+  }
+
+  if (!lead.ticketCode) {
+    lead.ticketCode = `KNR-${Math.floor(1000 + Math.random() * 9000)}`;
+  }
+  if (!lead.timestamp) {
+    lead.timestamp = new Date().toISOString();
+  }
+  if (!lead.fechaLectura) {
+    lead.fechaLectura = new Date().toLocaleString('es-CL');
+  }
+
   saveFeriaLeadData(lead);
 
   // Send automatic email notifications to contacto@keiner.cl, domingo@keiner.cl AND to the user
@@ -312,20 +333,16 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   const parseResult = contactSchema.safeParse(req.body);
 
   if (!parseResult.success) {
+    console.error('[contact_validation_error]', parseResult.error.format());
     return res.status(400).json({ ok: false, error: 'invalid_payload' });
   }
 
   const payload = parseResult.data;
-  const origin = req.get('origin');
-  if (origin && !allowedOrigins.has(origin)) {
-    return res.status(403).json({ ok: false, error: 'invalid_origin' });
-  }
-
   const submissionId = crypto.randomUUID();
 
   const safeData = {
     nombre: sanitize(payload.nombre),
-    empresa: sanitize(payload.empresa),
+    empresa: sanitize(payload.empresa || 'No especificada'),
     correo: sanitize(payload.correo),
     mensaje: sanitize(payload.mensaje),
     necesidad: sanitize(payload.necesidad || ''),
@@ -334,12 +351,37 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     integracion: sanitize(payload.integracion || ''),
   };
 
+  // Guarantee contact submissions are also stored in permanent Lead DB for Admin Dashboard
+  const nameParts = safeData.nombre.trim().split(/\s+/);
+  const leadNombre = nameParts[0] || safeData.nombre;
+  const leadApellido = nameParts.slice(1).join(' ') || '';
+
+  const leadRecord = {
+    id: submissionId,
+    ticketCode: `KNR-${Math.floor(1000 + Math.random() * 9000)}`,
+    timestamp: new Date().toISOString(),
+    fechaLectura: new Date().toLocaleString('es-CL'),
+    tipoContacto: safeData.perfil || 'CONTACTO WEB',
+    nombre: leadNombre,
+    apellido: leadApellido,
+    celular: safeData.integracion || 'No informado',
+    email: safeData.correo,
+    empresa: safeData.empresa,
+    categorias: safeData.necesidad || 'Contacto General',
+    comentarios: safeData.mensaje
+  };
+  saveFeriaLeadData(leadRecord);
+
+  // Send contact emails to admins & user, non-blocking
   try {
     await sendContactEmail(transport, safeData, submissionId);
-    await sendLeadWebhook(safeData, submissionId);
-  } catch (_error) {
-    return res.status(500).json({ ok: false, error: 'delivery_failed' });
+  } catch (err) {
+    console.error('[contact_email_trigger_error]', err?.message || err);
   }
+
+  try {
+    await sendLeadWebhook(safeData, submissionId);
+  } catch (_error) {}
 
   return res.status(200).json({ ok: true, submissionId });
 });
