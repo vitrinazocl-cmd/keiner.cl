@@ -692,7 +692,7 @@ async function sendFeriaLeadEmailNotification(mailer, lead) {
 
           <div style="text-align: center; border-top: 1px solid #22222E; padding-top: 20px; color: #9CA3AF; font-size: 0.82rem;">
             <p style="margin: 0 0 6px 0; font-weight: bold; color: #FFF;">KEINER SpA • Distribución & Representación Comercial</p>
-            <p style="margin: 0;">Mesa Central: +56 9 7688 6689 | Email: contacto@keiner.cl | www.keiner.cl</p>
+            <p style="margin: 0;">Mesa Central: +56 9 5149 6392 | Email: contacto@keiner.cl | www.keiner.cl</p>
           </div>
         </div>
       `;
@@ -769,7 +769,7 @@ async function sendContactEmail(mailer, payload, submissionId) {
           </div>
           <div style="text-align: center; border-top: 1px solid #22222E; padding-top: 18px; color: #9CA3AF; font-size: 0.82rem;">
             <p style="margin: 0 0 4px 0; font-weight: bold; color: #FFF;">KEINER SpA • Distribución & Representación Comercial</p>
-            <p style="margin: 0;">Mesa Central: +56 9 7688 6689 | Email: contacto@keiner.cl | www.keiner.cl</p>
+            <p style="margin: 0;">Mesa Central: +56 9 5149 6392 | Email: contacto@keiner.cl | www.keiner.cl</p>
           </div>
         </div>
       `;
