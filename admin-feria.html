@@ -470,6 +470,7 @@
   <script>
     const CORRECT_USER = 'keiner';
     const CORRECT_PASS = 'keiner#2027';
+    const SESSION_KEY = 'keiner_admin_authed_v2027';
     let allLeads = [];
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -479,17 +480,23 @@
       const btnLogin = document.getElementById('btnLogin');
       const loginError = document.getElementById('loginError');
 
-      // Check Session Storage
-      if (sessionStorage.getItem('keiner_admin_authed') === 'true') {
+      // Clear legacy session storage to force re-login on all devices
+      sessionStorage.removeItem('keiner_admin_authed');
+      localStorage.removeItem('keiner_admin_authed');
+
+      // Check New Session Storage
+      if (sessionStorage.getItem(SESSION_KEY) === 'true') {
         lockScreen.style.display = 'none';
         loadLeadsData();
+      } else {
+        lockScreen.style.display = 'flex';
       }
 
       function attemptLogin() {
         const enteredUser = userInput.value.trim();
         const enteredPass = passInput.value.trim();
-        if (enteredUser === CORRECT_USER && (enteredPass === CORRECT_PASS || enteredPass === 'keiner123' || enteredPass === 'keiner2026')) {
-          sessionStorage.setItem('keiner_admin_authed', 'true');
+        if (enteredUser === CORRECT_USER && enteredPass === CORRECT_PASS) {
+          sessionStorage.setItem(SESSION_KEY, 'true');
           lockScreen.style.display = 'none';
           loginError.style.display = 'none';
           loadLeadsData();
@@ -528,7 +535,7 @@
 
       // Sincronización continua en vivo cada 6 segundos
       setInterval(() => {
-        if (sessionStorage.getItem('keiner_admin_authed') === 'true') {
+        if (sessionStorage.getItem(SESSION_KEY) === 'true') {
           loadLeadsData();
         }
       }, 6000);

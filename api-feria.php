@@ -101,7 +101,7 @@ if ($action === 'canjear') {
 }
 
 if ($action === 'clear') {
-    if ($pin !== 'keiner#2027' && $pin !== 'keiner123' && $pin !== 'keiner2026') {
+    if ($pin !== 'keiner#2027') {
         http_response_code(401);
         echo json_encode(['ok' => false, 'error' => 'unauthorized']);
         exit;
